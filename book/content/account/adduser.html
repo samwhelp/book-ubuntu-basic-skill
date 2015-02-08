@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>如何查詢某個檔案，屬於哪個套件 | Ubuntu Basic Skill</title>
+        <title>下指令的方式新增使用者 | Ubuntu Basic Skill</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,8 @@
         
     
     
-    <link rel="next" href="../../content/package/how-to-figure-out-package-installed.html" />
     
-    
-    <link rel="prev" href="../../content/package/apt-get.html" />
+    <link rel="prev" href="../../content/account/index.html" />
     
 
         
@@ -34,7 +32,7 @@
 
 
         
-    <div class="book" data-level="1.2" data-basepath="../.." data-revision="1423406248078">
+    <div class="book" data-level="3.1" data-basepath="../.." data-revision="1423406248078">
     
 
 <div class="book-summary">
@@ -99,7 +97,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="1.2" data-path="content/package/how-to-find-out-what-package-a-file-belongs-to.html">
+        <li class="chapter " data-level="1.2" data-path="content/package/how-to-find-out-what-package-a-file-belongs-to.html">
             
                 
                     <a href="../../content/package/how-to-find-out-what-package-a-file-belongs-to.html">
@@ -335,7 +333,7 @@
                 
     
         
-        <li class="chapter " data-level="3.1" data-path="content/account/adduser.html">
+        <li class="chapter active" data-level="3.1" data-path="content/account/adduser.html">
             
                 
                     <a href="../../content/account/adduser.html">
@@ -444,35 +442,163 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_17">
+                    <section class="normal" id="section-gitbook_2">
                     
-                        <h1 id="">如何查詢某個檔案，屬於哪個套件</h1>
-<h2 id="">測試環境</h2>
-<p>以下測試是在「Xubuntu 14.04 64位元」。</p>
-<h2 id="">方式一</h2>
-<p>執行</p>
-<pre><code class="lang-sh">$ dpkg -S /bin/uname
+                        <h1 id="">下指令的方式新增使用者</h1>
+<h2 id="">前提</h2>
+<p>這篇是參與<a href="http://www.ubuntu-tw.org/modules/newbb/viewtopic.php?post_id=327650#forumpost327650" target="_blank">這裡的討論</a>，重新整理而來。</p>
+<p>站在管理者的角度，假設要新增一位使用者「cooker」。</p>
+<h2 id="">新增使用者</h2>
+<p>執行以下的指令，就可以新增一位使用者叫做「cooker」。過程中會詢問，要為「cooker」設定的密碼。和一些額外的資訊。請依照提示執行。</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">sudo</span> adduser cooker
 </code></pre>
-<p>會看到</p>
-<pre><code>coreutils: /bin/uname
-</code></pre><p>執行</p>
-<pre><code class="lang-sh">$ dpkg -S uname
+<h2 id="">更改密碼</h2>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">sudo</span> passwd cooker
 </code></pre>
-<p>會看到（依照系統安裝的套件而定）</p>
-<pre><code>manpages-posix: /usr/share/man/man1/uname.1posix.gz
-coreutils: /usr/share/man/man1/uname.1.gz
-manpages-dev: /usr/share/man/man2/oldolduname.2.gz
-python3.4-examples: /usr/share/doc/python3.4/examples/scripts/find-uname.py
-python2.7-examples: /usr/share/doc/python2.7/examples/Demo/scripts/find-uname.py
-coreutils: /bin/uname
-klibc-utils: /usr/lib/klibc/bin/uname
-manpages-dev: /usr/share/man/man2/olduname.2.gz
-manpages-posix-dev: /usr/share/man/man3/uname.3posix.gz
-manpages-dev: /usr/share/man/man2/uname.2.gz
-</code></pre><h2 id="">參考</h2>
+<h2 id="">參考文章</h2>
 <ul>
-<li>man <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/dpkg.1.html" target="_blank">dpkg</a></li>
-<li>man <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/dpkg-query.1.html" target="_blank">dpkg-query</a></li>
+<li>Ubuntu / Community Help Wiki / <a href="https://help.ubuntu.com/community/SystemAdministration" target="_blank">SystemAdministration</a> / <a href="https://help.ubuntu.com/community/AddUsersHowto" target="_blank">AddUsersHowto</a></li>
+<li><a href="http://note.drx.tw/" target="_blank">凍仁的筆記</a> / <a href="http://note.drx.tw/2008/03/ubuntuadduser-part1.html" target="_blank">adduser - 新增使用者指令</a></li>
+</ul>
+<h2 id="">套件探索</h2>
+<h3 id="adduser">探索「adduser」</h3>
+<p>查詢「adduser」屬於哪個套件</p>
+<pre><code class="lang-sh">$ dpkg -S adduser
+</code></pre>
+<p>看起來是屬於「adduser」這個套件。</p>
+<p>準備等會要工作的資料夾</p>
+<pre><code class="lang-sh">$ mkdir ~/tmp/adduser -p
+$ <span class="hljs-built_in">cd</span> ~/tmp/adduser
+$ mkdir download <span class="hljs-built_in">source</span>
+</code></pre>
+<p>下載「adduser」這個「<a href="http://packages.ubuntu.com/trusty/adduser" target="_blank">package</a>」，並解開。</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">cd</span> download
+$ apt-get download adduser
+$ dpkg -x adduser_3.<span class="hljs-number">113</span>+nmu3ubuntu3_all.deb adduser
+$ ar xf adduser_3.<span class="hljs-number">113</span>+nmu3ubuntu3_all.deb
+$ dpkg <span class="hljs-operator">-e</span> adduser_3.<span class="hljs-number">113</span>+nmu3ubuntu3_all.deb
+</code></pre>
+<p>觀看「etc」底下有什麼檔。</p>
+<pre><code class="lang-sh">$ ls /adduser/etc
+</code></pre>
+<p>發現只有「deluser.conf」，沒有「adduser.conf」。</p>
+<p>所以觀看「postinst」。</p>
+<pre><code class="lang-sh">$ vi DEBIAN/postinst
+</code></pre>
+<p>原來是安裝後，會根據「/etc/adduser.conf」是否存在，才會複製一份到「/etc」底下。</p>
+<pre><code class="lang-sh"><span class="hljs-keyword">if</span> [ ! <span class="hljs-operator">-e</span> <span class="hljs-string">"/etc/adduser.conf"</span> ]; <span class="hljs-keyword">then</span>
+    cp /usr/share/adduser/adduser.conf /etc/adduser.conf
+<span class="hljs-keyword">fi</span>
+</code></pre>
+<p>不過「DEBIAN/postinst」後面還有，尚未弄懂。</p>
+<p>觀看「usr/sbin」有哪些執行檔。</p>
+<pre><code class="lang-sh">ls adduser/usr/sbin <span class="hljs-operator">-l</span>
+</code></pre>
+<p>共有四個檔。
+「adduser」和「deluser」。
+「addgroup」symbolic link「adduser」。
+「delgroup」symbolic link「deluser」。</p>
+<pre><code class="lang-sh">$ vi adduser/usr/sbin/adduser
+$ vi adduser/usr/sbin/deluser
+</code></pre>
+<p>發現是「perl」寫的。</p>
+<p>查看有哪些「manual」可以查閱。</p>
+<pre><code class="lang-sh">$ ls adduser/usr/share/man/man5
+$ ls adduser/usr/share/man/man8
+</code></pre>
+<p>所以可以查閱的manual如下。</p>
+<h3 id="man-5">man 5</h3>
+<ul>
+<li>$ man 5 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man5/adduser.conf.5.html" target="_blank">adduser.conf</a></li>
+<li>$ man 5 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man5/deluser.conf.5.html" target="_blank">deluser.conf</a></li>
+</ul>
+<h3 id="man-8">man 8</h3>
+<ul>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/adduser.8.html" target="_blank">adduser</a></li>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/deluser.8.html" target="_blank">deluser</a></li>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/addgroup.8.html" target="_blank">addgroup</a></li>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/delgroup.8.html" target="_blank">delgroup</a></li>
+</ul>
+<p>額外的參考</p>
+<pre><code class="lang-sh">ls adduser/usr/share/doc/adduser/examples/
+</code></pre>
+<p>下載「adduser」這個「<a href="http://packages.ubuntu.com/source/trusty/adduser" target="_blank">source package</a>」，並解開。</p>
+<pre><code class="lang-sh"><span class="hljs-built_in">cd</span> ~/tmp/adduser/<span class="hljs-built_in">source</span>
+apt-get <span class="hljs-built_in">source</span> adduser
+</code></pre>
+<p>觀看「control」檔。</p>
+<pre><code class="lang-sh">$ vi adduser-<span class="hljs-number">3.113</span>+nmu3ubuntu3/debian/control
+</code></pre>
+<h3 id="useradd">探索「useradd」</h3>
+<p>查看「useradd」屬於哪個套件。</p>
+<pre><code>$ dpkg -S useradd
+</code></pre><p>看起來是屬於「passwd」這個套件。</p>
+<p>準備等會要工作的資料夾</p>
+<pre><code class="lang-sh">$ mkdir ~/tmp/passwd -p
+$ <span class="hljs-built_in">cd</span> ~/tmp/passwd
+$ mkdir download <span class="hljs-built_in">source</span>
+</code></pre>
+<p>下載「passwd」這個「<a href="http://packages.ubuntu.com/trusty/passwd" target="_blank">package</a>」，並解開。</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">cd</span> download
+$ apt-get download passwd
+$ dpkg -x passwd_1%<span class="hljs-number">3</span>a4.<span class="hljs-number">1.5</span>.<span class="hljs-number">1</span>-<span class="hljs-number">1</span>ubuntu9_amd64.deb passwd
+$ ar xf passwd_1%<span class="hljs-number">3</span>a4.<span class="hljs-number">1.5</span>.<span class="hljs-number">1</span>-<span class="hljs-number">1</span>ubuntu9_amd64.deb
+$ dpkg <span class="hljs-operator">-e</span> passwd_1%<span class="hljs-number">3</span>a4.<span class="hljs-number">1.5</span>.<span class="hljs-number">1</span>-<span class="hljs-number">1</span>ubuntu9_amd64.deb
+</code></pre>
+<p>下載「passwd」的「<a href="http://packages.ubuntu.com/source/trusty/shadow" target="_blank">source package</a>」，並解開。</p>
+<pre><code class="lang-sh"><span class="hljs-built_in">cd</span> ~/tmp/passwd/<span class="hljs-built_in">source</span>
+apt-get <span class="hljs-built_in">source</span> passwd
+</code></pre>
+<p>「passwd」的「source package」是「shadow」。</p>
+<p>觀看「control」檔。</p>
+<pre><code class="lang-sh">$ vi shadow-<span class="hljs-number">4.1</span>.<span class="hljs-number">5.1</span>/debian/control
+</code></pre>
+<p>回到「download」資料夾。</p>
+<pre><code>$ cd ~/tmp/passwd/download
+</code></pre><p>查看有哪些「manual」可以查閱。</p>
+<pre><code class="lang-sh">$ ls passwd/usr/share/man/man1 -<span class="hljs-number">1</span>
+$ ls passwd/usr/share/man/man5 -<span class="hljs-number">1</span>
+$ ls passwd/usr/share/man/man8 -<span class="hljs-number">1</span>
+</code></pre>
+<h3 id="man-1">man 1</h3>
+<ul>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/chage.1.html" target="_blank">chage</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/chfn.1.html" target="_blank">chfn</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/chshman.1.html" target="_blank">chshman</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/expiry.1.html" target="_blank">expiry</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/gpasswd.1.html" target="_blank">gpasswd</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/passwd.1.html" target="_blank">passwd</a></li>
+</ul>
+<h3 id="man-5">man 5</h3>
+<ul>
+<li>$ man 5 <a href="http://manpages.ubuntu.com/manpages/utopic/en/man5/gshadow.5.html" target="_blank">gshadow</a></li>
+<li>$ man 5 <a href="http://manpages.ubuntu.com/manpages/utopic/en/man5/passwd.5.html" target="_blank">passwd</a></li>
+<li>$ man 5 <a href="http://manpages.ubuntu.com/manpages/utopic/en/man5/shadow.5.html" target="_blank">shadow</a></li>
+<li>$ man 5 <a href="http://manpages.ubuntu.com/manpages/utopic/en/man5/subgid.5.html" target="_blank">subgid</a></li>
+<li>$ man 5 <a href="http://manpages.ubuntu.com/manpages/utopic/en/man5/subuid.5.html" target="_blank">subuid</a></li>
+</ul>
+<h3 id="man-8">man 8</h3>
+<ul>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/chgpasswd.8.html" target="_blank">chgpasswd</a></li>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/chpasswd.8.html" target="_blank">chpasswd</a></li>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/cpgr.8.html" target="_blank">cpgr</a></li>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/cppw.8.html" target="_blank">cppw</a></li>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/groupadd.8.html" target="_blank">groupadd</a></li>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/groupdel.8.html" target="_blank">groupdel</a></li>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/groupmod.8.html" target="_blank">groupmod</a></li>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/grpck.8.html" target="_blank">grpck</a></li>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/grpconv.8.html" target="_blank">grpconv</a></li>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/grpunconv.8.html" target="_blank">grpunconv</a></li>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/newusers.8.html" target="_blank">newusers</a></li>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/pwck.8.html" target="_blank">pwck</a></li>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/pwconv.8.html" target="_blank">pwconv</a></li>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/pwunconv.8.html" target="_blank">pwunconv</a></li>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/shadowconfig.8.html" target="_blank">shadowconfig</a></li>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/useradd.8.html" target="_blank">useradd</a></li>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/userdel.8.html" target="_blank">userdel</a></li>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/usermod.8.html" target="_blank">usermod</a></li>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/vigr.8.html" target="_blank">vigr</a></li>
+<li>$ man 8 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/vipw.8.html" target="_blank">vipw</a></li>
 </ul>
 
                     
@@ -484,10 +610,8 @@ manpages-dev: /usr/share/man/man2/uname.2.gz
         </div>
 
         
-        <a href="../../content/package/apt-get.html" class="navigation navigation-prev " aria-label="Previous page: apt-get 的使用"><i class="fa fa-angle-left"></i></a>
+        <a href="../../content/account/index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 帳號管理"><i class="fa fa-angle-left"></i></a>
         
-        
-        <a href="../../content/package/how-to-figure-out-package-installed.html" class="navigation navigation-next " aria-label="Next page: 如何知道某個套件是否已經安裝"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
