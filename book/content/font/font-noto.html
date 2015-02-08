@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>一些套件相關的技巧 | Ubuntu Basic Skill</title>
+        <title>Ubuntu環境下，手動安裝思源字型 | Ubuntu Basic Skill</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
-    <link rel="next" href="../../content/package/apt-get.html" />
+    <link rel="next" href="../../content/font/fontconfig.html" />
     
     
-    <link rel="prev" href="../../index.html" />
+    <link rel="prev" href="../../content/font/font-package.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="1" data-basepath="../.." data-revision="1423405718715">
+    <div class="book" data-level="2.4" data-basepath="../.." data-revision="1423405718715">
     
 
 <div class="book-summary">
@@ -66,7 +66,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="1" data-path="content/package/index.html">
+        <li class="chapter " data-level="1" data-path="content/package/index.html">
             
                 
                     <a href="../../content/package/index.html">
@@ -265,7 +265,7 @@
         </li>
     
         
-        <li class="chapter " data-level="2.4" data-path="content/font/font-noto.html">
+        <li class="chapter active" data-level="2.4" data-path="content/font/font-noto.html">
             
                 
                     <a href="../../content/font/font-noto.html">
@@ -406,26 +406,141 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_16">
+                    <section class="normal" id="section-gitbook_3">
                     
-                        <h1 id="">一些套件相關的技巧</h1>
-<h2 id="">列表</h2>
-<ul>
-<li><a href="apt-get.html">apt-get 的使用</a></li>
-<li><a href="how-to-find-out-what-package-a-file-belongs-to.html">如何查詢某個檔案，屬於哪個套件</a></li>
-<li><a href="how-to-figure-out-package-installed.html">如何知道某個套件是否已經安裝</a></li>
-<li><a href="how-to-find-out-package-changelog.html">如何查詢某個套件的「changelog」</a></li>
-<li><a href="how-to-find-out-package-dependency.html">如何查詢某個套件相依哪些套件</a></li>
-<li><a href="how-to-find-out-package-reverse-dependency.html">如何查詢某個套件被哪些套件相依</a></li>
-<li><a href="apt-get-autoremove.html">關於「apt-get autoremove」</a></li>
-</ul>
-<h2 id="">更多參考</h2>
-<ul>
-<li>Ubuntu Community Help Wiki / <a href="https://help.ubuntu.com/community/AptGet/Howto" target="_blank">AptGet Howto</a></li>
-<li>APT HOWTO / <a href="https://www.debian.org/doc/manuals/apt-howto/ch-apt-get.zh-tw.html" target="_blank">第 3 章 - 套裝軟體管理</a></li>
-<li>Wiki / <a href="http://en.wikipedia.org/wiki/Advanced_Packaging_Tool" target="_blank">Advanced Packaging Tool</a></li>
-<li>Wiki / <a href="http://zh.wikipedia.org/zh-tw/%E9%AB%98%E7%BA%A7%E5%8C%85%E8%A3%85%E5%B7%A5%E5%85%B7" target="_blank">高级包装工具</a></li>
-</ul>
+                        <p>下載Goole版</p>
+<pre><code class="lang-sh">$ wget -c http://www.google.com/get/noto/pkgs/Noto-hinted.zip
+</code></pre>
+<p>我是放在這個資料夾「/usr/local/share/fonts/Noto」，參考<a href="https://dl.dropboxusercontent.com/u/70170658/ubuntu-dual-boot/index.htm" target="_blank">這篇</a>提到的。</p>
+<p>解壓縮</p>
+<pre><code class="lang-sh">$ unzip Noto-hinted.zip <span class="hljs-operator">-d</span> Noto
+</code></pre>
+<p>移到「/usr/local/share/fonts/Noto」</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">sudo</span> mv Noto /usr/local/share/fonts/
+</code></pre>
+<p>或複製到「/usr/local/share/fonts/Noto」</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">sudo</span> cp Noto /usr/local/share/fonts/ <span class="hljs-operator">-a</span>
+</code></pre>
+<p>設定擁有者</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">sudo</span> chown root.staff /usr/local/share/fonts/Noto -R
+</code></pre>
+<p>或執行</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">sudo</span> chown root:staff /usr/local/share/fonts/Noto -R
+</code></pre>
+<p>設定檔案權限</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">sudo</span> chmod <span class="hljs-number">766</span> /usr/local/share/fonts/Noto/* -R
+</code></pre>
+<p>安裝字型</p>
+<pre><code>sudo fc-cache -fv
+</code></pre><p><strong>以上的步驟，就可以將字型安裝完成</strong></p>
+<p>你可以執行下面的指令驗證</p>
+<pre><code>fc-match -a | grep Noto
+</code></pre><p>若要在「/etc/fonts/conf.d」做額外的設定，可以參考「<a href="http://blog.anthonywong.net/2014/07/28/%E6%80%9D%E6%BA%90noto-pan-cjk-%E5%AD%97%E9%AB%94-ubuntu/" target="_blank">這篇</a>」和「<a href="">這篇</a>」，相關的gist - (<a href="https://gist.github.com/anthonywong/dd9a0f43e0ffc7a0c2ae" target="_blank">1</a>), (<a href="https://gist.github.com/anthonywong/6105b996531e98399874" target="_blank">2</a>)，或是根據「<a href="http://wiki.ubuntu-tw.org/index.php?title=HowtoCustomFontswithFontconfig" target="_blank">這篇</a>」的說明，改成自己的設定。
+不過字型的名稱已經改變了，如下：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">string</span>&gt;</span>Noto Sans CJK TC<span class="hljs-tag">&lt;/<span class="hljs-title">string</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">string</span>&gt;</span>Noto Sans CJK SC<span class="hljs-tag">&lt;/<span class="hljs-title">string</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">string</span>&gt;</span>Noto Sans CJK JP<span class="hljs-tag">&lt;/<span class="hljs-title">string</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">string</span>&gt;</span>Noto Sans CJK KR<span class="hljs-tag">&lt;/<span class="hljs-title">string</span>&gt;</span>
+</code></pre>
+<p>用下面的指令就可以查到</p>
+<pre><code class="lang-sh">$ fc-match <span class="hljs-operator">-a</span> | grep CJK
+</code></pre>
+<p>另外在「<a href="https://launchpad.net/~createsc/+archive/ubuntu/3beol" target="_blank">這個PPA</a>」也有看到一個套件「<a href="http://ppa.launchpad.net/createsc/3beol/ubuntu/pool/main/f/fonts-noto-cjk/" target="_blank">fonts-noto-cjk</a>」，也可以參考他的設定</p>
+<pre><code class="lang-sh">$ wget -c http://ppa.launchpad.net/createsc/<span class="hljs-number">3</span>beol/ubuntu/pool/main/f/fonts-noto-cjk/fonts-noto-cjk_20140912-<span class="hljs-number">1</span>~utopic0918~<span class="hljs-number">3</span>beol_all.deb
+</code></pre>
+<pre><code class="lang-sh">$ dpkg -x fonts-noto-cjk_20140912-<span class="hljs-number">1</span>\~utopic0918\~<span class="hljs-number">3</span>beol_all.deb fonts-noto-cjk
+$ vi fonts-noto-cjk/usr/share/fontconfig/conf.avail/<span class="hljs-number">90</span>-fonts-noto-cjk.conf
+</code></pre>
+<p>目前Ubuntu 14.04也有一個套件叫「<a href="http://packages.ubuntu.com/trusty/fonts-noto" target="_blank">fonts-noto</a>」，不過目前應該沒有包含「CJK」字型。</p>
+<pre><code class="lang-sh">$ apt-get download fonts-noto
+$ dpkg -x fonts-noto_2013-<span class="hljs-number">04</span>-<span class="hljs-number">11</span>-<span class="hljs-number">2</span>_all.deb fonts-noto
+$ ls fonts-noto/usr/share/fonts/truetype/noto/
+</code></pre>
+<h2 id="">輔助工具</h2>
+<p>在「「/etc/fonts/conf.d」裡面的設定檔，真的是「百家爭鳴」，
+所以只好利用「<a href="http://wenq.org/cloud/fcdesigner_local.html" target="_blank">Fontconfig Designer</a>」這個工具，產生一個設定檔，
+裡面建議的路徑是「~/.fonts.conf」。</p>
+<p>不過目前「~/.fonts.conf」這個路徑，
+要改放到「~/.config/fontconfig/fonts.conf」。</p>
+<p>當你執行</p>
+<pre><code>fc-match
+</code></pre><p>就會看到下面的訊息</p>
+<pre><code>Fontconfig warning: &quot;/etc/fonts/conf.d/50-user.conf&quot;,
+line 14: reading configurations from ~/.fonts.conf is deprecated.
+please move it to ~/.config/fontconfig/fonts.conf manually
+DejaVuSans.ttf: &quot;DejaVu Sans&quot; &quot;Book&quot;
+</code></pre><p>觀看「/etc/fonts/conf.d/50-user.conf」的內容</p>
+<pre><code class="lang-sh">$ vi /etc/fonts/conf.d/<span class="hljs-number">50</span>-user.conf
+</code></pre>
+<p>就會看到</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;!DOCTYPE fontconfig SYSTEM &quot;fonts.dtd&quot;&gt;
+&lt;fontconfig&gt;
+        &lt;!--
+            Load per-user customization files where stored on XDG Base Directory
+            specification compliant places. it should be usually:
+              $HOME/.config/fontconfig/conf.d
+              $HOME/.config/fontconfig/fonts.conf
+        --&gt;
+        &lt;include ignore_missing=&quot;yes&quot; prefix=&quot;xdg&quot;&gt;fontconfig/conf.d&lt;/include&gt;
+        &lt;include ignore_missing=&quot;yes&quot; prefix=&quot;xdg&quot;&gt;fontconfig/fonts.conf&lt;/include&gt;
+        &lt;!-- the following elements will be removed in the future --&gt;
+        &lt;include ignore_missing=&quot;yes&quot; deprecated=&quot;yes&quot;&gt;~/.fonts.conf.d&lt;/include&gt;
+        &lt;include ignore_missing=&quot;yes&quot; deprecated=&quot;yes&quot;&gt;~/.fonts.conf&lt;/include&gt;
+&lt;/fontconfig&gt;
+</code></pre><p>也就是說個人的設定，要使用「~/.config/fontconfig/fonts.conf」和「~/.config/fontconfig/conf.d」裡面的檔。
+而「~/.fonts.conf」和「~/.fonts.conf.d」這兩個地方就不建議使用了。</p>
+<p>另外還有一個要注意的，就是，你有安裝「font-manager」這個套件。
+當你執行這個程式的時候，會寫入「~/.config/fontconfig/fonts.conf」這個檔。</p>
+<p>內容如下（假設使用者的帳號是「user」）。</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;!DOCTYPE fontconfig SYSTEM &quot;fonts.dtd&quot;&gt;
+&lt;fontconfig&gt;
+
+&lt;!--
+    This file is maintained by Font Manager.
+
+    If you wish to make any changes it is suggested you do so using
+
+        /home/user/.config/font-manager/local.conf
+
+    Any changes made to this file will be automatically relocated there
+    at startup and any settings already in that file will be overwritten.
+--&gt;
+
+    &lt;include ignore_missing=&quot;yes&quot;&gt;/home/user/.config/font-manager/conf.d&lt;/include&gt;
+    &lt;include ignore_missing=&quot;yes&quot;&gt;/home/user/.config/font-manager/directories.conf&lt;/include&gt;
+    &lt;include ignore_missing=&quot;yes&quot;&gt;/home/user/.config/font-manager/local.conf&lt;/include&gt;
+    &lt;include ignore_missing=&quot;yes&quot;&gt;/home/user/.config/font-manager/select.conf&lt;/include&gt;
+
+&lt;/fontconfig&gt;
+</code></pre><p>所以最佳的建議是寫到「~/.config/fontconfig/conf.d」裡面的檔案，可以參照「/etc/fonts/conf.d/」的作法。</p>
+<p>例如你可以把剛剛利用「<a href="http://wenq.org/cloud/fcdesigner_local.html" target="_blank">Fontconfig Designer</a>」這個工具，所產生的內容。
+寫到「~/.config/fontconfig/conf.d/70-select.conf」。</p>
+<p>若你要確認「~/.config/fontconfig/conf.d/10-select.conf」有沒有真的被載入。
+只要在「~/.config/fontconfig/conf.d/70-select.conf」第一行，第一字，雖便亂填一個字。例如:a。這樣就會導致xml格式錯誤。</p>
+<p>然後在執行</p>
+<pre><code>$ fc-match
+</code></pre><p>你就會看到下面的錯誤訊息。</p>
+<pre><code>Fontconfig error: &quot;/home/user/.config/fontconfig/conf.d/70-select.conf&quot;, line 1: not well-formed (invalid token)
+DejaVuSans.ttf: &quot;DejaVu Sans&quot; &quot;Book&quot;
+</code></pre><p>也就是說，我們可以確定「~/.config/fontconfig/conf.d/70-select.conf」是有被載入的。</p>
+<p>然後你要測試你的字型查找的順序是否跟你的設定檔相符合，可以用下面指令來測試</p>
+<pre><code class="lang-sh">$ fc-match <span class="hljs-operator">-s</span> monospace | less
+</code></pre>
+<pre><code class="lang-sh">$ fc-match <span class="hljs-operator">-s</span> serif | less
+</code></pre>
+<pre><code class="lang-sh">$ fc-match <span class="hljs-operator">-s</span> sans-serif | less
+</code></pre>
+<pre><code class="lang-sh">$ fc-match <span class="hljs-operator">-s</span> mono | less
+</code></pre>
+<pre><code class="lang-sh">$ fc-match <span class="hljs-operator">-s</span> sans | less
+</code></pre>
+<p>也可以直接測試你某個「字型名稱」，確認查找的順序是不是你要的。</p>
+<pre><code class="lang-sh">$ fc-match <span class="hljs-operator">-s</span> 標楷體 | less
+</code></pre>
+<h2 id="">結論</h2>
+<p>基本上，只要了設定檔的原理，還有查找的順序，就可以依照自己想要的設定去設摟，以上只是當作範例來說明，了解如何設定。</p>
 
                     
                     </section>
@@ -436,10 +551,10 @@
         </div>
 
         
-        <a href="../../index.html" class="navigation navigation-prev " aria-label="Previous page: Introduction"><i class="fa fa-angle-left"></i></a>
+        <a href="../../content/font/font-package.html" class="navigation navigation-prev " aria-label="Previous page: Ubuntu環境下，一些字型套件"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../content/package/apt-get.html" class="navigation navigation-next " aria-label="Next page: apt-get 的使用"><i class="fa fa-angle-right"></i></a>
+        <a href="../../content/font/fontconfig.html" class="navigation navigation-next " aria-label="Next page: Ubuntu環境下，探究 fontconfig 相關的套件"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

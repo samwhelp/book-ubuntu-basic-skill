@@ -1,0 +1,705 @@
+<!DOCTYPE HTML>
+<html lang="en-US" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+        <title>Ubuntu環境下，探究 fontconfig 相關的套件 | Ubuntu Basic Skill</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 1.5.0">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+        
+    
+    
+    <link rel="next" href="../../content/font/software.html" />
+    
+    
+    <link rel="prev" href="../../content/font/font-noto.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="../../gitbook/style.css">
+
+
+        
+    <div class="book" data-level="2.5" data-basepath="../.." data-revision="1423405718715">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+    	
+    	
+    	
+
+        
+
+        
+    
+        
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         Introduction
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1" data-path="content/package/index.html">
+            
+                
+                    <a href="../../content/package/index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         一些套件相關的技巧
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.1" data-path="content/package/apt-get.html">
+            
+                
+                    <a href="../../content/package/apt-get.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                         apt-get 的使用
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2" data-path="content/package/how-to-find-out-what-package-a-file-belongs-to.html">
+            
+                
+                    <a href="../../content/package/how-to-find-out-what-package-a-file-belongs-to.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                         如何查詢某個檔案，屬於哪個套件
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.3" data-path="content/package/how-to-figure-out-package-installed.html">
+            
+                
+                    <a href="../../content/package/how-to-figure-out-package-installed.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                         如何知道某個套件是否已經安裝
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.4" data-path="content/package/how-to-find-out-package-changelog.html">
+            
+                
+                    <a href="../../content/package/how-to-find-out-package-changelog.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                         如何查詢某個套件的「changelog」
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5" data-path="content/package/how-to-find-out-package-dependency.html">
+            
+                
+                    <a href="../../content/package/how-to-find-out-package-dependency.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                         如何查詢某個套件相依哪些套件
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.6" data-path="content/package/how-to-find-out-package-reverse-dependency.html">
+            
+                
+                    <a href="../../content/package/how-to-find-out-package-reverse-dependency.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                         如何查詢某個套件被哪些套件相依
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.7" data-path="content/package/apt-get-autoremove.html">
+            
+                
+                    <a href="../../content/package/apt-get-autoremove.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.7.</b>
+                        
+                         關於「apt-get autoremove」
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2" data-path="content/font/index.html">
+            
+                
+                    <a href="../../content/font/index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                         一些字型設定相關的技巧
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="2.1" data-path="content/font/start.html">
+            
+                
+                    <a href="../../content/font/start.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                         Ubuntu環境下，了解如何設定字型
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.2" data-path="content/font/fc-match.html">
+            
+                
+                    <a href="../../content/font/fc-match.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                         fc-match的使用
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.3" data-path="content/font/font-package.html">
+            
+                
+                    <a href="../../content/font/font-package.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                         Ubuntu環境下，一些字型套件
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.4" data-path="content/font/font-noto.html">
+            
+                
+                    <a href="../../content/font/font-noto.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                         Ubuntu環境下，手動安裝思源字型
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter active" data-level="2.5" data-path="content/font/fontconfig.html">
+            
+                
+                    <a href="../../content/font/fontconfig.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                         Ubuntu環境下，探究 fontconfig 相關的套件
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.6" data-path="content/font/software.html">
+            
+                
+                    <a href="../../content/font/software.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                         Ubuntu環境下，一些軟體設定字型的方式
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Published using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle share dropdown"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">Twitter</button>
+                <button type="button" data-sharing="google-plus" class="button">Google</button>
+                <button type="button" data-sharing="facebook" class="button">Facebook</button>
+                <button type="button" data-sharing="weibo" class="button">Weibo</button>
+                <button type="button" data-sharing="instapaper" class="button">Instapaper</button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >Ubuntu Basic Skill</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-gitbook_5">
+                    
+                        <h1 id="ubuntu-fontconfig-">Ubuntu環境下，探究 fontconfig 相關的套件</h1>
+<h2 id="">測試環境</h2>
+<p>以下所提的測試環境是在「Xubuntu 14.04 64位元」測試。我使用的界面是英文。所以一些相關的術語是使用英文摟。</p>
+<h2 id="fontconfig-">fontconfig 相關的套件</h2>
+<p>Package</p>
+<ul>
+<li><a href="http://packages.ubuntu.com/trusty/fontconfig" target="_blank">fontconfig</a></li>
+<li><a href="http://packages.ubuntu.com/trusty/fontconfig-config" target="_blank">fontconfig-config</a></li>
+<li><a href="http://packages.ubuntu.com/trusty/language-selector-common" target="_blank">language-selector-common</a></li>
+<li><a href="http://packages.ubuntu.com/trusty/language-selector-gnome" target="_blank">language-selector-gnome</a> （這個套件基本上不算是，只是剛好有相關，順帶一提）</li>
+</ul>
+<p>Source Package</p>
+<ul>
+<li><a href="http://packages.ubuntu.com/source/trusty/fontconfig" target="_blank">fontconfig</a></li>
+<li><a href="http://packages.ubuntu.com/source/trusty/language-selector" target="_blank">language-selector</a></li>
+</ul>
+<h3 id="">剛剛才發現一個「查詢某個檔案或是資料夾，屬於哪個套件」的指令下法。</h3>
+<p>原來可以執行下面的指令阿，就可以知道「30-cjk-aliases.conf」是屬於哪個套件。參考<a href="http://os.51cto.com/art/201001/176881.htm" target="_blank">這篇</a>提到的。</p>
+<pre><code class="lang-sh">$ dpkg -S <span class="hljs-number">30</span>-cjk-aliases.conf
+</code></pre>
+<h2 id="fontconfig">fontconfig</h2>
+<p>在ubuntu手動安裝font。通常會接觸到一個指令「<a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/fc-cache.1.html" target="_blank">fc-cache</a>」。「fc-cache」的用法，可以參考「<a href="/blog/read/linux/ubuntu/font/font-noto/">這篇</a>」的說明範例來練習。</p>
+<p>通常會這樣下。</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">sudo</span> fc-cache -fv
+</code></pre>
+<p>而這個指令是屬於「<a href="http://packages.ubuntu.com/trusty/fontconfig" target="_blank">fontconfig</a>」這個套件。
+當然這個套件還包含其他相關的指令。</p>
+<ul>
+<li>fc-cache</li>
+<li>fc-cat</li>
+<li>fc-list</li>
+<li>fc-match</li>
+<li>fc-pattern</li>
+<li>fc-query</li>
+<li>fc-scan</li>
+<li>fc-validate</li>
+</ul>
+<p>這裡值得一提的指令「<a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/fc-match.1.html" target="_blank">fc-match</a>」。</p>
+<p>當你在設定「/etc/fonts/conf.d」裡面的檔的時候，若有寫錯。執行下面的指令，就會告訴你哪裡寫錯了。</p>
+<pre><code class="lang-sh">$ fc-match
+</code></pre>
+<p>下面這個指令下法，可以讓你了解系統尋找font的順序。「fc-match」的用法會在另一篇<a href="/blog/read/linux/ubuntu/font/fc-match/">文章</a>來討論。</p>
+<pre><code class="lang-sh">$ fc-match <span class="hljs-operator">-s</span> nonospace | less
+</code></pre>
+<h2 id="fontconfig-config">fontconfig-config</h2>
+<p>通常我們在設定font的時候，也常到「/etc/fonts」去做些修改。
+而這個資料夾裡面的檔案則是來自於「<a href="http://packages.ubuntu.com/trusty/fontconfig-config" target="_blank">fontconfig-config</a>」這個套件。</p>
+<p>例如「65-nonlatin.conf」。</p>
+<pre><code class="lang-sh">$ dpkg -S <span class="hljs-number">65</span>-nonlatin.conf
+</code></pre>
+<h2 id="language-selector-common">language-selector-common</h2>
+<p>在<a href="http://blog.roodo.com/rocksaying/archives/12397861.html" target="_blank">這一頁</a>提到的「30-cjk-aliases.conf」</p>
+<p>正常的檔放在「/etc/fonts/conf.avail/30-cjk-aliases.conf」
+通常會有一個symbolic link放在「/etc/fonts/conf.d/30-cjk-aliases.conf」。</p>
+<p>這個是屬於「<a href="http://packages.ubuntu.com/trusty/language-selector-common" target="_blank">language-selector-common</a>」這個套件。而不是放在上面提到的「fontconfig-config」。</p>
+<p>這個套件也包含了幾個常看到的檔。</p>
+<ul>
+<li>30-cjk-aliases.conf</li>
+<li>69-language-selector-zh-cn.conf</li>
+<li>69-language-selector-zh-hk.conf</li>
+<li>69-language-selector-zh-mo.conf</li>
+<li>69-language-selector-zh-sg.conf</li>
+<li>69-language-selector-zh-tw.conf</li>
+<li>99-language-selector-zh.conf</li>
+</ul>
+<p>額外提的，還有一個套件叫「<a href="http://packages.ubuntu.com/trusty/language-selector-gnome" target="_blank">language-selector-gnome</a>」，和「<a href="http://packages.ubuntu.com/trusty/language-selector-common" target="_blank">language-selector-common</a>」都是屬於「<a href="http://packages.ubuntu.com/source/trusty/language-selector" target="_blank">language-selector</a>」這個「原始碼套件(Source Package )」。
+這個套件，就是我們常看到的「Language Support」哪隻程式。</p>
+<p>在「Xubuntu」，展開「開始選單(Whisker)」，選單右下方有一個按鈕「All Setting」，會跳出「Settings」這隻程式。在「Psersonal」就會看到「Language Support」。</p>
+<p>或是你用的是「Applications Menu」。則是展開後，選擇「Settings Manager」，同樣會跳出會跳出「Settings」這隻程式。</p>
+<p>或是直接在Termianl，執行「xfce4-settings-manager」也行。在「Whisker選單」查詢「xfce4-settings-manager」或是「Settings Manager」，也查的到，基本上你打「se」大概就會跑出來「Settings Manager」了。</p>
+<p>而剛剛提到的「<a href="http://packages.ubuntu.com/trusty/language-selector-gnome" target="_blank">language-selector-gnome</a>」，裡面有一個程式叫做「gnome-language-selector」，就是剛剛提到的「Language Support」。在「Terminal」下「gnome-language-selector」這個指令就行了，就不用透過剛剛選單的方式。</p>
+<h2 id="">先驗證上面提到的</h2>
+<p>先準備一個暫時工作的資料夾</p>
+<pre><code class="lang-sh">mkdir ~/tmp/font -p
+<span class="hljs-built_in">cd</span> ~/tmp/font
+</code></pre>
+<p>準備好等會所有要工作的資料夾。</p>
+<pre><code class="lang-sh">mkdir fontconfig/download -p
+mkdir fontconfig/<span class="hljs-built_in">source</span> -p
+
+mkdir fontconfig-config/download -p
+mkdir fontconfig-config/<span class="hljs-built_in">source</span> -p
+
+mkdir language-selector-common/download -p
+mkdir language-selector-common/<span class="hljs-built_in">source</span> -p
+
+mkdir language-selector-gnome/download -p
+mkdir language-selector-gnome/<span class="hljs-built_in">source</span> -p
+</code></pre>
+<h2 id="fontconfigpackage">下載「fontconfig」的「package」，並解開。</h2>
+<pre><code class="lang-sh"><span class="hljs-built_in">cd</span> ~/tmp/font/fontconfig/download
+apt-get download fontconfig
+dpkg -x fontconfig_2.<span class="hljs-number">11.0</span>-<span class="hljs-number">0</span>ubuntu4.<span class="hljs-number">1</span>_amd64.deb fontconfig
+</code></pre>
+<p>觀看有哪些執行檔。</p>
+<pre><code class="lang-sh">$ ls fontconfig/usr/bin -<span class="hljs-number">1</span>
+</code></pre>
+<p>就會看到</p>
+<pre><code>fc-cache
+fc-cat
+fc-list
+fc-match
+fc-pattern
+fc-query
+fc-scan
+fc-validate
+</code></pre><p>你可以觀看最重要的文件「fontconfig-user.html」，不過我也還沒看，只是要寫這篇，才無意間發現有這個文件。</p>
+<pre><code class="lang-sh">$ lynx fontconfig/usr/share/doc/fontconfig/fontconfig-user.html
+</code></pre>
+<p>或是</p>
+<pre><code class="lang-sh">$ firefox fontconfig/usr/share/doc/fontconfig/fontconfig-user.html
+</code></pre>
+<p>或是</p>
+<pre><code class="lang-sh">$ sensible-browser fontconfig/usr/share/doc/fontconfig/fontconfig-user.html
+</code></pre>
+<p>觀看有哪些「Manual」可以查詢。</p>
+<pre><code class="lang-sh">$ ls fontconfig/usr/share/man/man1 -<span class="hljs-number">1</span> <span class="hljs-comment"># 這裡是下「-1」喔，不是「-l」</span>
+</code></pre>
+<p>就會看到</p>
+<pre><code>fc-cache.1.gz
+fc-cat.1.gz
+fc-list.1.gz
+fc-match.1.gz
+fc-pattern.1.gz
+fc-query.1.gz
+fc-scan.1.gz
+fc-validate.1.gz
+</code></pre><p>這些就是上面那些程式的相關文件
+所以就可以查詢。</p>
+<h3 id="man-1">man 1</h3>
+<ul>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/fc-cache.1.html" target="_blank">fc-cache</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/fc-cat.1.html" target="_blank">fc-cat</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/fc-list.1.html" target="_blank">fc-list</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/fc-match.1.html" target="_blank">fc-match</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/fc-pattern.1.html" target="_blank">fc-pattern</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/fc-query.1.html" target="_blank">fc-query</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/fc-scan.1.html" target="_blank">fc-scan</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/fc-validate.1.html" target="_blank">fc-validate</a></li>
+</ul>
+<blockquote>
+<p>注意以上的路徑是在我們目前工作的資料夾裡。當然你也可以對應到「/」底下。
+因為系統應該有裝「fontconfig」這個套件。所以相對在「/」底下應該都有這樣的檔案。
+上面的作法，只是要讓你看到「fontconfig」有安裝了什麼檔案在「/」底下。</p>
+</blockquote>
+<h2 id="fontconfigsource-package">下載「fontconfig」的「Source Package」，並解開。</h2>
+<pre><code class="lang-sh"><span class="hljs-built_in">cd</span> ~/tmp/font/fontconfig/<span class="hljs-built_in">source</span>
+apt-get <span class="hljs-built_in">source</span> fontconfig
+<span class="hljs-built_in">cd</span> fontconfig-<span class="hljs-number">2.11</span>.<span class="hljs-number">0</span>
+mc
+</code></pre>
+<p>你就會看到相關的原始碼檔案了。</p>
+<h2 id="fontconfig-configpackage">下載「fontconfig-config」的「package」，並解開。</h2>
+<pre><code class="lang-sh"><span class="hljs-built_in">cd</span> ~/tmp/font/fontconfig-config/download
+apt-get download fontconfig-config
+dpkg -x fontconfig-config_2.<span class="hljs-number">11.0</span>-<span class="hljs-number">0</span>ubuntu4.<span class="hljs-number">1</span>_all.deb fontconfig-config
+</code></pre>
+<p>觀看有哪些檔。</p>
+<pre><code class="lang-sh">$ ls fontconfig-config/etc/fonts/conf.d -<span class="hljs-number">1</span>  <span class="hljs-comment"># 這裡是下「-1」喔，不是「-l」</span>
+</code></pre>
+<p>就可以看到這下面這幾個symblic檔</p>
+<pre><code>10-antialias.conf
+10-hinting.conf
+10-hinting-slight.conf
+10-scale-bitmap-fonts.conf
+11-lcdfilter-default.conf
+20-unhint-small-vera.conf
+30-metric-aliases.conf
+30-urw-aliases.conf
+40-nonlatin.conf
+45-latin.conf
+49-sansserif.conf
+50-user.conf
+51-local.conf
+60-latin.conf
+65-fonts-persian.conf
+65-nonlatin.conf
+69-unifont.conf
+70-no-bitmaps.conf
+80-delicious.conf
+90-synthetic.conf
+README
+</code></pre><p>觀看有哪些「Manual」可以查詢。</p>
+<pre><code class="lang-sh">$ ls fontconfig-config/usr/share/man/man5
+</code></pre>
+<p>可以看到</p>
+<pre><code>fonts-conf.5.gz
+</code></pre><p>也就是說安裝了「fontconfig-config」，就會安裝「<a href="http://manpages.ubuntu.com/manpages/trusty/en/man5/fonts-conf.5.html" target="_blank">fonts-conf</a>」這個manual。</p>
+<p>所以可以直接下</p>
+<pre><code class="lang-sh">$ man fonts-conf
+</code></pre>
+<p>就可以看到相關文件了。內容應該跟剛剛的「fontconfig-user.html」是一樣的。</p>
+<h2 id="fontconfig-configsource-package">下載「fontconfig-config」的「Source Package」，並解開。</h2>
+<pre><code>cd ~/tmp/font/fontconfig-config/source
+apt-get source fontconfig-config
+cd fontconfig-2.11.0
+mc
+</code></pre><p>你就會看到相關的原始碼檔案了。
+「<a href="http://packages.ubuntu.com/trusty/fontconfig" target="_blank">fontconfig</a>」和「<a href="http://packages.ubuntu.com/trusty/fontconfig-config" target="_blank">fontconfig-config</a>」，都是屬於「<a href="http://packages.ubuntu.com/source/trusty/fontconfig" target="_blank">fontconfig</a>」這個「Source Package」。</p>
+<pre><code class="lang-sh">$ vi fontconfig-<span class="hljs-number">2.11</span>.<span class="hljs-number">0</span>/debian/control
+</code></pre>
+<p>就可以看到拆成幾個package的相關資訊。</p>
+<h2 id="language-selector-common-package">下載「language-selector-common」 的「package」，並解開。</h2>
+<pre><code class="lang-sh"><span class="hljs-built_in">cd</span> ~/tmp/font/language-selector-common/download
+apt-get download language-selector-common
+dpkg -x language-selector-common_0.<span class="hljs-number">129.2</span>_all.deb language-selector-common
+</code></pre>
+<p>觀看有哪些設定檔。</p>
+<pre><code class="lang-sh">$ ls language-selector-common/etc/fonts/conf.d -<span class="hljs-number">1</span>
+</code></pre>
+<p>就可以看到這下面這幾個symblic檔</p>
+<pre><code>30-cjk-aliases.conf
+69-language-selector-zh-cn.conf
+69-language-selector-zh-hk.conf
+69-language-selector-zh-mo.conf
+69-language-selector-zh-sg.conf
+69-language-selector-zh-tw.conf
+99-language-selector-zh.conf
+</code></pre><h2 id="language-selector-commonsource-package">下載「language-selector-common」的「Source Package」，並解開。</h2>
+<pre><code>cd ~/tmp/font/language-selector-common/source
+apt-get source language-selector-common
+cd language-selector-0.129.2
+mc
+</code></pre><p>你就會看到相關的原始碼檔案了。</p>
+<h2 id="language-selector-gnomepackage">下載「language-selector-gnome」的「Package」，並解開。</h2>
+<pre><code>cd ~/tmp/font/language-selector-gnome/download
+apt-get download language-selector-gnome
+dpkg -x language-selector-gnome_0.129.2_all.deb language-selector-gnome
+</code></pre><p>觀看有哪些執行檔。</p>
+<pre><code class="lang-sh">$ ls language-selector-gnome/usr/bin/
+</code></pre>
+<p>可以看到只有一個檔</p>
+<pre><code>gnome-language-selector
+</code></pre><p>是用Python3寫的</p>
+<pre><code class="lang-sh">$ vi language-selector-gnome/usr/bin/gnome-language-selector
+</code></pre>
+<p>觀看有哪些「Manual」可以查詢。</p>
+<pre><code>ls language-selector-gnome/usr/share/man/man1
+</code></pre><p>可以看到</p>
+<pre><code>gnome-language-selector.1.gz
+</code></pre><p>所以就可以看相關的文件</p>
+<h3 id="man-1">man 1</h3>
+<ul>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/gnome-language-selector.1.html" target="_blank">gnome-language-selector</a></li>
+</ul>
+<h2 id="-language-selector-gnome-source-package">下載 language-selector-gnome 的「Source Package」，並解開。</h2>
+<pre><code>cd ~/tmp/font/language-selector-gnome/source
+apt-get source language-selector-gnome
+cd language-selector-0.129.2
+mc
+</code></pre><p>「<a href="http://packages.ubuntu.com/trusty/language-selector-common" target="_blank">language-selector-common</a>」和「<a href="http://packages.ubuntu.com/trusty/language-selector-gnome" target="_blank">language-selector-gnome</a>」，都是屬於「<a href="http://packages.ubuntu.com/source/trusty/language-selector" target="_blank">language-selector</a>」這個「Source Package」。</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../content/font/font-noto.html" class="navigation navigation-prev " aria-label="Previous page: Ubuntu環境下，手動安裝思源字型"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../content/font/software.html" class="navigation navigation-next " aria-label="Next page: Ubuntu環境下，一些軟體設定字型的方式"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":"night","family":"sans","size":1},"ga":{"token":"UA-55644249-1","configuration":"auto"}};
+    gitbook.start(config);
+});
+</script>
+
+        <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-55644249-1', 'auto');ga('send', 'pageview');</script>
+    </body>
+    
+</html>

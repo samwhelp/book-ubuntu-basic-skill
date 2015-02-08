@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>一些套件相關的技巧 | Ubuntu Basic Skill</title>
+        <title>fc-match的使用 | Ubuntu Basic Skill</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
-    <link rel="next" href="../../content/package/apt-get.html" />
+    <link rel="next" href="../../content/font/font-package.html" />
     
     
-    <link rel="prev" href="../../index.html" />
+    <link rel="prev" href="../../content/font/start.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="1" data-basepath="../.." data-revision="1423405718715">
+    <div class="book" data-level="2.2" data-basepath="../.." data-revision="1423405718715">
     
 
 <div class="book-summary">
@@ -66,7 +66,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="1" data-path="content/package/index.html">
+        <li class="chapter " data-level="1" data-path="content/package/index.html">
             
                 
                     <a href="../../content/package/index.html">
@@ -233,7 +233,7 @@
         </li>
     
         
-        <li class="chapter " data-level="2.2" data-path="content/font/fc-match.html">
+        <li class="chapter active" data-level="2.2" data-path="content/font/fc-match.html">
             
                 
                     <a href="../../content/font/fc-match.html">
@@ -406,25 +406,33 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_16">
+                    <section class="normal" id="section-gitbook_4">
                     
-                        <h1 id="">一些套件相關的技巧</h1>
-<h2 id="">列表</h2>
+                        <h1 id="fc-match">fc-match的使用</h1>
+<h2 id="">使用範例</h2>
+<pre><code class="lang-sh">fc-match
+</code></pre>
+<p>會出現一筆資料。</p>
+<p>以我目前的環境「Xubuntu 14.04 64位元」為例，以及目前有安裝的字型和設定，會出現下面的字樣。</p>
+<pre><code>DejaVuSans.ttf: &quot;DejaVu Sans&quot; &quot;Book&quot;
+</code></pre><p>而當你的「/etc/fonts/conf.d/*.conf」這個資料夾裡面的<a href="http://wiki.ubuntu-tw.org/index.php?title=HowtoCustomFontswithFontconfig" target="_blank">設定檔</a>有寫錯的時候。
+執行「fc-match」會出現訊息，告訴你哪個檔，那一行有寫錯。所以可以用來當作除錯工具。</p>
+<h3 id="">一些可以嘗試的範例</h3>
+<pre><code class="lang-sh">$ fc-match <span class="hljs-operator">-s</span> monospace | less
+</code></pre>
+<pre><code class="lang-sh">$ fc-match <span class="hljs-operator">-s</span> serif | less
+</code></pre>
+<pre><code class="lang-sh">$ fc-match <span class="hljs-operator">-s</span> sans-serif | less
+</code></pre>
+<pre><code class="lang-sh">$ fc-match <span class="hljs-operator">-s</span> mono | less
+</code></pre>
+<pre><code class="lang-sh">$ fc-match <span class="hljs-operator">-s</span> sans | less
+</code></pre>
+<pre><code class="lang-sh">$ fc-match <span class="hljs-operator">-s</span> 標楷體 | less
+</code></pre>
+<p>其他的請閱讀「manual」</p>
 <ul>
-<li><a href="apt-get.html">apt-get 的使用</a></li>
-<li><a href="how-to-find-out-what-package-a-file-belongs-to.html">如何查詢某個檔案，屬於哪個套件</a></li>
-<li><a href="how-to-figure-out-package-installed.html">如何知道某個套件是否已經安裝</a></li>
-<li><a href="how-to-find-out-package-changelog.html">如何查詢某個套件的「changelog」</a></li>
-<li><a href="how-to-find-out-package-dependency.html">如何查詢某個套件相依哪些套件</a></li>
-<li><a href="how-to-find-out-package-reverse-dependency.html">如何查詢某個套件被哪些套件相依</a></li>
-<li><a href="apt-get-autoremove.html">關於「apt-get autoremove」</a></li>
-</ul>
-<h2 id="">更多參考</h2>
-<ul>
-<li>Ubuntu Community Help Wiki / <a href="https://help.ubuntu.com/community/AptGet/Howto" target="_blank">AptGet Howto</a></li>
-<li>APT HOWTO / <a href="https://www.debian.org/doc/manuals/apt-howto/ch-apt-get.zh-tw.html" target="_blank">第 3 章 - 套裝軟體管理</a></li>
-<li>Wiki / <a href="http://en.wikipedia.org/wiki/Advanced_Packaging_Tool" target="_blank">Advanced Packaging Tool</a></li>
-<li>Wiki / <a href="http://zh.wikipedia.org/zh-tw/%E9%AB%98%E7%BA%A7%E5%8C%85%E8%A3%85%E5%B7%A5%E5%85%B7" target="_blank">高级包装工具</a></li>
+<li>$ man <a href="http://manpages.ubuntu.com/manpages/trusty/man1/fc-match.1.html" target="_blank">fc-match</a></li>
 </ul>
 
                     
@@ -436,10 +444,10 @@
         </div>
 
         
-        <a href="../../index.html" class="navigation navigation-prev " aria-label="Previous page: Introduction"><i class="fa fa-angle-left"></i></a>
+        <a href="../../content/font/start.html" class="navigation navigation-prev " aria-label="Previous page: Ubuntu環境下，了解如何設定字型"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../content/package/apt-get.html" class="navigation navigation-next " aria-label="Next page: apt-get 的使用"><i class="fa fa-angle-right"></i></a>
+        <a href="../../content/font/font-package.html" class="navigation navigation-next " aria-label="Next page: Ubuntu環境下，一些字型套件"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
