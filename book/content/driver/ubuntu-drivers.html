@@ -1,0 +1,1085 @@
+<!DOCTYPE HTML>
+<html lang="en-US" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+        <title>如何使用下指令的方式查詢「額外驅動程式」 | Ubuntu Basic Skill</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 1.5.0">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+        
+    
+    
+    <link rel="next" href="../../content/driver/software-properties-gtk.html" />
+    
+    
+    <link rel="prev" href="../../content/driver/index.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="../../gitbook/style.css">
+
+
+        
+    <div class="book" data-level="3.1" data-basepath="../.." data-revision="1423488009808">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+    	
+    	
+    	
+
+        
+
+        
+    
+        
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         Introduction
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1" data-path="content/package/index.html">
+            
+                
+                    <a href="../../content/package/index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         一些套件相關的技巧
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.1" data-path="content/package/apt-get.html">
+            
+                
+                    <a href="../../content/package/apt-get.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                         apt-get 的使用
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2" data-path="content/package/how-to-find-out-what-package-a-file-belongs-to.html">
+            
+                
+                    <a href="../../content/package/how-to-find-out-what-package-a-file-belongs-to.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                         如何查詢某個檔案，屬於哪個套件
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.3" data-path="content/package/how-to-figure-out-package-installed.html">
+            
+                
+                    <a href="../../content/package/how-to-figure-out-package-installed.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                         如何知道某個套件是否已經安裝
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.4" data-path="content/package/how-to-find-out-package-changelog.html">
+            
+                
+                    <a href="../../content/package/how-to-find-out-package-changelog.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                         如何查詢某個套件的「changelog」
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5" data-path="content/package/how-to-find-out-package-dependency.html">
+            
+                
+                    <a href="../../content/package/how-to-find-out-package-dependency.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                         如何查詢某個套件相依哪些套件
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.6" data-path="content/package/how-to-find-out-package-reverse-dependency.html">
+            
+                
+                    <a href="../../content/package/how-to-find-out-package-reverse-dependency.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                         如何查詢某個套件被哪些套件相依
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.7" data-path="content/package/apt-get-autoremove.html">
+            
+                
+                    <a href="../../content/package/apt-get-autoremove.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.7.</b>
+                        
+                         關於「apt-get autoremove」
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2" data-path="content/font/index.html">
+            
+                
+                    <a href="../../content/font/index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                         一些字型設定相關的技巧
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="2.1" data-path="content/font/start.html">
+            
+                
+                    <a href="../../content/font/start.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                         了解如何設定字型
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.2" data-path="content/font/fc-match.html">
+            
+                
+                    <a href="../../content/font/fc-match.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                         fc-match的使用
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.3" data-path="content/font/font-package.html">
+            
+                
+                    <a href="../../content/font/font-package.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                         一些字型套件
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.4" data-path="content/font/font-noto.html">
+            
+                
+                    <a href="../../content/font/font-noto.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                         手動安裝思源字型
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.5" data-path="content/font/fontconfig.html">
+            
+                
+                    <a href="../../content/font/fontconfig.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                         探究 fontconfig 相關的套件
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.6" data-path="content/font/software.html">
+            
+                
+                    <a href="../../content/font/software.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                         一些軟體設定字型的方式
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3" data-path="content/driver/index.html">
+            
+                
+                    <a href="../../content/driver/index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                         驅動程式
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter active" data-level="3.1" data-path="content/driver/ubuntu-drivers.html">
+            
+                
+                    <a href="../../content/driver/ubuntu-drivers.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                         如何使用下指令的方式查詢「額外驅動程式」
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.2" data-path="content/driver/software-properties-gtk.html">
+            
+                
+                    <a href="../../content/driver/software-properties-gtk.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                         如何使用下指令的方式啟動「額外驅動程式」設定視窗
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4" data-path="content/account/index.html">
+            
+                
+                    <a href="../../content/account/index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                         帳號管理
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="4.1" data-path="content/account/adduser.html">
+            
+                
+                    <a href="../../content/account/adduser.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                         下指令的方式新增使用者
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5" data-path="content/process/index.html">
+            
+                
+                    <a href="../../content/process/index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                         程序管理
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.1" data-path="content/process/administration.html">
+            
+                
+                    <a href="../../content/process/administration.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                         Process &amp; Service
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6" data-path="content/editor/index.html">
+            
+                
+                    <a href="../../content/editor/index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                         文字編輯器
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.1" data-path="content/editor/select-editor.html">
+            
+                
+                    <a href="../../content/editor/select-editor.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                         如何更改預設的editor
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Published using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle share dropdown"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">Twitter</button>
+                <button type="button" data-sharing="google-plus" class="button">Google</button>
+                <button type="button" data-sharing="facebook" class="button">Facebook</button>
+                <button type="button" data-sharing="weibo" class="button">Weibo</button>
+                <button type="button" data-sharing="instapaper" class="button">Instapaper</button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >Ubuntu Basic Skill</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-gitbook_6">
+                    
+                        <h1 id="ubuntu">Ubuntu環境下，如何使用下指令的方式查詢「額外驅動程式」</h1>
+<h2 id="">測試環境</h2>
+<p>以下測試是在「Xubuntu 14.04 64位元」。</p>
+<h2 id="">緣起</h2>
+<p>在「<a href="http://www.ubuntu-tw.org/modules/newbb/viewtopic.php?post_id=326240#forumpost326240" target="_blank">回答別人問題</a>」的時候，在「<a href="https://help.ubuntu.com/community/BinaryDriverHowto/Nvidia#Installation_without_X_.2BAC8_from_the_console" target="_blank">這一頁</a>」
+看到一個指令「ubuntu-drivers」，是屬於「<a href="http://packages.ubuntu.com/trusty/ubuntu-drivers-common" target="_blank">ubuntu-drivers-common</a>」這個套件。</p>
+<h2 id="">用法</h2>
+<p>顯示說明</p>
+<pre><code>$ ubuntu-drivers -h
+</code></pre><p>顯示</p>
+<pre><code>usage: ubuntu-drivers [-h] [--package-list PATH] &lt;command&gt;
+
+List/install driver packages for Ubuntu.
+
+positional arguments:
+  &lt;command&gt;            See below
+
+optional arguments:
+  -h, --help           show this help message and exit
+  --package-list PATH  Create file with list of installed packages (in
+                       autoinstall mode)
+
+Available commands:
+   autoinstall: Install drivers that are appropriate for automatic installation.
+   debug: Print all available information and debug data about drivers.
+   list: Show all driver packages which apply to the current system.
+   devices: Show all devices which need drivers, and which packages apply to them.
+</code></pre><h2 id="virtualbox">以「裝在Virtualbox的系統」為例</h2>
+<p>執行</p>
+<pre><code>$ sudo ubuntu-drivers devices
+</code></pre><p>會顯示</p>
+<pre><code>== /sys/devices/pci0000:00/0000:00:04.0 ==
+modalias : pci:v000080EEd0000CAFEsv00000000sd00000000bc08sc80i00
+vendor   : InnoTek Systemberatung GmbH
+model    : VirtualBox Guest Service
+driver   : virtualbox-guest-dkms - distro non-free
+</code></pre><p>執行</p>
+<pre><code>$ sudo ubuntu-drivers list
+</code></pre><p>會顯示</p>
+<pre><code>virtualbox-guest-dkms
+</code></pre><p>也就是說你可以執行下面的指令，來安裝套件「<a href="http://packages.ubuntu.com/trusty/virtualbox-guest-dkms" target="_blank">virtualbox-guest-dkms</a>」。</p>
+<pre><code>$ sudo apt-get install virtualbox-guest-dkms
+</code></pre><p>執行</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">sudo</span> ubuntu-drivers debug
+</code></pre>
+<p>會顯示</p>
+<pre><code>=== log messages from detection ===
+
+...略...
+
+=== modaliases in the system ===
+
+...略...
+
+=== matching driver packages ===
+virtualbox-guest-dkms: installed: 4.3.18-dfsg-1   available: 4.3.18-dfsg-1 (auto-install)  [distro]  non-free  modalias: pci:v000080EEd0000CAFEsv00000000sd00000000bc08sc80i00  path: /sys/devices/pci0000:00/0000:00:04.0  vendor: InnoTek Systemberatung GmbH  model: VirtualBox Guest Service
+</code></pre><h2 id="">以「我的系統」為例</h2>
+<p>執行</p>
+<pre><code>$ sudo ubuntu-drivers devices
+</code></pre><p>會顯示</p>
+<pre><code>== /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0 ==
+modalias : pci:v000010DEd00000421sv00001458sd0000344Abc03sc00i00
+vendor   : NVIDIA Corporation
+model    : ...略...
+driver   : nvidia-331 - distro non-free recommended
+driver   : nvidia-304 - distro non-free
+driver   : xserver-xorg-video-nouveau - distro free builtin
+driver   : nvidia-331-updates - distro non-free
+driver   : nvidia-304-updates - distro non-free
+</code></pre><p>執行</p>
+<pre><code>$ sudo ubuntu-drivers list
+</code></pre><p>會顯示</p>
+<pre><code>nvidia-304-updates
+nvidia-331
+nvidia-331-updates
+nvidia-304
+</code></pre><p>也就是說你可以執行下面的指令，來安裝套件「<a href="http://packages.ubuntu.com/trusty/nvidia-331-updates" target="_blank">nvidia-331-updates
+</a>」。</p>
+<pre><code>$ sudo apt-get install nvidia-331-updates
+</code></pre><p>執行</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">sudo</span> ubuntu-drivers debug
+</code></pre>
+<p>會顯示</p>
+<pre><code>=== log messages from detection ===
+
+...略...
+
+=== modaliases in the system ===
+
+...略...
+
+=== matching driver packages ===
+...略...
+</code></pre><h2 id="">探索套件</h2>
+<p>查詢「ubuntu-drivers」是屬於哪個套件</p>
+<pre><code>$ dpkg -S ubuntu-drivers
+</code></pre><p>查詢</p>
+<pre><code>$ apt-cache show ubuntu-drivers-common
+</code></pre><p>顯示</p>
+<pre><code>Package: ubuntu-drivers-common
+Priority: optional
+Section: admin
+Installed-Size: 279
+Maintainer: Ubuntu Developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt;
+Architecture: amd64
+Version: 1:0.2.91.7
+Replaces: jockey-common, jockey-gtk, jockey-kde, nvidia-common (&lt;&lt; 1:0.2.46)
+Provides: jockey-common, jockey-gtk, jockey-kde, nvidia-common
+Depends: python3:any (&gt;= 3.3.2-2~), python3, debconf (&gt;= 0.5.00) | debconf-2.0, libc6 (&gt;= 2.4), libdrm2 (&gt;= 2.4.3), libpciaccess0 (&gt;= 0.10.7), pciutils, python3-apt, python3-xkit, udev (&gt;= 204-0ubuntu4~), usbutils, alsa-utils, kmod | module-init-tools
+Pre-Depends: dpkg (&gt;= 1.15.7.2)
+Suggests: python3-aptdaemon.pkcompat
+Conflicts: jockey-common, jockey-gtk, jockey-kde, nvidia-common (&lt;&lt; 1:0.2.46)
+Breaks: nvidia-prime (&lt;&lt; 0.6)
+Filename: pool/main/u/ubuntu-drivers-common/ubuntu-drivers-common_0.2.91.7_amd64.deb
+Size: 45418
+MD5sum: 98a4b560f7fbcee58c57a23cbc649577
+SHA1: 10bba00ac17bfe5b19450fe532ce982f7b703146
+SHA256: f0f20ebfb6a25052cb7095ea478f8d73d1ea921038f95ec24673c2ba1d5c0d1a
+Description-en: Detect and install additional Ubuntu driver packages
+ This package aggregates and abstracts Ubuntu specific logic and knowledge
+ about third-party driver packages. It provides:
+ .
+  - a Python API for detecting driver packages for a particular piece of
+    hardware or the whole system.
+ .
+  - an &quot;ubuntu-drivers&quot; command line tool to list or install driver packages
+    (mostly for integration in installers).
+ .
+  - a PackageKit plugin for WhatProvides() for types MODALIAS and
+    HARDWARE_DRIVER, to do the same queries as above through the PackageKit API
+    (for using in non-distro specific GUIs). This works with aptdaemon&#39;s
+    PackageKit compatibility layer (python3-aptdaemon.pkcompat) and with
+    PackageKit&#39;s apt backend, but _not_ with the PackageKit aptcc backend.
+ .
+  - some NVidia specific support code to find the most appropriate driver
+    version, as well as setting up the alternatives symlinks that the
+    proprietary NVidia and FGLRX packages use.
+Description-md5: de3e80d0ec34be991721f7a39da892ac
+Enhances: packagekit-system-interface
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+Supported: 5y
+Task: ubuntu-desktop, ubuntu-usb, kubuntu-desktop, kubuntu-active, kubuntu-active-desktop, kubuntu-active, edubuntu-desktop, edubuntu-usb, xubuntu-desktop, mythbuntu-frontend, mythbuntu-desktop, mythbuntu-backend-slave, mythbuntu-backend-master, mythbuntu-backend-master, lubuntu-core, ubuntustudio-desktop, ubuntu-gnome-desktop
+</code></pre><p>建立工作環境</p>
+<pre><code>mkdir ~/Downloads/ubuntu-drivers-common
+cd ~/Downloads/ubuntu-drivers-common
+mkdir download source
+</code></pre><h2 id="source-package-ubuntu-drivers-common">探索「Source Package」-「ubuntu-drivers-common」</h2>
+<p>下載原始碼套件「<a href="http://packages.ubuntu.com/source/trusty/ubuntu-drivers-common" target="_blank">ubuntu-drivers-common</a>」，並解開</p>
+<pre><code>cd ~/Downloads/ubuntu-drivers-common/source
+apt-get source ubuntu-drivers-common
+</code></pre><p>觀看有哪些檔案</p>
+<pre><code>tree ubuntu-drivers-common-0.2.91.7
+</code></pre><p>顯示</p>
+<pre><code>ubuntu-drivers-common-0.2.91.7
+├── Changes.txt
+├── COPYING
+├── debhelper
+│   ├── dh_modaliases
+│   ├── modaliases.pm
+│   └── test_dh_modaliases
+├── debian
+│   ├── changelog
+│   ├── compat
+│   ├── control
+│   ├── copyright
+│   ├── dh-modaliases.install
+│   ├── po
+│   │   ├── POTFILES.in
+│   │   └── templates.pot
+│   ├── rules
+│   ├── source
+│   │   └── format
+│   ├── tests
+│   │   ├── control
+│   │   └── system
+│   ├── ubuntu-drivers-common.apport
+│   ├── ubuntu-drivers-common.config
+│   ├── ubuntu-drivers-common.install
+│   └── ubuntu-drivers-common.templates
+├── detect-plugins
+│   ├── arm-gles.py
+│   ├── open-vm-dkms.py
+│   └── sl-modem.py
+├── nvidia-common
+├── nvidia-detector
+├── NvidiaDetector
+│   ├── alternatives.py
+│   ├── __init__.py
+│   └── nvidiadetector.py
+├── nvidia-installer-hooks
+│   └── pre-install
+├── PKG-INFO
+├── quirks
+│   ├── dell_latitude
+│   ├── lenovo_thinkpad
+│   └── put_your_quirks_here
+├── Quirks
+│   ├── __init__.py
+│   ├── __init__.pyc
+│   ├── quirkapplier.py
+│   ├── quirkapplier.pyc
+│   ├── quirkinfo.py
+│   ├── quirkinfo.pyc
+│   ├── quirkreader.py
+│   └── quirkreader.pyc
+├── quirks-handler
+├── README
+├── setup.py
+├── share
+│   ├── fake-devices-wrapper
+│   ├── hybrid
+│   │   ├── gpu-manager.c
+│   │   ├── gpu-manager.conf
+│   │   └── Makefile
+│   └── obsolete
+├── tests
+│   ├── 0-test.py
+│   ├── 0-test.pyc
+│   ├── fakesysfs.pyc
+│   ├── gpu-manager.py
+│   ├── __init__.py
+│   ├── quirkreader-test.py
+│   ├── quirkreader-test.pyc
+│   ├── run
+│   ├── settings.py
+│   ├── settings.pyc
+│   ├── testarchive.py
+│   ├── testarchive.pyc
+│   ├── ubuntu_drivers.py
+│   ├── ubuntu_drivers.pyc
+│   └── xorg.conf
+├── ubiquity
+│   └── target-config
+│       └── 31ubuntu_driver_packages
+├── ubuntu-drivers
+└── UbuntuDrivers
+    ├── detect.py
+    ├── __init__.py
+    ├── kerneldetection.py
+    └── PackageKit.py
+
+16 directories, 70 files
+</code></pre><p>觀看README</p>
+<pre><code>$ cat ubuntu-drivers-common-0.2.91.7/README
+</code></pre><p>顯示</p>
+<pre><code>ubuntu-drivers-common
+=====================
+
+This package aggregates and abstracts Ubuntu specific logic and knowledge
+about third-party driver packages, and provides APIs for installers and driver
+configuration GUIs. It also contains some NVidia specific support code to find
+the most appropriate driver version (as we usually ship several), as well as
+setting up the alternatives symlinks that the proprietary NVidia and FGLRX
+packages use.
+
+Command line interface
+----------------------
+The simplest frontend is the &quot;ubuntu-drivers&quot; command line tool. You can use
+it to show the available driver packages which apply to the current system
+(ubuntu-drivers list), or to install all drivers which are appropriate for
+automatic installation (sudo ubuntu-drivers autoinstall), which is mostly
+useful for integration into installers.
+
+Please see &quot;ubuntu-drivers --help&quot; for details.
+
+
+Python API
+----------
+The UbuntuDrivers.detect Python module provides some functions to detect the
+system&#39;s hardware, matching driver packages, and packages which are eligible
+for automatic installation.
+
+The three main functions are:
+
+  &quot;Which driver packages apply to this system?&quot;
+
+  packages = UbuntuDrivers.detect.system_driver_packages()
+
+  &quot;Which devices need drivers, and which packages do they need?&quot;
+
+  driver_info = UbuntuDrivers.detect.system_device_drivers()
+
+  &quot;Which driver package(s) applies to this piece of hardware?&quot;
+
+  import apt
+  apt_cache = apt.Cache
+  apt_packages = UbuntuDrivers.detect.packages_for_modalias(apt_cache, modalias)
+
+These functions only use python-apt. They do not need any other dependencies,
+root privileges, D-BUS calls, etc.
+
+
+PackageKit API
+--------------
+If you want to integrate driver lookups in software which should not be
+distribution specific, or is not written in Python, you should use the
+PackageKit API instead of the UbuntuDrivers.detect Python module. In
+particular, ubuntu-drivers-common ships PackageKit plugins for the
+&quot;WhatProvides&quot; PackageKit query for the types &quot;MODALIAS&quot; (corresponding to
+UbuntuDrivers.detect.packages_for_modalias()), and &quot;HARDWARE_DRIVER&quot;
+(corresponding to UbuntuDrivers.detect.system_driver_packages()).
+This also works with aptdaemon&#39;s PackageKit compatibility layer
+(python-aptdaemon.pkcompat), which is the preferred PackageKit API
+implementation in Ubuntu.
+
+Please see
+
+ http://www.packagekit.org/gtk-doc/PackageKit-pk-client-sync.html#pk-client-what-provides
+
+about the WhatProvides() API, and
+
+ https://gitorious.org/packagekit/packagekit/blobs/master/docs/provides-component-naming.txt
+
+for details about the various WhatProvides types.
+
+Examples:
+
+From Python:
+
+&gt;&gt;&gt; from gi.repository import PackageKitGlib
+&gt;&gt;&gt; pk = PackageKitGlib.Client()
+
+&gt;&gt;&gt; res = pk.what_provides(PackageKitGlib.FilterEnum.NONE, PackageKitGlib.ProvidesEnum.MODALIAS, [&quot;pci:v000010DEd000007E3sv00sd00bc03sc00i00&quot;], None, lambda p, t, d: True, None)
+&gt;&gt;&gt; res.get_exit_code()
+&lt;enum PK_EXIT_ENUM_SUCCESS of type PkExitEnum&gt;
+&gt;&gt;&gt; for p in res.get_package_array(): print p.get_id()
+nvidia-current;295.53-0ubuntu1;amd64;Ubuntu
+nvidia-current-updates;295.53-0ubuntu1;amd64;Ubuntu
+
+&gt;&gt;&gt; res = pk.what_provides(PackageKitGlib.FilterEnum.NONE, PackageKitGlib.ProvidesEnum.HARDWARE_DRIVER, [&quot;drivers_for_attached_hardware&quot;], None, lambda p, t, d: True, None)
+&gt;&gt;&gt; res.get_exit_code()
+&lt;enum PK_EXIT_ENUM_SUCCESS of type PkExitEnum&gt;
+&gt;&gt;&gt; for p in res.get_package_array(): print p.get_id()
+open-vm-dkms;2011.12.20-562307-0ubuntu1;all;Ubuntu
+
+Using the pkcon command line tool:
+
+ $ pkcon what-provides &quot;pci:v000010DEd000007E3sv00sd00bc03sc00i00&quot;
+ Available     nvidia-current-295.49-0ubuntu1.amd64        NVIDIA binary Xorg driver, kernel module and VDPAU library
+ Available     nvidia-current-updates-295.49-0ubuntu1.amd64    NVIDIA binary Xorg driver, kernel module and VDPAU library
+
+ $ pkcon what-provides &quot;drivers_for_attached_hardware&quot;
+ Available      open-vm-dkms-2011.12.20-562307-0ubuntu1.all     Source for VMware guest systems driver (DKMS)
+
+
+Detection logic
+---------------
+The principal method of mapping hardware to driver packages is to use modalias
+patterns. Hardware devices export a &quot;modalias&quot; sysfs attribute, for example
+
+  $ cat /sys/devices/pci0000:00/0000:00:1b.0/modalias
+  pci:v00008086d00003B56sv000017AAsd0000215Ebc04sc03i00
+
+Kernel modules declare which hardware they can handle with modalias patterns
+(globs), e. g.:
+
+  $ modinfo snd_hda_intel
+  [...]
+  alias:          pci:v00008086d*sv*sd*bc04sc03i00*
+
+Driver packages which are not installed by default (e. g. backports of drivers
+from newer Linux packages, or the proprietary NVidia driver package
+&quot;nvidia-current&quot;) have a &quot;Modaliases:&quot; package header which includes all
+modalias patterns from all kernel modules that they ship. It is recommended to
+add these headers to the package with dh_modaliases(1).
+
+ubuntu-drivers-common uses these package headers to map a particular piece of
+hardware (identified by a modalias) to the driver packages which cover that
+hardware.
+
+
+Custom detection plugins
+------------------------
+For some kinds of drivers the modalias detection approach does not work. For
+example, the &quot;sl-modem-daemon&quot; driver requires some checks in
+/proc/asound/cards and &quot;aplay -l&quot; to decide whether or not it applies to the
+system. These special cases can be put into a &quot;detection plugin&quot;, by adding a
+small piece of Python code to /usr/share/ubuntu-drivers-common/detect/NAME.py
+(shipped in ./detect-plugins/ in the ubuntu-drivers-common source). They need
+to export a method
+
+   def detect(apt_cache):
+      # do detection logic here
+      return [&#39;driver_package&#39;, ...]
+
+which can do any kind of detection and then return the resulting set of
+packages that apply to the current system. Please note that this cannot rely on
+having root privileges.
+</code></pre><h2 id="package-ubuntu-drivers-common">探索「Package」-「ubuntu-drivers-common」</h2>
+<p>下載套件「<a href="http://packages.ubuntu.com/trusty/ubuntu-drivers-common" target="_blank">ubuntu-drivers-common</a>」，並解開</p>
+<pre><code>cd ~/Downloads/ubuntu-drivers-common/download
+apt-get download ubuntu-drivers-common
+dpkg -x ubuntu-drivers-common_1%3a0.2.91.7_amd64.deb ubuntu-drivers-common
+dpkg -e dpkg -e ubuntu-drivers-common_1%3a0.2.91.7_amd64.deb
+</code></pre><p>觀看有哪些檔案</p>
+<pre><code>$ tree ubuntu-drivers-common
+</code></pre><p>顯示</p>
+<pre><code>ubuntu-drivers-common
+├── etc
+│   └── init
+│       └── gpu-manager.conf
+├── usr
+│   ├── bin
+│   │   ├── gpu-manager
+│   │   ├── nvidia-detector
+│   │   ├── quirks-handler
+│   │   └── ubuntu-drivers
+│   ├── lib
+│   │   ├── nvidia
+│   │   │   └── pre-install
+│   │   ├── python3
+│   │   │   └── dist-packages
+│   │   │       ├── NvidiaDetector
+│   │   │       │   ├── alternatives.py
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── nvidiadetector.py
+│   │   │       ├── Quirks
+│   │   │       │   ├── __init__.py
+│   │   │       │   ├── quirkapplier.py
+│   │   │       │   ├── quirkinfo.py
+│   │   │       │   └── quirkreader.py
+│   │   │       ├── UbuntuDrivers
+│   │   │       │   ├── detect.py
+│   │   │       │   ├── __init__.py
+│   │   │       │   ├── kerneldetection.py
+│   │   │       │   └── PackageKit.py
+│   │   │       └── ubuntu_drivers_common-0.0.0.egg-info
+│   │   │           ├── dependency_links.txt
+│   │   │           ├── entry_points.txt
+│   │   │           ├── PKG-INFO
+│   │   │           └── top_level.txt
+│   │   └── ubiquity
+│   │       └── target-config
+│   │           └── 31ubuntu_driver_packages
+│   └── share
+│       ├── apport
+│       │   └── package-hooks
+│       │       └── ubuntu-drivers-common.py
+│       ├── doc
+│       │   └── ubuntu-drivers-common
+│       │       ├── changelog.gz
+│       │       ├── copyright
+│       │       └── README.gz
+│       ├── python3
+│       │   └── runtime.d
+│       │       └── ubuntu-drivers-common.rtupdate
+│       └── ubuntu-drivers-common
+│           ├── detect
+│           │   ├── arm-gles.py
+│           │   ├── open-vm-dkms.py
+│           │   └── sl-modem.py
+│           ├── fake-devices-wrapper
+│           ├── obsolete
+│           └── quirks
+│               ├── dell_latitude
+│               ├── lenovo_thinkpad
+│               └── put_your_quirks_here
+└── var
+    └── lib
+        └── ubuntu-drivers-common
+
+27 directories, 35 files
+</code></pre>
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../content/driver/index.html" class="navigation navigation-prev " aria-label="Previous page: 驅動程式"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../content/driver/software-properties-gtk.html" class="navigation navigation-next " aria-label="Next page: 如何使用下指令的方式啟動「額外驅動程式」設定視窗"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":"night","family":"sans","size":1},"ga":{"token":"UA-55644249-1","configuration":"auto"}};
+    gitbook.start(config);
+});
+</script>
+
+        <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-55644249-1', 'auto');ga('send', 'pageview');</script>
+    </body>
+    
+</html>

@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>如何查詢某個套件的「changelog」 | Ubuntu Basic Skill</title>
+        <title>如何使用下指令的方式啟動「額外驅動程式」設定視窗 | Ubuntu Basic Skill</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
-    <link rel="next" href="../../content/package/how-to-find-out-package-dependency.html" />
+    <link rel="next" href="../../content/account/index.html" />
     
     
-    <link rel="prev" href="../../content/package/how-to-figure-out-package-installed.html" />
+    <link rel="prev" href="../../content/driver/ubuntu-drivers.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="1.4" data-basepath="../.." data-revision="1423488009808">
+    <div class="book" data-level="3.2" data-basepath="../.." data-revision="1423488009808">
     
 
 <div class="book-summary">
@@ -131,7 +131,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="1.4" data-path="content/package/how-to-find-out-package-changelog.html">
+        <li class="chapter " data-level="1.4" data-path="content/package/how-to-find-out-package-changelog.html">
             
                 
                     <a href="../../content/package/how-to-find-out-package-changelog.html">
@@ -351,7 +351,7 @@
         </li>
     
         
-        <li class="chapter " data-level="3.2" data-path="content/driver/software-properties-gtk.html">
+        <li class="chapter active" data-level="3.2" data-path="content/driver/software-properties-gtk.html">
             
                 
                     <a href="../../content/driver/software-properties-gtk.html">
@@ -574,54 +574,36 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_19">
+                    <section class="normal" id="section-gitbook_5">
                     
-                        <h1 id="changelog">如何查詢某個套件的「changelog」</h1>
+                        <h1 id="ubuntu">Ubuntu環境下，如何使用下指令的方式啟動「額外驅動程式」設定視窗</h1>
 <h2 id="">測試環境</h2>
 <p>以下測試是在「Xubuntu 14.04 64位元」。</p>
-<h2 id="">前提</h2>
-<p>以下以「<a href="http://packages.ubuntu.com/trusty/build-essential" target="_blank">build-essential</a>」為範例。</p>
-<h2 id="">方式一</h2>
-<pre><code class="lang-sh">$ apt-get changelog build-essential
+<h2 id="">緣起</h2>
+<p>接續上一篇「<a href="ubuntu-drivers.html">Ubuntu環境下，如何使用下指令的方式查詢「額外驅動程式」</a>」。</p>
+<p>通常也會使用UI的方式來，安裝「額外驅動程式」。</p>
+<p>在Xubuntu下，啟動「Settings Manager」視窗。</p>
+<p>然後啟動「System / Software &amp; Updates」視窗。</p>
+<p>選擇「第5個頁簽」-「Additional Drivers」。</p>
+<h2 id="">使用下指令的方式開啟</h2>
+<p>使用下指令的方式，直接開啟「Additional Drivers」</p>
+<pre><code>$ software-properties-gtk --open-tab=4
+</code></pre><h2 id="desktop">觀看「Desktop」檔</h2>
+<p>觀看「/usr/share/applications/software-properties-drivers.desktop」這個檔</p>
+<pre><code>$ cat /usr/share/applications/software-properties-drivers.desktop
+</code></pre><p>從「/usr/share/applications/software-properties-drivers.desktop」這個檔的內容，就可以看到指令了</p>
+<pre><code>[Desktop Entry]
+Keywords=Drivers;
+Exec=/usr/bin/software-properties-gtk --open-tab=4
+Icon=jockey
+Terminal=false
+Type=Application
+NotShownIn=GNOME;Unity;KDE;
+Categories=X-XFCE;GTK;Settings;HardwareSettings
+Name=Additional Drivers
+Comment=Configure third-party and proprietary drivers
+X-Ubuntu-Gettext-Domain=software-properties
 </code></pre>
-<h2 id="">方式二</h2>
-<pre><code class="lang-sh">$ lynx http://packages.ubuntu.com/trusty/build-essential
-</code></pre>
-<p>輸入「/」進入查詢模式，輸入「<a href="http://changelogs.ubuntu.com/changelogs/pool/main/b/build-essential/build-essential_11.6ubuntu6/changelog" target="_blank">Ubuntu Changelog</a>」查詢，然後按下「Enter」就會進到下面的頁面。</p>
-<pre><code class="lang-sh">$ lynx http://changelogs.ubuntu.com/changelogs/pool/main/b/build-essential/build-essential_11.<span class="hljs-number">6</span>ubuntu6/changelog
-</code></pre>
-<h2 id="">方式三</h2>
-<pre><code class="lang-sh">$ vim /usr/share/doc/build-essential/changelog.gz
-</code></pre>
-<p>輸入「G」，可以看到最後一行
-「<code># For older changelog entries, run &#39;apt-get changelog build-essential&#39;</code>」
-也就是「方法一」</p>
-<h2 id="">方法四</h2>
-<p>下載「<a href="http://packages.ubuntu.com/trusty/build-essential" target="_blank">Binary Package</a>」，並且解開。</p>
-<pre><code class="lang-sh"><span class="hljs-built_in">cd</span> ~/Downloads
-mkdir build-essential/download -p
-<span class="hljs-built_in">cd</span> build-essential/download
-apt-get download build-essential
-dpkg -x build-essential_11.<span class="hljs-number">6</span>ubuntu6_amd64.deb build-essential
-vim build-essential/usr/share/doc/build-essential/changelog.gz
-</code></pre>
-<p>這個方法，基本上跟「方法三」是一樣的。</p>
-<h2 id="">方法五</h2>
-<p>下載「<a href="http://packages.ubuntu.com/source/trusty/build-essential" target="_blank">Source Package</a>」，並且解開。</p>
-<pre><code class="lang-sh"><span class="hljs-built_in">cd</span> ~/Downloads
-mkdir build-essential/<span class="hljs-built_in">source</span> -p
-<span class="hljs-built_in">cd</span> build-essential/<span class="hljs-built_in">source</span>
-apt-get <span class="hljs-built_in">source</span> build-essential
-vim build-essential-<span class="hljs-number">11.6</span>ubuntu6/debian/changelog
-</code></pre>
-<p>看到的是「完整的」「changelog」，看到的應該跟「方法一」和「方法二」是一樣的。</p>
-<h2 id="">參考</h2>
-<ul>
-<li>man <a href="http://manpages.ubuntu.com/manpages/trusty/en/man8/apt-get.8.html" target="_blank">apt-get</a></li>
-<li><a href="http://www.ubuntu-tw.org/modules/newbb/viewtopic.php?post_id=330740#forumpost330740" target="_blank">如何更新apache</a></li>
-<li><a href="/blog/read/linux/ubuntu/package/apt-get/">apt-get的使用</a></li>
-</ul>
-
                     
                     </section>
                 
@@ -631,10 +613,10 @@ vim build-essential-<span class="hljs-number">11.6</span>ubuntu6/debian/changelo
         </div>
 
         
-        <a href="../../content/package/how-to-figure-out-package-installed.html" class="navigation navigation-prev " aria-label="Previous page: 如何知道某個套件是否已經安裝"><i class="fa fa-angle-left"></i></a>
+        <a href="../../content/driver/ubuntu-drivers.html" class="navigation navigation-prev " aria-label="Previous page: 如何使用下指令的方式查詢「額外驅動程式」"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../content/package/how-to-find-out-package-dependency.html" class="navigation navigation-next " aria-label="Next page: 如何查詢某個套件相依哪些套件"><i class="fa fa-angle-right"></i></a>
+        <a href="../../content/account/index.html" class="navigation navigation-next " aria-label="Next page: 帳號管理"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
