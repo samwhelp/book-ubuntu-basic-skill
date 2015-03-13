@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="1.2" data-basepath="../.." data-revision="1423488009808">
+    <div class="book" data-level="1.2" data-basepath="../.." data-revision="1426275115485">
     
 
 <div class="book-summary">
@@ -599,10 +599,65 @@ klibc-utils: /usr/lib/klibc/bin/uname
 manpages-dev: /usr/share/man/man2/olduname.2.gz
 manpages-posix-dev: /usr/share/man/man3/uname.3posix.gz
 manpages-dev: /usr/share/man/man2/uname.2.gz
+</code></pre><p>注意要有安裝該套件，才有辦法使用「dpkg -S」查到。</p>
+<pre><code class="lang-sh">$ cat /var/lib/dpkg/info/coreutils.list | grep uname
+</code></pre>
+<p>另外有種狀況，即使你安裝了該套件，但有些檔案，你也查不到是屬於哪個套件了。
+因為該檔案是透過「dpkg trigger」的機制安裝的。</p>
+<p>例如：你查不到「/etc/networks」。</p>
+<pre><code class="lang-sh">$ dpkg -S /etc/networks
+</code></pre>
+<p>會顯示</p>
+<pre><code>dpkg-query: no path found matching pattern /etc/networks
+</code></pre><p>你可以觀看「/var/lib/dpkg/info/base-files.postinst」。</p>
+<pre><code>$ cat /var/lib/dpkg/info/base-files.postinst | grep networks
+</code></pre><p>可以看到一行</p>
+<pre><code>install_from_default /usr/share/base-files/networks      /etc/networks
+</code></pre><p>查看一下「/usr/share/base-files/networks」和「/etc/networks」</p>
+<pre><code class="lang-sh">cat /usr/share/base-files/networks
+cat /etc/networks
+</code></pre>
+<h2 id="">附帶一提</h2>
+<p>另外在「/var/lib/dpkg/info/」可以看到一些跟「base-files」有關的檔案</p>
+<pre><code>$ ls /var/lib/dpkg/info/base-files* -1
+</code></pre><p>會顯示</p>
+<pre><code>/var/lib/dpkg/info/base-files.conffiles
+/var/lib/dpkg/info/base-files.list
+/var/lib/dpkg/info/base-files.md5sums
+/var/lib/dpkg/info/base-files.postinst
+/var/lib/dpkg/info/base-files.postrm
+/var/lib/dpkg/info/base-files.preinst
+</code></pre><p>你可以下載「<a href="http://packages.ubuntu.com/trusty/base-files" target="_blank">base-files</a>」，「<a href="/book-ubuntu-exploration/book/content/package/base-files/info.html">解開來看</a>」。</p>
+<pre><code>apt-get download base-files
+dpkg -e base-files_7.2ubuntu5.2_amd64.deb
+tree tree DEBIAN
+</code></pre><p>就會看到</p>
+<pre><code>DEBIAN
+├── conffiles
+├── control
+├── md5sums
+├── postinst
+├── postrm
+└── preinst
+
+0 directories, 6 files
+</code></pre><p>確認一下「DEBIAN/postinst」是不是和「/var/lib/dpkg/info/base-files.postinst」一樣。</p>
+<p>執行</p>
+<pre><code>$ md5sum DEBIAN/postinst
+</code></pre><p>顯示</p>
+<pre><code>29eac8bafe921c9e7a537cd58e272fae  DEBIAN/postinst
+</code></pre><p>執行</p>
+<pre><code>$ md5sum /var/lib/dpkg/info/base-files.postinst
+</code></pre><p>顯示</p>
+<pre><code>29eac8bafe921c9e7a537cd58e272fae  /var/lib/dpkg/info/base-files.postinst
 </code></pre><h2 id="">參考</h2>
 <ul>
-<li>man <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/dpkg.1.html" target="_blank">dpkg</a></li>
-<li>man <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/dpkg-query.1.html" target="_blank">dpkg-query</a></li>
+<li>man <a href="http://manpages.ubuntu.com/manpages/trusty/man1/dpkg.1.html" target="_blank">dpkg</a></li>
+<li>man <a href="http://manpages.ubuntu.com/manpages/trusty/man1/dpkg-query.1.html" target="_blank">dpkg-query</a></li>
+<li>Debian Wiki / <a href="https://wiki.debian.org/DpkgTriggers" target="_blank">DpkgTriggers</a></li>
+<li>vim /usr/share/doc/dpkg-dev/triggers.txt.gz</li>
+<li>man <a href="http://manpages.ubuntu.com/manpages/trusty/man1/dpkg-trigger.1.html" target="_blank">dpkg-trigger</a></li>
+<li>man <a href="http://manpages.ubuntu.com/manpages/trusty/man5/deb-triggers.5.html" target="_blank">deb-triggers</a></li>
 </ul>
 
                     
