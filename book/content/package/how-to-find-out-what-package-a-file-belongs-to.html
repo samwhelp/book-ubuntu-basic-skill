@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="1.2" data-basepath="../.." data-revision="1426275313025">
+    <div class="book" data-level="1.2" data-basepath="../.." data-revision="1426375747623">
     
 
 <div class="book-summary">
@@ -617,6 +617,9 @@ manpages-dev: /usr/share/man/man2/uname.2.gz
 <pre><code class="lang-sh">cat /usr/share/base-files/networks
 cat /etc/networks
 </code></pre>
+<p>所以用「dpkg -S」找不到檔案屬於哪個套件，可以嘗試到「/var/lib/dpkg/info/」去找。</p>
+<pre><code class="lang-sh">$ grep <span class="hljs-string">'/etc/networks'</span> /var/lib/dpkg/info/ -R
+</code></pre>
 <h2 id="">附帶一提</h2>
 <p>另外在「/var/lib/dpkg/info/」可以看到一些跟「base-files」有關的檔案</p>
 <pre><code>$ ls /var/lib/dpkg/info/base-files* -1
@@ -650,7 +653,21 @@ tree DEBIAN
 <pre><code>$ md5sum /var/lib/dpkg/info/base-files.postinst
 </code></pre><p>顯示</p>
 <pre><code>29eac8bafe921c9e7a537cd58e272fae  /var/lib/dpkg/info/base-files.postinst
-</code></pre><h2 id="">參考</h2>
+</code></pre><p>另一個檔「/etc/default/locale」也是蠻特殊的，「dpkg -S」找不到。</p>
+<p>執行</p>
+<pre><code>$ dpkg -S /etc/default/locale
+</code></pre><p>顯示</p>
+<pre><code class="lang-sh">$ dpkg-query: no path found matching pattern /etc/default/locale
+</code></pre>
+<p>所以</p>
+<pre><code>$ grep &#39;/etc/default/locale&#39; /var/lib/dpkg/info/ -R
+</code></pre><p>會顯示</p>
+<pre><code>/var/lib/dpkg/info/dictionaries-common.config:    # If system is already installed use /etc/default/locale contents.
+/var/lib/dpkg/info/dictionaries-common.config:    if ( -e &quot;/etc/default/locale&quot; ){
+/var/lib/dpkg/info/language-selector-common.postinst:if dpkg --compare-versions &quot;$2&quot; lt-nl 0.85 &amp;&amp; [ -e /etc/default/locale ] \
+/var/lib/dpkg/info/language-selector-common.postinst:   . /etc/default/locale
+</code></pre><p>待研究...</p>
+<h2 id="">參考</h2>
 <ul>
 <li>man <a href="http://manpages.ubuntu.com/manpages/trusty/man1/dpkg.1.html" target="_blank">dpkg</a></li>
 <li>man <a href="http://manpages.ubuntu.com/manpages/trusty/man1/dpkg-query.1.html" target="_blank">dpkg-query</a></li>
