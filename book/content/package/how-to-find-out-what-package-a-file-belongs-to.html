@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="1.2" data-basepath="../.." data-revision="1426375747623">
+    <div class="book" data-level="1.2" data-basepath="../.." data-revision="1427276665880">
     
 
 <div class="book-summary">
@@ -602,6 +602,7 @@ manpages-dev: /usr/share/man/man2/uname.2.gz
 </code></pre><p>注意要有安裝該套件，才有辦法使用「dpkg -S」查到。</p>
 <pre><code class="lang-sh">$ cat /var/lib/dpkg/info/coreutils.list | grep uname
 </code></pre>
+<h2 id="">例外狀況</h2>
 <p>另外有種狀況，即使你安裝了該套件，但有些檔案，你也查不到是屬於哪個套件了。
 因為該檔案是透過「dpkg trigger」的機制安裝的。</p>
 <p>例如：你查不到「/etc/networks」。</p>
@@ -667,6 +668,34 @@ tree DEBIAN
 /var/lib/dpkg/info/language-selector-common.postinst:if dpkg --compare-versions &quot;$2&quot; lt-nl 0.85 &amp;&amp; [ -e /etc/default/locale ] \
 /var/lib/dpkg/info/language-selector-common.postinst:   . /etc/default/locale
 </code></pre><p>待研究...</p>
+<h2 id="---alternatives">例外狀況 - alternatives</h2>
+<p>另外有一種情況，是透過「update-alternatives」的方式。</p>
+<p>例如「/usr/bin/write」。</p>
+<p>執行</p>
+<pre><code>$ type write
+</code></pre><p>顯示</p>
+<pre><code>write is /usr/bin/write
+</code></pre><p>執行</p>
+<pre><code>$ whereis write
+</code></pre><p>顯示</p>
+<pre><code>write: /usr/bin/write /usr/bin/X11/write /usr/share/man/man2/write.2.gz /usr/share/man/man1/write.1posix.gz /usr/share/man/man1/write.1.gz /usr/share/man/man3/write.3posix.gz
+</code></pre><p>執行</p>
+<pre><code>$ dpkg -S /usr/bin/write
+</code></pre><p>顯示</p>
+<pre><code>dpkg-query: no path found matching pattern /usr/bin/write
+</code></pre><p>執行</p>
+<pre><code>$ ls /usr/bin/write -l
+</code></pre><p>顯示</p>
+<pre><code>lrwxrwxrwx 1 root root 23 Apr 21  2014 /usr/bin/write -&gt; /etc/alternatives/write
+</code></pre><p>執行</p>
+<pre><code>$ ls /etc/alternatives/write -l
+</code></pre><p>顯示</p>
+<pre><code>lrwxrwxrwx 1 root root 18 Apr 21  2014 /etc/alternatives/write -&gt; /usr/bin/bsd-write
+</code></pre><p>執行</p>
+<pre><code>$ dpkg -S /usr/bin/bsd-write
+</code></pre><p>顯示</p>
+<pre><code>bsdmainutils: /usr/bin/bsd-write
+</code></pre><p>最後就找到「bsdmainutils」這個套件。</p>
 <h2 id="">參考</h2>
 <ul>
 <li>man <a href="http://manpages.ubuntu.com/manpages/trusty/man1/dpkg.1.html" target="_blank">dpkg</a></li>
