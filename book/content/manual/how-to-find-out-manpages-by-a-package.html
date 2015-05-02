@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>如何知道某個套件是否已經安裝 | Ubuntu Basic Skill</title>
+        <title>如何查詢某個套件有哪些使用手冊(man page) | Ubuntu Basic Skill</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
-    <link rel="next" href="../../content/package/how-to-find-out-package-changelog.html" />
+    <link rel="next" href="../../content/package/index.html" />
     
     
-    <link rel="prev" href="../../content/package/how-to-find-out-what-package-a-file-belongs-to.html" />
+    <link rel="prev" href="../../content/manual/index.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="2.3" data-basepath="../.." data-revision="1430532256422">
+    <div class="book" data-level="1.1" data-basepath="../.." data-revision="1430532256422">
     
 
 <div class="book-summary">
@@ -83,7 +83,7 @@
                 
     
         
-        <li class="chapter " data-level="1.1" data-path="content/manual/how-to-find-out-manpages-by-a-package.html">
+        <li class="chapter active" data-level="1.1" data-path="content/manual/how-to-find-out-manpages-by-a-package.html">
             
                 
                     <a href="../../content/manual/how-to-find-out-manpages-by-a-package.html">
@@ -153,7 +153,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="2.3" data-path="content/package/how-to-figure-out-package-installed.html">
+        <li class="chapter " data-level="2.3" data-path="content/package/how-to-figure-out-package-installed.html">
             
                 
                     <a href="../../content/package/how-to-figure-out-package-installed.html">
@@ -644,44 +644,258 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_21">
+                    <section class="normal" id="section-gitbook_16">
                     
-                        <h1 id="">如何知道某個套件是否已經安裝</h1>
-<h2 id="">測試環境</h2>
-<p>以下測試是在「Xubuntu 14.04 64位元」。</p>
-<h2 id="">前提</h2>
-<p>以下以「<a href="http://packages.ubuntu.com/trusty/vim" target="_blank">vim</a>」為範例。</p>
+                        <h1 id="man-page">如何查詢某個套件有哪些使用手冊(man page)</h1>
 <h2 id="">方式一</h2>
-<pre><code class="lang-sh">$ dpkg --get-selections | grep vim
-</code></pre>
-<h2 id="">方式二</h2>
-<pre><code class="lang-sh">$ dpkg <span class="hljs-operator">-l</span> vim
-</code></pre>
-<pre><code class="lang-sh">$ dpkg <span class="hljs-operator">-l</span> vim*
-</code></pre>
-<pre><code class="lang-sh">$ dpkg <span class="hljs-operator">-l</span> *vim
-</code></pre>
-<pre><code class="lang-sh">$ dpkg <span class="hljs-operator">-l</span> *vim*
-</code></pre>
-<h2 id="">方式三</h2>
-<pre><code class="lang-sh">$ dpkg <span class="hljs-operator">-s</span> vim | grep ^Status
-</code></pre>
-<h2 id="">方式四</h2>
-<pre><code class="lang-sh">$ dpkg-query -W <span class="hljs-operator">-f</span>=<span class="hljs-string">'${binary:Package} : ${Status} \n'</span> vim
-</code></pre>
-<pre><code class="lang-sh">$ dpkg-query -W <span class="hljs-operator">-f</span>=<span class="hljs-string">'${binary:Package} : ${Status} \n'</span> vim*
-</code></pre>
-<h2 id="">參考</h2>
-<ul>
-<li>man <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/dpkg.1.html" target="_blank">dpkg</a></li>
-<li>man <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/dpkg-query.1.html" target="_blank">dpkg-query</a></li>
-</ul>
-<h2 id="">參與討論</h2>
-<ul>
-<li><a href="http://www.ubuntu-tw.org/modules/newbb/viewtopic.php?post_id=327850#forumpost327850" target="_blank">回覆: [解決] 如何系統更新時不增加核心</a></li>
-<li><a href="http://www.ubuntu-tw.org/modules/newbb/viewtopic.php?post_id=331892#forumpost331892" target="_blank">回覆: [分享]ubuntu 安裝 nvidia 驅動心得</a></li>
-<li><a href="http://www.ubuntu-tw.org/modules/newbb/viewtopic.php?post_id=326240#forumpost326240" target="_blank">回覆: Ubuntu 14.04 更新之後，變成Failsafe-X Mode</a></li>
-</ul>
+<p>從「Debian Reference / Chapter 12. Programming / <a href="https://www.debian.org/doc/manuals/debian-reference/ch12.en.html#_utility_programs_for_shell_script" target="_blank">12.1.6. Utility programs for shell script</a>」學到的技巧。</p>
+<p>以「<a href="http://packages.ubuntu.com/trusty/coreutils" target="_blank">coreutils</a>」這個套件為例。</p>
+<p>執行</p>
+<pre><code>$ dpkg -L coreutils | grep &#39;/man/man.*/&#39;
+</code></pre><p>就會顯示</p>
+<pre><code>/usr/share/man/man1/expr.1.gz
+/usr/share/man/man1/cat.1.gz
+/usr/share/man/man1/fold.1.gz
+/usr/share/man/man1/true.1.gz
+/usr/share/man/man1/wc.1.gz
+/usr/share/man/man1/echo.1.gz
+/usr/share/man/man1/unexpand.1.gz
+/usr/share/man/man1/sort.1.gz
+/usr/share/man/man1/vdir.1.gz
+/usr/share/man/man1/dir.1.gz
+/usr/share/man/man1/nohup.1.gz
+/usr/share/man/man1/dd.1.gz
+/usr/share/man/man1/tee.1.gz
+/usr/share/man/man1/md5sum.1.gz
+/usr/share/man/man1/readlink.1.gz
+/usr/share/man/man1/users.1.gz
+/usr/share/man/man1/date.1.gz
+/usr/share/man/man1/id.1.gz
+/usr/share/man/man1/unlink.1.gz
+/usr/share/man/man1/sha224sum.1.gz
+/usr/share/man/man1/mkdir.1.gz
+/usr/share/man/man1/base64.1.gz
+/usr/share/man/man1/cut.1.gz
+/usr/share/man/man1/dircolors.1.gz
+/usr/share/man/man1/split.1.gz
+/usr/share/man/man1/nice.1.gz
+/usr/share/man/man1/csplit.1.gz
+/usr/share/man/man1/whoami.1.gz
+/usr/share/man/man1/chgrp.1.gz
+/usr/share/man/man1/df.1.gz
+/usr/share/man/man1/du.1.gz
+/usr/share/man/man1/cksum.1.gz
+/usr/share/man/man1/numfmt.1.gz
+/usr/share/man/man1/head.1.gz
+/usr/share/man/man1/stty.1.gz
+/usr/share/man/man1/dirname.1.gz
+/usr/share/man/man1/ptx.1.gz
+/usr/share/man/man1/sha1sum.1.gz
+/usr/share/man/man1/factor.1.gz
+/usr/share/man/man1/cp.1.gz
+/usr/share/man/man1/shuf.1.gz
+/usr/share/man/man1/chmod.1.gz
+/usr/share/man/man1/pr.1.gz
+/usr/share/man/man1/chcon.1.gz
+/usr/share/man/man1/truncate.1.gz
+/usr/share/man/man1/tty.1.gz
+/usr/share/man/man1/who.1.gz
+/usr/share/man/man1/logname.1.gz
+/usr/share/man/man1/link.1.gz
+/usr/share/man/man1/sum.1.gz
+/usr/share/man/man1/printenv.1.gz
+/usr/share/man/man1/basename.1.gz
+/usr/share/man/man1/nl.1.gz
+/usr/share/man/man1/uniq.1.gz
+/usr/share/man/man1/ls.1.gz
+/usr/share/man/man1/od.1.gz
+/usr/share/man/man1/comm.1.gz
+/usr/share/man/man1/stdbuf.1.gz
+/usr/share/man/man1/stat.1.gz
+/usr/share/man/man1/pwd.1.gz
+/usr/share/man/man1/printf.1.gz
+/usr/share/man/man1/pinky.1.gz
+/usr/share/man/man1/uname.1.gz
+/usr/share/man/man1/runcon.1.gz
+/usr/share/man/man1/tac.1.gz
+/usr/share/man/man1/mktemp.1.gz
+/usr/share/man/man1/mv.1.gz
+/usr/share/man/man1/yes.1.gz
+/usr/share/man/man1/fmt.1.gz
+/usr/share/man/man1/sha512sum.1.gz
+/usr/share/man/man1/false.1.gz
+/usr/share/man/man1/rm.1.gz
+/usr/share/man/man1/shred.1.gz
+/usr/share/man/man1/tail.1.gz
+/usr/share/man/man1/sync.1.gz
+/usr/share/man/man1/arch.1.gz
+/usr/share/man/man1/ln.1.gz
+/usr/share/man/man1/join.1.gz
+/usr/share/man/man1/timeout.1.gz
+/usr/share/man/man1/install.1.gz
+/usr/share/man/man1/touch.1.gz
+/usr/share/man/man1/sleep.1.gz
+/usr/share/man/man1/groups.1.gz
+/usr/share/man/man1/hostid.1.gz
+/usr/share/man/man1/test.1.gz
+/usr/share/man/man1/rmdir.1.gz
+/usr/share/man/man1/expand.1.gz
+/usr/share/man/man1/mknod.1.gz
+/usr/share/man/man1/chown.1.gz
+/usr/share/man/man1/nproc.1.gz
+/usr/share/man/man1/sha384sum.1.gz
+/usr/share/man/man1/mkfifo.1.gz
+/usr/share/man/man1/env.1.gz
+/usr/share/man/man1/tr.1.gz
+/usr/share/man/man1/sha256sum.1.gz
+/usr/share/man/man1/tsort.1.gz
+/usr/share/man/man1/pathchk.1.gz
+/usr/share/man/man1/paste.1.gz
+/usr/share/man/man1/seq.1.gz
+/usr/share/man/man8/chroot.8.gz
+/usr/share/man/man1/[.1.gz
+/usr/share/man/man1/md5sum.textutils.1.gz
+</code></pre><p>或是從「Debian Reference / Chapter 2. Debian package management / <a href="https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_advanced_package_management_operations" target="_blank">2.4. Advanced package management operations</a>」這裡</p>
+<p>執行</p>
+<pre><code>$ dpkg -L corutils | egrep &#39;/usr/share/man/man.*/.+&#39;
+</code></pre><h2 id="">方式二</h2>
+<pre><code>$ cat /var/lib/dpkg/info/coreutils.list | grep &#39;/man/man.*/&#39;
+</code></pre><h2 id="">方式二</h2>
+<p>我在「<a href="http://samwhelp.github.io/book-ubuntu-exploration/book/content/package/coreutils/info.html" target="_blank">探索套件</a>」的時候，都是用這個方式</p>
+<p>下載「<a href="http://packages.ubuntu.com/trusty/coreutils" target="_blank">coreutils</a>」這個套件。</p>
+<pre><code>$ apt-get download coreutils
+</code></pre><p>解開剛剛下載的套件檔案</p>
+<pre><code>$ dpkg -x coreutils_8.21-1ubuntu5.1_amd64.deb coreutils
+</code></pre><p>利用tree來觀看有哪些檔案</p>
+<pre><code>$ tree coreutils/usr/share/man
+</code></pre><p>就會顯示</p>
+<pre><code>coreutils/usr/share/man
+├── man1
+│   ├── [.1.gz -&gt; test.1.gz
+│   ├── arch.1.gz
+│   ├── base64.1.gz
+│   ├── basename.1.gz
+│   ├── cat.1.gz
+│   ├── chcon.1.gz
+│   ├── chgrp.1.gz
+│   ├── chmod.1.gz
+│   ├── chown.1.gz
+│   ├── cksum.1.gz
+│   ├── comm.1.gz
+│   ├── cp.1.gz
+│   ├── csplit.1.gz
+│   ├── cut.1.gz
+│   ├── date.1.gz
+│   ├── dd.1.gz
+│   ├── df.1.gz
+│   ├── dir.1.gz
+│   ├── dircolors.1.gz
+│   ├── dirname.1.gz
+│   ├── du.1.gz
+│   ├── echo.1.gz
+│   ├── env.1.gz
+│   ├── expand.1.gz
+│   ├── expr.1.gz
+│   ├── factor.1.gz
+│   ├── false.1.gz
+│   ├── fmt.1.gz
+│   ├── fold.1.gz
+│   ├── groups.1.gz
+│   ├── head.1.gz
+│   ├── hostid.1.gz
+│   ├── id.1.gz
+│   ├── install.1.gz
+│   ├── join.1.gz
+│   ├── link.1.gz
+│   ├── ln.1.gz
+│   ├── logname.1.gz
+│   ├── ls.1.gz
+│   ├── md5sum.1.gz
+│   ├── md5sum.textutils.1.gz -&gt; md5sum.1.gz
+│   ├── mkdir.1.gz
+│   ├── mkfifo.1.gz
+│   ├── mknod.1.gz
+│   ├── mktemp.1.gz
+│   ├── mv.1.gz
+│   ├── nice.1.gz
+│   ├── nl.1.gz
+│   ├── nohup.1.gz
+│   ├── nproc.1.gz
+│   ├── numfmt.1.gz
+│   ├── od.1.gz
+│   ├── paste.1.gz
+│   ├── pathchk.1.gz
+│   ├── pinky.1.gz
+│   ├── pr.1.gz
+│   ├── printenv.1.gz
+│   ├── printf.1.gz
+│   ├── ptx.1.gz
+│   ├── pwd.1.gz
+│   ├── readlink.1.gz
+│   ├── rm.1.gz
+│   ├── rmdir.1.gz
+│   ├── runcon.1.gz
+│   ├── seq.1.gz
+│   ├── sha1sum.1.gz
+│   ├── sha224sum.1.gz
+│   ├── sha256sum.1.gz
+│   ├── sha384sum.1.gz
+│   ├── sha512sum.1.gz
+│   ├── shred.1.gz
+│   ├── shuf.1.gz
+│   ├── sleep.1.gz
+│   ├── sort.1.gz
+│   ├── split.1.gz
+│   ├── stat.1.gz
+│   ├── stdbuf.1.gz
+│   ├── stty.1.gz
+│   ├── sum.1.gz
+│   ├── sync.1.gz
+│   ├── tac.1.gz
+│   ├── tail.1.gz
+│   ├── tee.1.gz
+│   ├── test.1.gz
+│   ├── timeout.1.gz
+│   ├── touch.1.gz
+│   ├── tr.1.gz
+│   ├── true.1.gz
+│   ├── truncate.1.gz
+│   ├── tsort.1.gz
+│   ├── tty.1.gz
+│   ├── uname.1.gz
+│   ├── unexpand.1.gz
+│   ├── uniq.1.gz
+│   ├── unlink.1.gz
+│   ├── users.1.gz
+│   ├── vdir.1.gz
+│   ├── wc.1.gz
+│   ├── who.1.gz
+│   ├── whoami.1.gz
+│   └── yes.1.gz
+└── man8
+    └── chroot.8.gz
+
+2 directories, 102 files
+</code></pre><h2 id="">查詢</h2>
+<p>然後就利用man指令查詢，或是到網頁上查詢</p>
+<h3 id="">指令查詢</h3>
+<p>例如:「chroot」</p>
+<pre><code>$ man chroot
+</code></pre><p>或是</p>
+<pre><code>$ man 8 chroot
+</code></pre><p>或是</p>
+<pre><code>$ man coreutils/usr/share/man/man8/chroot.8.gz
+</code></pre><p>或是</p>
+<pre><code>$ man /usr/share/man/man8/chroot.8.gz
+</code></pre><h3 id="">網頁查詢</h3>
+<p> <a href="http://manpages.ubuntu.com/manpages/trusty/man8/chroot.8.html" target="_blank">Ubuntu Manual 網址</a></p>
+<pre><code>http://manpages.ubuntu.com/manpages/trusty/man8/chroot.8.html
+</code></pre><p>用瀏覽器查看</p>
+<pre><code>$ lynx http://manpages.ubuntu.com/manpages/trusty/man8/chroot.8.html
+</code></pre><p>或是</p>
+<pre><code>$ firefox http://manpages.ubuntu.com/manpages/trusty/man8/chroot.8.html
+</code></pre><h2 id="">更多參考</h2>
+<p>以上方式的原理，可以參考這篇<a href="/blog/read/linux/ubuntu/package/how-to-find-out-list-of-files-installed-from-packge/">Ubuntu環境下，如何查詢某個套件安裝在系統上的所有檔案</a>。</p>
 
                     
                     </section>
@@ -692,10 +906,10 @@
         </div>
 
         
-        <a href="../../content/package/how-to-find-out-what-package-a-file-belongs-to.html" class="navigation navigation-prev " aria-label="Previous page: 如何查詢某個檔案，屬於哪個套件"><i class="fa fa-angle-left"></i></a>
+        <a href="../../content/manual/index.html" class="navigation navigation-prev " aria-label="Previous page: 一些查詢使用手冊相關的技巧"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../content/package/how-to-find-out-package-changelog.html" class="navigation navigation-next " aria-label="Next page: 如何查詢某個套件的「changelog」"><i class="fa fa-angle-right"></i></a>
+        <a href="../../content/package/index.html" class="navigation navigation-next " aria-label="Next page: 一些套件相關的技巧"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

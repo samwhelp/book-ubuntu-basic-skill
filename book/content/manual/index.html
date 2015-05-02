@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>如何知道某個套件是否已經安裝 | Ubuntu Basic Skill</title>
+        <title>一些查詢使用手冊相關的技巧 | Ubuntu Basic Skill</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
-    <link rel="next" href="../../content/package/how-to-find-out-package-changelog.html" />
+    <link rel="next" href="../../content/manual/how-to-find-out-manpages-by-a-package.html" />
     
     
-    <link rel="prev" href="../../content/package/how-to-find-out-what-package-a-file-belongs-to.html" />
+    <link rel="prev" href="../../index.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="2.3" data-basepath="../.." data-revision="1430532256422">
+    <div class="book" data-level="1" data-basepath="../.." data-revision="1430532256422">
     
 
 <div class="book-summary">
@@ -66,7 +66,7 @@
         </li>
     
         
-        <li class="chapter " data-level="1" data-path="content/manual/index.html">
+        <li class="chapter active" data-level="1" data-path="content/manual/index.html">
             
                 
                     <a href="../../content/manual/index.html">
@@ -153,7 +153,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="2.3" data-path="content/package/how-to-figure-out-package-installed.html">
+        <li class="chapter " data-level="2.3" data-path="content/package/how-to-figure-out-package-installed.html">
             
                 
                     <a href="../../content/package/how-to-figure-out-package-installed.html">
@@ -644,43 +644,12 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_21">
+                    <section class="normal" id="section-gitbook_17">
                     
-                        <h1 id="">如何知道某個套件是否已經安裝</h1>
-<h2 id="">測試環境</h2>
-<p>以下測試是在「Xubuntu 14.04 64位元」。</p>
-<h2 id="">前提</h2>
-<p>以下以「<a href="http://packages.ubuntu.com/trusty/vim" target="_blank">vim</a>」為範例。</p>
-<h2 id="">方式一</h2>
-<pre><code class="lang-sh">$ dpkg --get-selections | grep vim
-</code></pre>
-<h2 id="">方式二</h2>
-<pre><code class="lang-sh">$ dpkg <span class="hljs-operator">-l</span> vim
-</code></pre>
-<pre><code class="lang-sh">$ dpkg <span class="hljs-operator">-l</span> vim*
-</code></pre>
-<pre><code class="lang-sh">$ dpkg <span class="hljs-operator">-l</span> *vim
-</code></pre>
-<pre><code class="lang-sh">$ dpkg <span class="hljs-operator">-l</span> *vim*
-</code></pre>
-<h2 id="">方式三</h2>
-<pre><code class="lang-sh">$ dpkg <span class="hljs-operator">-s</span> vim | grep ^Status
-</code></pre>
-<h2 id="">方式四</h2>
-<pre><code class="lang-sh">$ dpkg-query -W <span class="hljs-operator">-f</span>=<span class="hljs-string">'${binary:Package} : ${Status} \n'</span> vim
-</code></pre>
-<pre><code class="lang-sh">$ dpkg-query -W <span class="hljs-operator">-f</span>=<span class="hljs-string">'${binary:Package} : ${Status} \n'</span> vim*
-</code></pre>
-<h2 id="">參考</h2>
+                        <h1 id="ubuntu">Ubuntu環境下，一些查詢使用手冊相關的技巧</h1>
+<h2 id="">列表</h2>
 <ul>
-<li>man <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/dpkg.1.html" target="_blank">dpkg</a></li>
-<li>man <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/dpkg-query.1.html" target="_blank">dpkg-query</a></li>
-</ul>
-<h2 id="">參與討論</h2>
-<ul>
-<li><a href="http://www.ubuntu-tw.org/modules/newbb/viewtopic.php?post_id=327850#forumpost327850" target="_blank">回覆: [解決] 如何系統更新時不增加核心</a></li>
-<li><a href="http://www.ubuntu-tw.org/modules/newbb/viewtopic.php?post_id=331892#forumpost331892" target="_blank">回覆: [分享]ubuntu 安裝 nvidia 驅動心得</a></li>
-<li><a href="http://www.ubuntu-tw.org/modules/newbb/viewtopic.php?post_id=326240#forumpost326240" target="_blank">回覆: Ubuntu 14.04 更新之後，變成Failsafe-X Mode</a></li>
+<li><a href="how-to-find-out-manpages-by-a-package.html">如何查詢某個套件有哪些使用手冊(man page)</a></li>
 </ul>
 
                     
@@ -692,10 +661,10 @@
         </div>
 
         
-        <a href="../../content/package/how-to-find-out-what-package-a-file-belongs-to.html" class="navigation navigation-prev " aria-label="Previous page: 如何查詢某個檔案，屬於哪個套件"><i class="fa fa-angle-left"></i></a>
+        <a href="../../index.html" class="navigation navigation-prev " aria-label="Previous page: Introduction"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../content/package/how-to-find-out-package-changelog.html" class="navigation navigation-next " aria-label="Next page: 如何查詢某個套件的「changelog」"><i class="fa fa-angle-right"></i></a>
+        <a href="../../content/manual/how-to-find-out-manpages-by-a-package.html" class="navigation navigation-next " aria-label="Next page: 如何查詢某個套件有哪些使用手冊(man page)"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
