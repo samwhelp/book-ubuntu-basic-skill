@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="2.2" data-basepath="../.." data-revision="1430532256422">
+    <div class="book" data-level="2.2" data-basepath="../.." data-revision="1430541806078">
     
 
 <div class="book-summary">
@@ -649,13 +649,12 @@
                         <h1 id="">如何查詢某個檔案，屬於哪個套件</h1>
 <h2 id="">測試環境</h2>
 <p>以下測試是在「Xubuntu 14.04 64位元」。</p>
-<h2 id="">方式一</h2>
+<h2 id="">前提</h2>
+<p>以「uname」這個指令為例</p>
+<p>uname 用法範例</p>
+<pre><code>$ uname -a
+</code></pre><h2 id="">操作步驟</h2>
 <p>執行</p>
-<pre><code class="lang-sh">$ dpkg -S /bin/uname
-</code></pre>
-<p>會看到</p>
-<pre><code>coreutils: /bin/uname
-</code></pre><p>執行</p>
 <pre><code class="lang-sh">$ dpkg -S uname
 </code></pre>
 <p>會看到（依照系統安裝的套件而定）</p>
@@ -669,7 +668,18 @@ klibc-utils: /usr/lib/klibc/bin/uname
 manpages-dev: /usr/share/man/man2/olduname.2.gz
 manpages-posix-dev: /usr/share/man/man3/uname.3posix.gz
 manpages-dev: /usr/share/man/man2/uname.2.gz
-</code></pre><p>注意要有安裝該套件，才有辦法使用「dpkg -S」查到。</p>
+</code></pre><p>然後執行</p>
+<pre><code>$ whereis uname
+</code></pre><p>會顯示</p>
+<pre><code>uname: /bin/uname /usr/share/man/man2/uname.2.gz /usr/share/man/man1/uname.1posix.gz /usr/share/man/man1/uname.1.gz /usr/share/man/man3/uname.3posix.gz
+</code></pre><p>可以知道「uname」這個指令，是放在「/bin/uname」這個路徑。</p>
+<p>執行</p>
+<pre><code class="lang-sh">$ dpkg -S /bin/uname
+</code></pre>
+<p>會看到</p>
+<pre><code>coreutils: /bin/uname
+</code></pre><p>最後就可以知道，「uanme」這個指令是屬於「coreutils」這個套件。</p>
+<p>注意要有安裝該套件，才有辦法使用「dpkg -S」查到。</p>
 <pre><code class="lang-sh">$ cat /var/lib/dpkg/info/coreutils.list | grep uname
 </code></pre>
 <h2 id="">例外狀況</h2>
