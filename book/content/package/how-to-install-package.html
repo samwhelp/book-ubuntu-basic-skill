@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="2.2" data-basepath="../.." data-revision="1430598014430">
+    <div class="book" data-level="2.2" data-basepath="../.." data-revision="1430598589985">
     
 
 <div class="book-summary">
@@ -684,8 +684,10 @@
 <pre><code>$ dpkg -l libc6
 </code></pre><p>或</p>
 <pre><code>$ dpkg -l | grep libc6
-</code></pre><p>若相依的套件，若沒有是先安裝在系統裡。
-通常系統會給一個提示，請你執行「apt-get install -f」。</p>
+</code></pre><p>若相依的套件，若沒有事先安裝在系統裡。
+執行「apt-get install」，
+系統會給一個提示，
+請你執行「apt-get install -f」。</p>
 <p>這時候你只要執行</p>
 <pre><code>$ sudo apt-get install -f
 </code></pre><p>就可以把相依的套件給安裝補足。</p>
@@ -708,7 +710,11 @@
 從套件庫下載下來的「deb檔」會放在「/var/cache/apt/archives/」這個資料夾</p>
 <p>你可以執行下面的指令查看</p>
 <pre><code>$ ls /var/cache/apt/archives/hello_2.8-4_amd64.deb -l
-</code></pre>
+</code></pre><h2 id="">更多案例</h2>
+<ul>
+<li><a href="http://www.ubuntu-tw.org/modules/newbb/viewtopic.php?post_id=339354#forumpost339354" target="_blank">Deepin Music Player無法安裝?</a></li>
+</ul>
+
                     
                     </section>
                 
