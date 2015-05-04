@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>關於「apt-get autoremove」 | Ubuntu Basic Skill</title>
+        <title>如何下載「Source Package」 | Ubuntu Basic Skill</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
-    <link rel="next" href="../../content/font/index.html" />
+    <link rel="next" href="../../content/package/apt-get-autoremove.html" />
     
     
-    <link rel="prev" href="../../content/package/how-to-download-source-package.html" />
+    <link rel="prev" href="../../content/package/how-to-find-out-package-reverse-dependency.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="2.11" data-basepath="../.." data-revision="1430721909344">
+    <div class="book" data-level="2.10" data-basepath="../.." data-revision="1430721909344">
     
 
 <div class="book-summary">
@@ -265,7 +265,7 @@
         </li>
     
         
-        <li class="chapter " data-level="2.10" data-path="content/package/how-to-download-source-package.html">
+        <li class="chapter active" data-level="2.10" data-path="content/package/how-to-download-source-package.html">
             
                 
                     <a href="../../content/package/how-to-download-source-package.html">
@@ -281,7 +281,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="2.11" data-path="content/package/apt-get-autoremove.html">
+        <li class="chapter " data-level="2.11" data-path="content/package/apt-get-autoremove.html">
             
                 
                     <a href="../../content/package/apt-get-autoremove.html">
@@ -676,38 +676,150 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_19">
+                    <section class="normal" id="section-gitbook_21">
                     
-                        <h1 id="apt-get-autoremove">關於「apt-get autoremove」</h1>
+                        <h1 id="source-package">如何下載「Source Package」</h1>
 <h2 id="">測試環境</h2>
 <p>以下測試是在「Xubuntu 14.04 64位元」。</p>
 <h2 id="">前提</h2>
-<p>有時候執行安裝套件的時候</p>
-<pre><code>$ sudo apt-get install
-</code></pre><p>就會出現類似下面的訊息</p>
+<p>以「<a href="http://packages.ubuntu.com/trusty/hello" target="_blank">hello</a>」這個「Package」為例。</p>
+<h2 id="">方式一</h2>
+<p>執行「apt-get source」下載「<a href="http://packages.ubuntu.com/trusty/hello" target="_blank">hello</a>」這個套件的「<a href="http://packages.ubuntu.com/source/trusty/hello" target="_blank">Source Package</a>」。</p>
+<pre><code class="lang-sh">$ apt-get <span class="hljs-built_in">source</span> hello
+</code></pre>
+<p>顯示下列的訊息</p>
 <pre><code>Reading package lists... Done
 Building dependency tree
 Reading state information... Done
-The following packages were automatically installed and are no longer required:
-
-... 套件列表 ... 略 ...
-
-Use &#39;apt-get autoremove&#39; to remove them.
-0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
-</code></pre><h2 id="">解決方式</h2>
-<p>上面的提示訊息已經有說明解法了。</p>
-<pre><code class="lang-sh">$ <span class="hljs-built_in">sudo</span> apt-get autoremove
+Need to get 711 kB of source archives.
+Get:1 http://tw.archive.ubuntu.com/ubuntu/ trusty/main hello 2.8-4 (dsc) [1,290 B]
+Get:2 http://tw.archive.ubuntu.com/ubuntu/ trusty/main hello 2.8-4 (tar) [697 kB]
+Get:3 http://tw.archive.ubuntu.com/ubuntu/ trusty/main hello 2.8-4 (diff) [12.5 kB]
+Fetched 711 kB in 0s (762 kB/s)
+sh: 1: dpkg-source: not found
+Unpack command &#39;dpkg-source -x hello_2.8-4.dsc&#39; failed.
+Check if the &#39;dpkg-dev&#39; package is installed.
+E: Child process failed
+</code></pre><p>其中有一行訊息</p>
+<pre><code>Check if the &#39;dpkg-dev&#39; package is installed.
+</code></pre><p>從上面的訊息可以知道，少裝了「<a href="http://packages.ubuntu.com/trusty/dpkg-dev" target="_blank">dpkg-dev</a>」這個套件。</p>
+<p>基本上「hello」的「Source Package」是有下載下來</p>
+<pre><code>$ ls -1
+</code></pre><p>顯示</p>
+<pre><code>hello_2.8-4.debian.tar.gz
+hello_2.8-4.dsc
+hello_2.8.orig.tar.gz
+</code></pre><p>但是是在解開的時候出現問題。</p>
+<p>上面的訊息有一行</p>
+<pre><code>Unpack command &#39;dpkg-source -x hello_2.8-4.dsc&#39; failed.
+</code></pre><p>所以先安裝「<a href="http://packages.ubuntu.com/trusty/dpkg-dev" target="_blank">dpkg-dev</a>」這個套件</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">sudo</span> apt-get install dpkg-dev
 </code></pre>
-<p>就會把一些上面列的套件移除，並且不會在出現上面的提示訊息。</p>
-<h2 id="">說明</h2>
-<p>會出現這樣的提示訊息，就是有些套件的安裝，是伴隨在安裝某些套件，依據相依性而安裝的。
-後來移除了，這些依據相依性而安裝的套件，如果沒有被其他的套件相依，就會出現這樣的提示訊息。</p>
-<h3 id="">參考</h3>
+<p>再執行一次</p>
+<pre><code class="lang-sh">$ apt-get <span class="hljs-built_in">source</span> hello
+</code></pre>
+<p>這次顯示的訊息</p>
+<pre><code>Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+Need to get 711 kB of source archives.
+Get:1 http://tw.archive.ubuntu.com/ubuntu/ trusty/main hello 2.8-4 (dsc) [1,290 B]
+Get:2 http://tw.archive.ubuntu.com/ubuntu/ trusty/main hello 2.8-4 (tar) [697 kB]
+Get:3 http://tw.archive.ubuntu.com/ubuntu/ trusty/main hello 2.8-4 (diff) [12.5 kB]
+Fetched 711 kB in 1s (681 kB/s)
+dpkg-source: info: extracting hello in hello-2.8
+dpkg-source: info: unpacking hello_2.8.orig.tar.gz
+dpkg-source: info: unpacking hello_2.8-4.debian.tar.gz
+dpkg-source: info: applying 99-config-guess-config-sub
+</code></pre><p>觀看有哪些檔案</p>
+<pre><code>$ ls -1
+</code></pre><p>會顯示</p>
+<pre><code>hello-2.8
+hello_2.8-4.debian.tar.gz
+hello_2.8-4.dsc
+hello_2.8.orig.tar.gz
+</code></pre><h2 id="">額外一提</h2>
+<p>通常安裝「<a href="http://packages.ubuntu.com/trusty/build-essential" target="_blank">build-essential</a>」這個「<a href="https://help.ubuntu.com/community/MetaPackages" target="_blank">Metapackage</a>」時，就會安裝「<a href="http://packages.ubuntu.com/trusty/dpkg-dev" target="_blank">dpkg-dev</a>」這個套件了。</p>
+<p>可以執行下面的指令驗證看看</p>
+<pre><code class="lang-sh">$ apt-cache show build-essential | grep Depends:
+</code></pre>
+<p>就會顯示</p>
+<pre><code>Depends: libc6-dev | libc-dev, gcc (&gt;= 4:4.4.3), g++ (&gt;= 4:4.4.3), make, dpkg-dev (&gt;= 1.13.5)
+</code></pre><p>或是執行</p>
+<pre><code class="lang-sh">$ apt-cache rdepends dpkg-dev | grep build-essential
+</code></pre>
+<p>會顯示</p>
+<pre><code>  build-essential
+</code></pre><h2 id="sourcelist">source.list</h2>
+<p>要執行「apt-get source」這個動作，還有一個要注意的，就是「/etc/apt/sources.list」，裡面要有「deb-src」開頭的設定，設定Source Repository。</p>
+<p>例如下面這一行</p>
+<pre><code>deb-src http://tw.archive.ubuntu.com/ubuntu/ trusty main restricted universe multivers
+</code></pre><h2 id="">更多參考</h2>
 <ul>
-<li>man <a href="http://manpages.ubuntu.com/manpages/utopic/en/man8/apt-get.8.html" target="_blank">apt-get</a></li>
-<li><a href="http://www.ubuntu-tw.org/modules/newbb/viewtopic.php?post_id=331352#forumpost331352" target="_blank">回覆: no-ip 自動轉址安裝及設定方法(正確的方式嗎?)</a></li>
+<li><p>Source Repository 的 UI設定的方式，可以參考這篇「<a href="/blog/read/linux/mint/apt/add-source-repository/">Linux Mint 如何加入 Source Repository</a>」</p>
+</li>
+<li><p>Debian Reference / Chapter 2. Debian package management / <a href="https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_debian_archive_basics" target="_blank">2.1.4. Debian archive basics</a></p>
+</li>
+<li>Debian Wiki / <a href="https://wiki.debian.org/SourcePackage" target="_blank">SourcePackage</a></li>
 </ul>
+<h2 id="">方式二</h2>
+<p>直接到下面的頁面，找到網址下載，以下是以「14.04(trusty)」為例。</p>
+<p><a href="http://packages.ubuntu.com/source/trusty/hello" target="_blank">http://packages.ubuntu.com/source/trusty/hello</a></p>
+<p>用瀏覽器開啟頁面，</p>
+<p>執行</p>
+<pre><code>$ lynx http://packages.ubuntu.com/source/trusty/hello
+</code></pre><p>或是執行</p>
+<pre><code>$ firefox http://packages.ubuntu.com/source/trusty/hello
+</code></pre><p>下面有一個「Download hello」，有列三個檔</p>
+<pre><code>             File            Size (in kB)           MD5 checksum
+   hello_2.8-4.dsc           1.3 kB       1b6c5e82702d5d0c7876cd7aeb63c38b
+   hello_2.8.orig.tar.gz     681.1 kB     6a67cbbbc0420061ef938a9a2736fbd6
+   hello_2.8-4.debian.tar.gz 12.2 kB      585acd817162ae52f6abf01b8f38880b
+</code></pre><p>執行下面指令下載下來</p>
+<pre><code>wget -c http://archive.ubuntu.com/ubuntu/pool/main/h/hello/hello_2.8-4.dsc
 
+wget -c http://archive.ubuntu.com/ubuntu/pool/main/h/hello/hello_2.8.orig.tar.gz
+
+wget -c http://archive.ubuntu.com/ubuntu/pool/main/h/hello/hello_2.8-4.debian.tar.gz
+</code></pre><p>或是將下面三行</p>
+<pre><code>http://archive.ubuntu.com/ubuntu/pool/main/h/hello/hello_2.8-4.dsc
+http://archive.ubuntu.com/ubuntu/pool/main/h/hello/hello_2.8.orig.tar.gz
+http://archive.ubuntu.com/ubuntu/pool/main/h/hello/hello_2.8-4.debian.tar.gz
+</code></pre><p>存成一個檔叫「list.txt」。</p>
+<pre><code>$ vi list.xt
+</code></pre><p>存檔後，執行下面指令下載</p>
+<pre><code>$ wget -c -i list.txt
+</code></pre><p>下載完成</p>
+<pre><code>$ ls -1
+</code></pre><p>一樣可以看到三個檔</p>
+<pre><code>hello_2.8-4.debian.tar.gz
+hello_2.8-4.dsc
+hello_2.8.orig.tar.gz
+list.txt
+</code></pre><p>然後利用「dpkg-source」這個指令解開。</p>
+<pre><code>$ dpkg-source -x hello_2.8-4.dsc
+</code></pre><p>就可以看到下面的訊息</p>
+<pre><code>dpkg-source: info: extracting hello in hello-2.8
+dpkg-source: info: unpacking hello_2.8.orig.tar.gz
+dpkg-source: info: unpacking hello_2.8-4.debian.tar.gz
+dpkg-source: info: applying 99-config-guess-config-sub
+</code></pre><p>並且多出一個資料夾「hello-2.8」</p>
+<pre><code>$ ls -1
+</code></pre><p>顯示</p>
+<pre><code>hello-2.8
+hello_2.8-4.debian.tar.gz
+hello_2.8-4.dsc
+hello_2.8.orig.tar.gz
+list.txt
+</code></pre><p>基本上，「方式二」這個流程，跟「方式一」是一樣的，只是利用一個指令就搞定了 :-)</p>
+<p>另外也可以到下面這個網址，觀看hello有哪些檔案。</p>
+<p><a href="http://archive.ubuntu.com/ubuntu/pool/main/h/hello/" target="_blank">http://archive.ubuntu.com/ubuntu/pool/main/h/hello/</a></p>
+<p>用瀏覽器開啟頁面，</p>
+<p>執行</p>
+<pre><code>$ lynx http://archive.ubuntu.com/ubuntu/pool/main/h/hello/
+</code></pre><p>或是執行</p>
+<pre><code>$ firefox http://archive.ubuntu.com/ubuntu/pool/main/h/hello/
+</code></pre>
                     
                     </section>
                 
@@ -717,10 +829,10 @@ Use &#39;apt-get autoremove&#39; to remove them.
         </div>
 
         
-        <a href="../../content/package/how-to-download-source-package.html" class="navigation navigation-prev " aria-label="Previous page: 如何下載「Source Package」"><i class="fa fa-angle-left"></i></a>
+        <a href="../../content/package/how-to-find-out-package-reverse-dependency.html" class="navigation navigation-prev " aria-label="Previous page: 如何查詢某個套件被哪些套件相依"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../content/font/index.html" class="navigation navigation-next " aria-label="Next page: 一些字型設定相關的技巧"><i class="fa fa-angle-right"></i></a>
+        <a href="../../content/package/apt-get-autoremove.html" class="navigation navigation-next " aria-label="Next page: 關於「apt-get autoremove」"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
