@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>apt-get source 的使用 | Ubuntu Basic Skill</title>
+        <title>如何製作「deb檔(Debian Package)」 | Ubuntu Basic Skill</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
-    <link rel="next" href="../../content/package/dpkg-deb-build.html" />
+    <link rel="next" href="../../content/font/index.html" />
     
     
-    <link rel="prev" href="../../content/package/apt-get-download.html" />
+    <link rel="prev" href="../../content/package/apt-get-autoremove.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="2.4" data-basepath="../.." data-revision="1430921999284">
+    <div class="book" data-level="2.16" data-basepath="../.." data-revision="1430921999284">
     
 
 <div class="book-summary">
@@ -169,7 +169,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="2.4" data-path="content/package/apt-get-source.html">
+        <li class="chapter " data-level="2.4" data-path="content/package/apt-get-source.html">
             
                 
                     <a href="../../content/package/apt-get-source.html">
@@ -361,7 +361,7 @@
         </li>
     
         
-        <li class="chapter " data-level="2.16" data-path="content/package/how-to-build-package.html">
+        <li class="chapter active" data-level="2.16" data-path="content/package/how-to-build-package.html">
             
                 
                     <a href="../../content/package/how-to-build-package.html">
@@ -756,37 +756,334 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_21">
+                    <section class="normal" id="section-gitbook_24">
                     
-                        <h1 id="apt-get-source-">apt-get source 的使用</h1>
+                        <h1 id="debdebian-package">如何製作「deb檔(Debian Package)」</h1>
 <h2 id="">測試環境</h2>
 <p>以下測試是在「Xubuntu 14.04 64位元」。</p>
-<h2 id="">使用範例</h2>
-<p>「apt-get source」的使用範例，請參考『<a href="how-to-download-source-package.html">如何下載「Source Package」</a>』這篇。</p>
-<h2 id="">手冊說明</h2>
-<p>$ man <a href="http://manpages.ubuntu.com/manpages/trusty/man8/apt-get.8.html" target="_blank">apt-get</a></p>
-<p>可以看到一段說明</p>
-<pre><code>       source
-           source causes apt-get to fetch source packages. APT will examine the available packages to decide which source package to
-           fetch. It will then find and download into the current directory the newest available version of that source package while
-           respecting the default release, set with the option APT::Default-Release, the -t option or per package with the pkg/release
-           syntax, if possible.
+<h2 id="">執行步驟</h2>
+<h3 id="">準備工作環境</h3>
+<p>建立工作環境資料夾</p>
+<pre><code>$ mkdir ~/Templates/build-debian-package -p
+</code></pre><p>切換到工作環境資料夾</p>
+<pre><code>$ cd ~/Templates/build-debian-package
+</code></pre><h3 id="">建立套件最上層資料夾</h3>
+<p>建立一個資料夾「try」，這個是「套件最上層資料夾」，所有的檔案都要放在這裡面</p>
+<pre><code>$ mkdir try -p
+</code></pre><h3 id="debian">建立「DEBIAN」資料夾</h3>
+<p>建立「try/DEBIAN」資料夾，這個資料夾是建立「Debian Package」的依據資料夾。</p>
+<pre><code>$ mkdir try/DEBIAN -p
+</code></pre><h3 id="control">建立「control」檔</h3>
+<p>建立「try/DEBIAN/control」檔，這個檔是建立「Debian Package」的依據檔案。</p>
+<pre><code>$ touch try/DEBIAN/control
+</code></pre><h3 id="">觀看目錄結構</h3>
+<p>觀看一下剛剛建立的目錄結構</p>
+<pre><code>$ tree try
+</code></pre><p>會顯示</p>
+<pre><code>try
+└── DEBIAN
+    └── control
 
-           Source packages are tracked separately from binary packages via deb-src lines in the sources.list(5) file. This means that
-           you will need to add such a line for each repository you want to get sources from; otherwise you will probably get either
-           the wrong (too old/too new) source versions or none at all.
+1 directory, 1 file
+</code></pre><h3 id="debian-package">開始製作「Debian Package」</h3>
+<p>可以執行</p>
+<pre><code>$ dpkg -b try
+</code></pre><p>或是執行</p>
+<pre><code>$ dpkg --build try
+</code></pre><p>或是執行</p>
+<pre><code>$ dpkg-deb -b try
+</code></pre><p>或是執行</p>
+<pre><code>$ dpkg-deb --build try
+</code></pre><p>會顯示一個訊息</p>
+<pre><code>dpkg-deb: error: no package information in `try/DEBIAN/control&#39;
+</code></pre><h3 id="controlpackage">在「control」加上「Package:」</h3>
+<p>我們先在「control」這個檔加上下面這一行</p>
+<pre><code>Package: try
+</code></pre><p>可以用擅長的編輯器編輯。</p>
+<p>也可以直接執行下面的指令直接產生。</p>
+<pre><code>$ echo &#39;Package: try&#39; &gt; try/DEBIAN/control
+</code></pre><p>觀看內容</p>
+<pre><code>$ cat try/DEBIAN/control
+</code></pre><p>會顯示</p>
+<pre><code>Package: try
+</code></pre><p>再次執行下面指令，製作「Debian Package」</p>
+<pre><code>$ dpkg -b try
+</code></pre><p>這時候就會顯示下面的訊息</p>
+<pre><code>dpkg-deb: warning: parsing file &#39;try/DEBIAN/control&#39; near line 2 package &#39;try&#39;:
+ missing description
+dpkg-deb: warning: parsing file &#39;try/DEBIAN/control&#39; near line 2 package &#39;try&#39;:
+ missing maintainer
+dpkg-deb: error: parsing file &#39;try/DEBIAN/control&#39; near line 2 package &#39;try&#39;:
+ missing version
+</code></pre><h3 id="controlversion">在「control」加上「Version:」</h3>
+<p>我們在「control」這個檔，附加上下面這一行</p>
+<pre><code>Version: 0.1
+</code></pre><p>可以用擅長的編輯器編輯。</p>
+<p>也可以直接執行下面的指令直接產生。</p>
+<pre><code>$ echo &#39;Version: 0.1&#39; &gt;&gt; try/DEBIAN/control
+</code></pre><p>觀看內容</p>
+<pre><code>$ cat try/DEBIAN/control
+</code></pre><p>會顯示</p>
+<pre><code>Package: try
+Version: 0.1
+</code></pre><p>再次執行下面指令，製作「Debian Package」</p>
+<pre><code>$ dpkg -b try
+</code></pre><p>這時候就會顯示下面的訊息</p>
+<pre><code>dpkg-deb: warning: parsing file &#39;try/DEBIAN/control&#39; near line 3 package &#39;try&#39;:
+ missing description
+dpkg-deb: warning: parsing file &#39;try/DEBIAN/control&#39; near line 3 package &#39;try&#39;:
+ missing maintainer
+dpkg-deb: warning: parsing file &#39;try/DEBIAN/control&#39; near line 3 package &#39;try&#39;:
+ missing architecture
+dpkg-deb: warning: ignoring 3 warnings about the control file(s)
 
-           If the --compile option is specified then the package will be compiled to a binary .deb using dpkg-buildpackage for the
-           architecture as defined by the --host-architecture option. If --download-only is specified then the source package will not
-           be unpacked.
+dpkg-deb: building package `try&#39; in `try.deb&#39;.
+</code></pre><p>並且產生一個檔，叫做「try.deb」</p>
+<pre><code>$ ls -1
+</code></pre><p>可以看到</p>
+<pre><code>try
+try.deb
+</code></pre><h2 id="">把一些欄位補足</h2>
+<p>依據上面的提示訊息，把「architecture」「description」「maintainer」這幾個欄位補足吧</p>
+<p>執行下面的指令</p>
+<pre><code>echo &#39;Architecture: all&#39; &gt;&gt; try/DEBIAN/control
+echo &#39;Description: This is a test package.&#39; &gt;&gt; try/DEBIAN/control
+echo &#39;Maintainer: developer &lt;developer@hell.heaven&gt;&#39; &gt;&gt; try/DEBIAN/control
+</code></pre><p>觀看內容</p>
+<pre><code>$ cat try/DEBIAN/control
+</code></pre><p>會顯示</p>
+<pre><code>Package: try
+Version: 0.1
+Architecture: all
+Description: This is a test package.
+Maintainer: developer &lt;developer@hell.heaven&gt;
+</code></pre><p>再次執行下面指令，製作「Debian Package」</p>
+<pre><code>$ dpkg -b try
+</code></pre><p>這時候就會顯示下面的訊息</p>
+<pre><code>dpkg-deb: building package `try&#39; in `try.deb&#39;.
+</code></pre><h3 id="deb">觀看「deb檔」的訊息</h3>
+<p>執行</p>
+<pre><code>$ dpkg -I try.deb
+</code></pre><p>會顯示</p>
+<pre><code> new debian package, version 2.0.
+ size 594 bytes: control archive=241 bytes.
+     127 bytes,     5 lines      control
+ Package: try
+ Version: 0.1
+ Architecture: all
+ Description: This is a test package.
+ Maintainer: developer &lt;developer@hell.heaven&gt;
+</code></pre><p>執行</p>
+<pre><code>$ dpkg -f try.deb
+</code></pre><p>會顯示</p>
+<pre><code>Package: try
+Version: 0.1
+Architecture: all
+Description: This is a test package.
+Maintainer: developer &lt;developer@hell.heaven&gt;
+</code></pre><p>執行</p>
+<pre><code>$ dpkg -c try.deb
+</code></pre><p>會顯示(以下的「user/user」會依據你的「帳號」和「所屬群組」而定)</p>
+<pre><code>drwxrwxr-x user/user           0 2015-05-06 15:57 ./
+</code></pre><h3 id="">測試安裝</h3>
+<p>執行</p>
+<pre><code>$ sudo dpkg -i try.deb
+</code></pre><p>會顯示</p>
+<pre><code>[sudo] password for user:
+</code></pre><p>輸入正確密碼，按下「Enter」</p>
+<p>會顯示下面的訊息</p>
+<pre><code>Selecting previously unselected package try.
+(Reading database ... 947302 files and directories currently installed.)
+Preparing to unpack try.deb ...
+Unpacking try (0.1) ...
+Setting up try (0.1) ...
+</code></pre><h3 id="">觀看安裝到系統的狀況</h3>
+<p>執行</p>
+<pre><code>$ dpkg -l try
+</code></pre><p>會顯示</p>
+<pre><code>Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name                         Version             Architecture        Description
++++-============================-===================-===================-==============================================================
+ii  try                          0.1                 all                 This is a test package.
+</code></pre><p>執行</p>
+<pre><code>dpkg --get-selections | grep try
+</code></pre><p>會顯示</p>
+<pre><code>...略...
+try                                             install
+</code></pre><p>執行</p>
+<pre><code>$ dpkg -s try
+</code></pre><p>會顯示</p>
+<pre><code>Package: try
+Status: install ok installed
+Maintainer: developer &lt;developer@hell.heaven&gt;
+Architecture: all
+Version: 0.1
+Description: This is a test package.
+</code></pre><p>觀看「/var/lib/dpkg/status」的紀錄</p>
+<pre><code>$ cat /var/lib/dpkg/status | grep &#39;Package: try&#39; -A 5
+</code></pre><p>會顯示</p>
+<pre><code>Package: try
+Status: install ok installed
+Maintainer: developer &lt;developer@hell.heaven&gt;
+Architecture: all
+Version: 0.1
+Description: This is a test package.
+</code></pre><p>觀看「/var/lib/dpkg/available」的紀錄</p>
+<pre><code>$ cat /var/lib/dpkg/available | grep &#39;Package: try&#39; -A 5
+</code></pre><p>會顯示</p>
+<pre><code>Package: try
+Maintainer: developer &lt;developer@hell.heaven&gt;
+Architecture: all
+Version: 0.1
+Size: 594
+Description: This is a test package.
+</code></pre><p>觀看「try」這個套件，安裝了哪些檔案在系統上</p>
+<pre><code>$ dpkg -L try
+</code></pre><p>會顯示</p>
+<pre><code>/.
+</code></pre><h3 id="">加入一個檔案</h3>
+<p>產生一個「try.txt」。</p>
+<pre><code>$ touch &gt; try/try.txt
+</code></pre><p>然後編寫內容</p>
+<pre><code>$ echo hi &gt; try/try.txt
+</code></pre><p>觀看一下目前的目錄結構</p>
+<pre><code>$ tree
+</code></pre><p>會顯示</p>
+<pre><code>.
+├── try
+│   ├── DEBIAN
+│   │   └── control
+│   └── try.txt
+└── try.deb
 
-           A specific source version can be retrieved by postfixing the source name with an equals and then the version to fetch,
-           similar to the mechanism used for the package files. This enables exact matching of the source package name and version,
-           implicitly enabling the APT::Get::Only-Source option.
-
-           Note that source packages are not installed and tracked in the dpkg database like binary packages; they are simply
-           downloaded to the current directory, like source tarballs.
+2 directories, 3 files
+</code></pre><p>然後執行</p>
+<pre><code>$ dpkg -b try
+</code></pre><p>執行安裝</p>
+<pre><code>$ sudo dpkg -i try.deb
+</code></pre><p>會顯示</p>
+<pre><code>(Reading database ... 947302 files and directories currently installed.)
+Preparing to unpack try.deb ...
+Unpacking try (0.1) over (0.1) ...
+Setting up try (0.1) ...
+</code></pre><p>觀看「try」這個套件，安裝了哪些檔案在系統上</p>
+<pre><code>$ dpkg -L try
+</code></pre><p>會顯示</p>
+<pre><code>/.
+/try.txt
+</code></pre><p>觀看「/」底下，是否有「try.txt」這個檔</p>
+<pre><code>ls /try.txt -l
+</code></pre><p>會顯示</p>
+<pre><code>-rw-rw-r-- 1 user user 3 May  6 18:38 /try.txt
+</code></pre><p>也就是「try」會對應到「/」，「try」底下有哪些檔案，就會裝到「/」底下，「DEBIAN」這個資料夾則是例外。</p>
+<h3 id="">檔案命名</h3>
+<p>剛利用「dpkg -b try」製作「Debian Package」，會產生一個「try.deb」檔。</p>
+<p>然後也可以有不同的方式</p>
+<p>先產生一個 [build]的資料夾，可以隨意命名，不見得要叫「build」</p>
+<pre><code class="lang-sh">$ mkdir build
 </code></pre>
+<p>觀看一下目前的檔案結構</p>
+<pre><code>$ tree
+</code></pre><p>顯示</p>
+<pre><code>.
+.
+├── build
+├── try
+│   ├── DEBIAN
+│   │   └── control
+│   └── try.txt
+└── try.deb
+
+3 directories, 3 files
+</code></pre><p>執行下面的指令</p>
+<pre><code>dpkg -b try build
+</code></pre><p>會顯示下面的訊息</p>
+<pre><code>$ dpkg-deb: building package `try&#39; in `build/try_0.1_all.deb&#39;.
+</code></pre><p>也就是會在「build」這個資料夾，產生「try_0.1_all.deb」，
+格式是「Package_Version_Architecture.deb」。
+也就是依據剛剛的「try/DEBIAN/control」裡面設定的資料來命名的。
+當「dpkg -b try」後面接「資料夾」參數時候，就會依照這樣的規則去命名。</p>
+<p>更多的命名規則可以執行下面的指令</p>
+<p>$ man <a href="http://manpages.ubuntu.com/manpages/trusty/man1/dpkg-deb.1.html" target="_blank">dpkg-deb</a></p>
+<p>會看到其中有一段</p>
+<pre><code>       -b, --build directory [archive|directory]
+              Creates a debian archive from the filesystem tree stored in directory. directory must have a DEBIAN subdirectory,  which
+              contains  the  control  information  files such as the control file itself. This directory will not appear in the binary
+              package&#39;s filesystem archive, but instead the files in it will be put in the binary package&#39;s control information area.
+
+              Unless you specify --nocheck, dpkg-deb will read DEBIAN/control and parse it. It will check it  for  syntax  errors  and
+              other problems, and display the name of the binary package being built.  dpkg-deb will also check the permissions of the
+              maintainer scripts and other files found in the DEBIAN control information directory.
+
+              If no archive is specified then dpkg-deb will write the package into the file directory.deb.
+
+              If the archive to be created already exists it will be overwritten.
+
+              If the second argument is a directory then dpkg-deb will write to the  file  package_version_arch.deb,  or  package_ver‐
+              sion.deb  if  no Architecture field is present in the package control file. When a target directory is specified, rather
+              than a file, the --nocheck option may not be used (since dpkg-deb needs to read and parse the package  control  file  to
+              determine which filename to use).
+</code></pre><h3 id="control">control欄位說明文件</h3>
+<p>執行下面的指令，就可以看到control的欄位說明</p>
+<p>$ man <a href="http://manpages.ubuntu.com/manpages/trusty/man5/deb-control.5.html" target="_blank">deb-control</a></p>
+<p>可以看到</p>
+<pre><code>REQUIRED FIELDS
+       Package: package-name
+              The value of this field determines the package name, and is used to generate file names by most installation tools.
+
+       Version: version-string
+              Typically, this is the original package&#39;s version number in whatever form the program&#39;s author uses. It may also include
+              a Debian revision number (for non-native packages). The exact format and sorting algorithm  are  described  in  deb-ver‐
+              sion(5).
+
+       Maintainer: fullname-email
+              Should  be in the format `Joe Bloggs &lt;jbloggs@foo.com&gt;&#39;, and is typically the person who created the package, as opposed
+              to the author of the software that was packaged.
+
+       Description: short-description
+               long-description
+              The format for the package description is a short brief summary on the first line (after the &quot;Description&quot;  field).  The
+              following  lines  should  be used as a longer, more detailed description. Each line of the long description must be pre‐
+              ceded by a space, and blank lines in the long description must contain a single &#39;.&#39; following the preceding space.
+</code></pre><p>和</p>
+<pre><code>OPTIONAL FIELDS
+
+    ...略...
+
+       Architecture: arch|all
+              The  architecture  specifies  which  type  of  hardware  this package was compiled for. Common architectures are `i386&#39;,
+              `m68k&#39;, `sparc&#39;, `alpha&#39;, `powerpc&#39; etc. Note that the all option is meant for packages that are  architecture  indepen‐
+              dent. Some examples of this are shell and Perl scripts, and documentation.
+
+    ...略...
+</code></pre><p>不過我測試安裝的時候，「Architecture」應該是必填，不然會出錯。</p>
+<p>還有執行 「dpkg -l try」會出現四個欄位，
+「Name」「Version」「Architecture」「Description」。
+「Architecture」在其中之一。</p>
+<h2 id="">更多參考</h2>
+<p>這篇我主要是因為閱讀了「<a href="http://blog.roodo.com/rocksaying/archives/11239791.html" target="_blank">這篇</a>」後的「啟發」，</p>
+<p>不然現在的工具都是在上面架上一層。</p>
+<p>先了解這基本的原理後，
+再來了解，更多的工具的使用，
+還有怎麼重新編譯「Source Package」。</p>
+<p>還有「DEBIAN」底下的其他檔的功用。</p>
+<pre><code>control
+conffiles
+preinst
+postinst
+prerm
+postrm
+triggers
+</code></pre><p>另外附上最近發現的影片</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=EnyQ9ZWHEh8" target="_blank">[TOSSUG] Debian 套件打包工作坊 / Debian packaging workshop (1)</a> - (<a href="https://tossug.hackpad.com/Debian-packaging-workshop-1-KuuZ9JwLdg0" target="_blank">note</a>)</li>
+<li><a href="https://www.youtube.com/watch?v=GlojdL8P-4o" target="_blank">[TOSSUG] Debian 套件打包工作坊 / Debian packaging workshop (2)</a> - (<a href="https://tossug.hackpad.com/Debian-packaging-workshop-2-0NrG7UCgL6p" target="_blank">note</a>)</li>
+<li><a href="https://www.youtube.com/watch?v=DpTEEpf2hzM" target="_blank">[TOSSUG] Debian 套件打包工作坊 / Debian packaging workshop (3)</a> - (<a href="https://tossug.hackpad.com/Debian-packaging-workshop-3-ylzTYm8PxCq" target="_blank">note</a>)</li>
+<li><a href="https://www.youtube.com/watch?v=MR0AQV174Ls" target="_blank">[TOSSUG] Debian 套件打包工作坊 / Debian packaging workshop (4)</a> - (<a href="https://tossug.hackpad.com/Debian-packaging-workshop-4-37qXm4zDFbJ" target="_blank">note</a>)</li>
+</ul>
+
                     
                     </section>
                 
@@ -796,10 +1093,10 @@
         </div>
 
         
-        <a href="../../content/package/apt-get-download.html" class="navigation navigation-prev " aria-label="Previous page: apt-get download 的使用"><i class="fa fa-angle-left"></i></a>
+        <a href="../../content/package/apt-get-autoremove.html" class="navigation navigation-prev " aria-label="Previous page: 關於「apt-get autoremove」"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../content/package/dpkg-deb-build.html" class="navigation navigation-next " aria-label="Next page: dpkg -b 的使用"><i class="fa fa-angle-right"></i></a>
+        <a href="../../content/font/index.html" class="navigation navigation-next " aria-label="Next page: 一些字型設定相關的技巧"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
