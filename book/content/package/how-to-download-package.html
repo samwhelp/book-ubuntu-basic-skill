@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>fc-match的使用 | Ubuntu Basic Skill</title>
+        <title>如何下載「Package」 | Ubuntu Basic Skill</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
-    <link rel="next" href="../../content/font/font-package.html" />
+    <link rel="next" href="../../content/package/how-to-download-source-package.html" />
     
     
-    <link rel="prev" href="../../content/font/start.html" />
+    <link rel="prev" href="../../content/package/how-to-find-out-package-reverse-dependency.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="3.2" data-basepath="../.." data-revision="1430892592819">
+    <div class="book" data-level="2.11" data-basepath="../.." data-revision="1430892592819">
     
 
 <div class="book-summary">
@@ -281,7 +281,7 @@
         </li>
     
         
-        <li class="chapter " data-level="2.11" data-path="content/package/how-to-download-package.html">
+        <li class="chapter active" data-level="2.11" data-path="content/package/how-to-download-package.html">
             
                 
                     <a href="../../content/package/how-to-download-package.html">
@@ -367,7 +367,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="3.2" data-path="content/font/fc-match.html">
+        <li class="chapter " data-level="3.2" data-path="content/font/fc-match.html">
             
                 
                     <a href="../../content/font/fc-match.html">
@@ -708,35 +708,63 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_9">
+                    <section class="normal" id="section-gitbook_22">
                     
-                        <h1 id="fc-match">fc-match的使用</h1>
-<h2 id="">使用範例</h2>
-<pre><code class="lang-sh">fc-match
+                        <h1 id="package">如何下載「Package」</h1>
+<h2 id="">測試環境</h2>
+<p>以下測試是在「Xubuntu 14.04 64位元」。</p>
+<h2 id="">前提</h2>
+<p>以「<a href="http://packages.ubuntu.com/trusty/hello" target="_blank">hello</a>」這個「Package」為例。</p>
+<h2 id="">方式一</h2>
+<p>執行「apt-get download」下載「<a href="http://packages.ubuntu.com/trusty/hello" target="_blank">hello</a>」這個套件。</p>
+<pre><code class="lang-sh">$ apt-get download hello
 </code></pre>
-<p>會出現一筆資料。</p>
-<p>以我目前的環境「Xubuntu 14.04 64位元」為例，以及目前有安裝的字型和設定，會出現下面的字樣。</p>
-<pre><code>DejaVuSans.ttf: &quot;DejaVu Sans&quot; &quot;Book&quot;
-</code></pre><p>而當你的「/etc/fonts/conf.d/*.conf」這個資料夾裡面的<a href="http://wiki.ubuntu-tw.org/index.php?title=HowtoCustomFontswithFontconfig" target="_blank">設定檔</a>有寫錯的時候。
-執行「fc-match」會出現訊息，告訴你哪個檔，那一行有寫錯。所以可以用來當作除錯工具。</p>
-<h3 id="">一些可以嘗試的範例</h3>
-<pre><code class="lang-sh">$ fc-match <span class="hljs-operator">-s</span> monospace | less
-</code></pre>
-<pre><code class="lang-sh">$ fc-match <span class="hljs-operator">-s</span> serif | less
-</code></pre>
-<pre><code class="lang-sh">$ fc-match <span class="hljs-operator">-s</span> sans-serif | less
-</code></pre>
-<pre><code class="lang-sh">$ fc-match <span class="hljs-operator">-s</span> mono | less
-</code></pre>
-<pre><code class="lang-sh">$ fc-match <span class="hljs-operator">-s</span> sans | less
-</code></pre>
-<pre><code class="lang-sh">$ fc-match <span class="hljs-operator">-s</span> 標楷體 | less
-</code></pre>
-<p>其他的請閱讀「manual」</p>
+<p>顯示下面的訊息</p>
+<pre><code>Get:1 http://tw.archive.ubuntu.com/ubuntu/ trusty/main hello amd64 2.8-4 [28.1 kB]
+Fetched 28.1 kB in 0s (140 kB/s)
+</code></pre><p>觀看檔案</p>
+<pre><code>$ ls -1
+</code></pre><p>顯示</p>
+<pre><code>hello_2.8-4_amd64.deb
+</code></pre><h2 id="">方式二</h2>
+<p>先觀看「/var/cache/apt/archives/」這個資料夾</p>
+<pre><code>$ ls /var/cache/apt/archives/ -1
+</code></pre><p>會看到很多deb檔，這是在執行「sudo apt-get install」時，下載的deb放置的地方。</p>
+<p>先執行</p>
+<pre><code>$ sudo apt-get clean
+</code></pre><p>就會「/var/cache/apt/archives/」裡的deb檔都清掉。</p>
+<pre><code>$ ls /var/cache/apt/archives/ -1
+</code></pre><p>會看到</p>
+<pre><code>lock
+partial
+</code></pre><p>然後執行下面的指令，主要是後面加上「-d」</p>
+<pre><code>$ sudo apt-get install hello -d
+</code></pre><p>就會將「hello」這個套件，下載到「/var/cache/apt/archives/」這個資料夾</p>
+<pre><code>$ ls /var/cache/apt/archives/ -1
+</code></pre><p>就會看到</p>
+<pre><code>hello_2.8-4_amd64.deb
+lock
+partial
+</code></pre><p>注意：測試的結果</p>
 <ul>
-<li>$ man <a href="http://manpages.ubuntu.com/manpages/trusty/man1/fc-match.1.html" target="_blank">fc-match</a></li>
+<li>當hello沒有安裝的時候，加上「-d」才會下載，若已經安裝hello，加上「-d」則不會執行下載。</li>
+<li>當相依的套件若尚未安裝，也會一併下載。</li>
+<li>然後加上「--reinstall」，雖然已經安裝，但還是會下載。</li>
 </ul>
-
+<pre><code>$ sudo apt-get install hello -d --reinstall
+</code></pre><h2 id="">方式三</h2>
+<p>直接到下面的頁面，找到網址下載，以下是以「14.04(trusty)」為例。</p>
+<p><a href="http://packages.ubuntu.com/trusty/hello" target="_blank">http://packages.ubuntu.com/trusty/hello</a></p>
+<p>用瀏覽器開啟頁面，</p>
+<p>執行</p>
+<pre><code>$ lynx http://packages.ubuntu.com/trusty/hello
+</code></pre><p>或是執行</p>
+<pre><code>$ firefox http://packages.ubuntu.com/trusty/hello
+</code></pre><p>下面有一個「Download hello」</p>
+<pre><code>   Architecture Package Size Installed Size      Files
+      amd64     27.5 kB      108.0 kB       [list of files]
+       i386     26.7 kB      108.0 kB       [list of files]
+</code></pre>
                     
                     </section>
                 
@@ -746,10 +774,10 @@
         </div>
 
         
-        <a href="../../content/font/start.html" class="navigation navigation-prev " aria-label="Previous page: 了解如何設定字型"><i class="fa fa-angle-left"></i></a>
+        <a href="../../content/package/how-to-find-out-package-reverse-dependency.html" class="navigation navigation-prev " aria-label="Previous page: 如何查詢某個套件被哪些套件相依"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../content/font/font-package.html" class="navigation navigation-next " aria-label="Next page: 一些字型套件"><i class="fa fa-angle-right"></i></a>
+        <a href="../../content/package/how-to-download-source-package.html" class="navigation navigation-next " aria-label="Next page: 如何下載「Source Package」"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
