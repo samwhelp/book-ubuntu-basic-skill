@@ -1,0 +1,1536 @@
+<!DOCTYPE HTML>
+<html lang="en-US" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+        <title>如何解開「deb檔(Debian Package)」 | Ubuntu Basic Skill</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 1.5.0">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+        
+    
+    
+    <link rel="next" href="../../content/font/index.html" />
+    
+    
+    <link rel="prev" href="../../content/package/how-to-build-package.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="../../gitbook/style.css">
+
+
+        
+    <div class="book" data-level="2.19" data-basepath="../.." data-revision="1430994463520">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+    	
+    	
+    	
+
+        
+
+        
+    
+        
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         Introduction
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1" data-path="content/manual/index.html">
+            
+                
+                    <a href="../../content/manual/index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         一些查詢使用手冊相關的技巧
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.1" data-path="content/manual/how-to-find-out-manpages-by-a-package.html">
+            
+                
+                    <a href="../../content/manual/how-to-find-out-manpages-by-a-package.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                         如何查詢某個套件有哪些使用手冊(man page)
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2" data-path="content/package/index.html">
+            
+                
+                    <a href="../../content/package/index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                         一些套件相關的技巧
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="2.1" data-path="content/package/apt-get.html">
+            
+                
+                    <a href="../../content/package/apt-get.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                         apt-get 的使用
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.2" data-path="content/package/apt-get-install.html">
+            
+                
+                    <a href="../../content/package/apt-get-install.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                         apt-get install 的使用
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.3" data-path="content/package/apt-get-download.html">
+            
+                
+                    <a href="../../content/package/apt-get-download.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                         apt-get download 的使用
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.4" data-path="content/package/apt-get-source.html">
+            
+                
+                    <a href="../../content/package/apt-get-source.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                         apt-get source 的使用
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.5" data-path="content/package/dpkg-deb-build.html">
+            
+                
+                    <a href="../../content/package/dpkg-deb-build.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                         dpkg -b 的使用
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.6" data-path="content/package/dpkg-deb-extract.html">
+            
+                
+                    <a href="../../content/package/dpkg-deb-extract.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                         dpkg -x 的使用
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.7" data-path="content/package/dpkg-deb-control.html">
+            
+                
+                    <a href="../../content/package/dpkg-deb-control.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.7.</b>
+                        
+                         dpkg -e 的使用
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.8" data-path="content/package/how-to-install-package.html">
+            
+                
+                    <a href="../../content/package/how-to-install-package.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.8.</b>
+                        
+                         如何安裝套件
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.9" data-path="content/package/how-to-figure-out-package-installed.html">
+            
+                
+                    <a href="../../content/package/how-to-figure-out-package-installed.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.9.</b>
+                        
+                         如何知道某個套件是否已經安裝
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.10" data-path="content/package/how-to-find-out-what-package-a-file-belongs-to.html">
+            
+                
+                    <a href="../../content/package/how-to-find-out-what-package-a-file-belongs-to.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.10.</b>
+                        
+                         如何查詢某個檔案，屬於哪個套件
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.11" data-path="content/package/how-to-find-out-list-of-files-installed-by-a-package.html">
+            
+                
+                    <a href="../../content/package/how-to-find-out-list-of-files-installed-by-a-package.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.11.</b>
+                        
+                         如何查詢某個套件安裝在系統上的所有檔案
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.12" data-path="content/package/how-to-find-out-package-changelog.html">
+            
+                
+                    <a href="../../content/package/how-to-find-out-package-changelog.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.12.</b>
+                        
+                         如何查詢某個套件的「changelog」
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.13" data-path="content/package/how-to-find-out-package-dependency.html">
+            
+                
+                    <a href="../../content/package/how-to-find-out-package-dependency.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.13.</b>
+                        
+                         如何查詢某個套件相依哪些套件
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.14" data-path="content/package/how-to-find-out-package-reverse-dependency.html">
+            
+                
+                    <a href="../../content/package/how-to-find-out-package-reverse-dependency.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.14.</b>
+                        
+                         如何查詢某個套件被哪些套件相依
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.15" data-path="content/package/how-to-download-package.html">
+            
+                
+                    <a href="../../content/package/how-to-download-package.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.15.</b>
+                        
+                         如何下載「Package」
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.16" data-path="content/package/how-to-download-source-package.html">
+            
+                
+                    <a href="../../content/package/how-to-download-source-package.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.16.</b>
+                        
+                         如何下載「Source Package」
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.17" data-path="content/package/apt-get-autoremove.html">
+            
+                
+                    <a href="../../content/package/apt-get-autoremove.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.17.</b>
+                        
+                         關於「apt-get autoremove」
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.18" data-path="content/package/how-to-build-package.html">
+            
+                
+                    <a href="../../content/package/how-to-build-package.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.18.</b>
+                        
+                         如何製作「deb檔(Debian Package)」
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter active" data-level="2.19" data-path="content/package/how-to-extract-package.html">
+            
+                
+                    <a href="../../content/package/how-to-extract-package.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.19.</b>
+                        
+                         如何解開「deb檔(Debian Package)」
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3" data-path="content/font/index.html">
+            
+                
+                    <a href="../../content/font/index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                         一些字型設定相關的技巧
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.1" data-path="content/font/start.html">
+            
+                
+                    <a href="../../content/font/start.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                         了解如何設定字型
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.2" data-path="content/font/fc-match.html">
+            
+                
+                    <a href="../../content/font/fc-match.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                         fc-match的使用
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3" data-path="content/font/font-package.html">
+            
+                
+                    <a href="../../content/font/font-package.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                         一些字型套件
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.4" data-path="content/font/font-noto.html">
+            
+                
+                    <a href="../../content/font/font-noto.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                         手動安裝思源字型
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.5" data-path="content/font/fontconfig.html">
+            
+                
+                    <a href="../../content/font/fontconfig.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                         探究 fontconfig 相關的套件
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.6" data-path="content/font/software.html">
+            
+                
+                    <a href="../../content/font/software.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                         一些軟體設定字型的方式
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4" data-path="content/driver/index.html">
+            
+                
+                    <a href="../../content/driver/index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                         驅動程式
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="4.1" data-path="content/driver/ubuntu-drivers.html">
+            
+                
+                    <a href="../../content/driver/ubuntu-drivers.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                         如何使用下指令的方式查詢「額外驅動程式」
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.2" data-path="content/driver/software-properties-gtk.html">
+            
+                
+                    <a href="../../content/driver/software-properties-gtk.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                         如何使用下指令的方式啟動「額外驅動程式」設定視窗
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5" data-path="content/account/index.html">
+            
+                
+                    <a href="../../content/account/index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                         帳號管理
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.1" data-path="content/account/adduser.html">
+            
+                
+                    <a href="../../content/account/adduser.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                         下指令的方式新增使用者
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6" data-path="content/process/index.html">
+            
+                
+                    <a href="../../content/process/index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                         程序管理
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.1" data-path="content/process/administration.html">
+            
+                
+                    <a href="../../content/process/administration.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                         Process &amp; Service
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7" data-path="content/editor/index.html">
+            
+                
+                    <a href="../../content/editor/index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                         文字編輯器
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="7.1" data-path="content/editor/select-editor.html">
+            
+                
+                    <a href="../../content/editor/select-editor.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                         如何更改預設的editor
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Published using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle share dropdown"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">Twitter</button>
+                <button type="button" data-sharing="google-plus" class="button">Google</button>
+                <button type="button" data-sharing="facebook" class="button">Facebook</button>
+                <button type="button" data-sharing="weibo" class="button">Weibo</button>
+                <button type="button" data-sharing="instapaper" class="button">Instapaper</button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >Ubuntu Basic Skill</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-gitbook_29">
+                    
+                        <h1 id="debdebian-package">如何製作「deb檔(Debian Package)」</h1>
+<h2 id="">測試環境</h2>
+<p>以下測試是在「Xubuntu 14.04 64位元」。</p>
+<h2 id="">前提</h2>
+<p>以「<a href="http://packages.ubuntu.com/trusty/man-db" target="_blank">man-db</a>」這個「Package」為例。</p>
+<h2 id="">執行步驟</h2>
+<h3 id="">準備工作環境</h3>
+<p>建立工作環境資料夾</p>
+<pre><code>$ mkdir ~/Downloads/man-db/download -p
+</code></pre><p>切換到工作環境資料夾</p>
+<pre><code>$ cd ~/Downloads/man-db/download
+</code></pre><h3 id="">下載範例套件</h3>
+<p>下載「<a href="http://packages.ubuntu.com/trusty/man-db" target="_blank">man-db</a>」這個套件。可以參考「<a href="how-to-download-package.html">這篇</a>」的說明。</p>
+<pre><code>$ apt-get download man-db
+</code></pre><p>會顯示</p>
+<pre><code>Get:1 http://tw.archive.ubuntu.com/ubuntu/ trusty-updates/main man-db amd64 2.6.7.1-1ubuntu1 [857 kB]
+Fetched 857 kB in 5s (150 kB/s)
+</code></pre><p>觀看下載了什麼檔案</p>
+<pre><code>$ ls -1
+</code></pre><p>會顯示</p>
+<pre><code>man-db_2.6.7.1-1ubuntu1_amd64.deb
+</code></pre><h3 id="">解壓縮主要檔案內容</h3>
+<p>執行</p>
+<pre><code>$ dpkg -x man-db_2.6.7.1-1ubuntu1_amd64.deb man-db
+</code></pre><p>會產生一個資料夾「man-db」</p>
+<pre><code>$ ls -1
+</code></pre><p>會顯示</p>
+<pre><code>man-db
+man-db_2.6.7.1-1ubuntu1_amd64.deb
+</code></pre><p>用「tree」觀看目錄結構</p>
+<pre><code>$ tree man-db
+</code></pre><p>會顯示</p>
+<pre><code>man-db
+├── etc
+│   ├── cron.daily
+│   │   └── man-db
+│   ├── cron.weekly
+│   │   └── man-db
+│   └── manpath.config
+├── usr
+│   ├── bin
+│   │   ├── apropos -&gt; whatis
+│   │   ├── catman
+│   │   ├── lexgrog
+│   │   ├── man
+│   │   ├── mandb
+│   │   ├── manpath
+│   │   ├── whatis
+│   │   └── zsoelim
+│   ├── lib
+│   │   └── man-db
+│   │       ├── globbing
+│   │       ├── libman-2.6.7.1.so
+│   │       ├── libmandb-2.6.7.1.so
+│   │       ├── libmandb.so -&gt; libmandb-2.6.7.1.so
+│   │       ├── libman.so -&gt; libman-2.6.7.1.so
+│   │       ├── man -&gt; ../../bin/man
+│   │       ├── manconv
+│   │       └── mandb -&gt; ../../bin/mandb
+│   ├── sbin
+│   │   └── accessdb
+│   └── share
+│       ├── bug
+│       │   └── man-db
+│       │       └── presubj
+│       ├── doc
+│       │   └── man-db
+│       │       ├── ChangeLog-2013.gz
+│       │       ├── changelog.Debian.gz
+│       │       ├── copyright
+│       │       ├── examples
+│       │       │   ├── manpage.example
+│       │       │   ├── manpage.example.mdoc
+│       │       │   ├── manpage.example.pod
+│       │       │   ├── manpage.example.sgml.gz
+│       │       │   └── manpath.config.gz
+│       │       ├── FAQ
+│       │       ├── man-db-manual.ps.gz
+│       │       ├── man-db-manual.txt.gz
+│       │       ├── NEWS.gz
+│       │       ├── README.gz
+│       │       ├── THANKS
+│       │       └── TODO
+│       ├── doc-base
+│       │   └── man-db
+│       ├── lintian
+│       │   └── overrides
+│       │       └── man-db
+│       ├── man
+│       │   ├── da
+│       │   │   ├── man1
+│       │   │   │   ├── apropos.1.gz
+│       │   │   │   ├── lexgrog.1.gz
+│       │   │   │   ├── man.1.gz
+│       │   │   │   ├── manconv.1.gz
+│       │   │   │   ├── manpath.1.gz
+│       │   │   │   ├── whatis.1.gz
+│       │   │   │   └── zsoelim.1.gz
+│       │   │   ├── man5
+│       │   │   │   └── manpath.5.gz
+│       │   │   └── man8
+│       │   │       ├── accessdb.8.gz
+│       │   │       ├── catman.8.gz
+│       │   │       └── mandb.8.gz
+│       │   ├── de
+│       │   │   ├── man1
+│       │   │   │   ├── apropos.1.gz
+│       │   │   │   ├── lexgrog.1.gz
+│       │   │   │   ├── man.1.gz
+│       │   │   │   ├── manconv.1.gz
+│       │   │   │   ├── manpath.1.gz
+│       │   │   │   ├── whatis.1.gz
+│       │   │   │   └── zsoelim.1.gz
+│       │   │   ├── man5
+│       │   │   │   └── manpath.5.gz
+│       │   │   └── man8
+│       │   │       ├── accessdb.8.gz
+│       │   │       ├── catman.8.gz
+│       │   │       └── mandb.8.gz
+│       │   ├── es
+│       │   │   ├── man1
+│       │   │   │   ├── apropos.1.gz
+│       │   │   │   ├── man.1.gz
+│       │   │   │   ├── manpath.1.gz
+│       │   │   │   ├── whatis.1.gz
+│       │   │   │   └── zsoelim.1.gz
+│       │   │   ├── man5
+│       │   │   │   └── manpath.5.gz
+│       │   │   └── man8
+│       │   │       ├── catman.8.gz
+│       │   │       └── mandb.8.gz
+│       │   ├── fr
+│       │   │   ├── man1
+│       │   │   │   ├── apropos.1.gz
+│       │   │   │   ├── lexgrog.1.gz
+│       │   │   │   ├── man.1.gz
+│       │   │   │   ├── manconv.1.gz
+│       │   │   │   ├── manpath.1.gz
+│       │   │   │   ├── whatis.1.gz
+│       │   │   │   └── zsoelim.1.gz
+│       │   │   ├── man5
+│       │   │   │   └── manpath.5.gz
+│       │   │   └── man8
+│       │   │       ├── accessdb.8.gz
+│       │   │       ├── catman.8.gz
+│       │   │       └── mandb.8.gz
+│       │   ├── id
+│       │   │   ├── man1
+│       │   │   │   ├── apropos.1.gz
+│       │   │   │   ├── lexgrog.1.gz
+│       │   │   │   ├── man.1.gz
+│       │   │   │   ├── manconv.1.gz
+│       │   │   │   ├── manpath.1.gz
+│       │   │   │   ├── whatis.1.gz
+│       │   │   │   └── zsoelim.1.gz
+│       │   │   ├── man5
+│       │   │   │   └── manpath.5.gz
+│       │   │   └── man8
+│       │   │       ├── accessdb.8.gz
+│       │   │       ├── catman.8.gz
+│       │   │       └── mandb.8.gz
+│       │   ├── it
+│       │   │   ├── man1
+│       │   │   │   ├── apropos.1.gz
+│       │   │   │   ├── man.1.gz
+│       │   │   │   ├── manpath.1.gz
+│       │   │   │   ├── whatis.1.gz
+│       │   │   │   └── zsoelim.1.gz
+│       │   │   ├── man5
+│       │   │   │   └── manpath.5.gz
+│       │   │   └── man8
+│       │   │       ├── accessdb.8.gz
+│       │   │       ├── catman.8.gz
+│       │   │       └── mandb.8.gz
+│       │   ├── ja
+│       │   │   ├── man1
+│       │   │   │   ├── apropos.1.gz
+│       │   │   │   ├── lexgrog.1.gz
+│       │   │   │   ├── man.1.gz
+│       │   │   │   ├── manconv.1.gz
+│       │   │   │   ├── manpath.1.gz
+│       │   │   │   ├── whatis.1.gz
+│       │   │   │   └── zsoelim.1.gz
+│       │   │   ├── man5
+│       │   │   │   └── manpath.5.gz
+│       │   │   └── man8
+│       │   │       ├── accessdb.8.gz
+│       │   │       ├── catman.8.gz
+│       │   │       └── mandb.8.gz
+│       │   ├── man1
+│       │   │   ├── apropos.1.gz
+│       │   │   ├── lexgrog.1.gz
+│       │   │   ├── man.1.gz
+│       │   │   ├── manconv.1.gz
+│       │   │   ├── manpath.1.gz
+│       │   │   ├── whatis.1.gz
+│       │   │   └── zsoelim.1.gz
+│       │   ├── man5
+│       │   │   └── manpath.5.gz
+│       │   ├── man8
+│       │   │   ├── accessdb.8.gz
+│       │   │   ├── catman.8.gz
+│       │   │   └── mandb.8.gz
+│       │   ├── nl
+│       │   │   ├── man1
+│       │   │   │   ├── apropos.1.gz
+│       │   │   │   ├── lexgrog.1.gz
+│       │   │   │   ├── man.1.gz
+│       │   │   │   ├── manconv.1.gz
+│       │   │   │   ├── manpath.1.gz
+│       │   │   │   ├── whatis.1.gz
+│       │   │   │   └── zsoelim.1.gz
+│       │   │   ├── man5
+│       │   │   │   └── manpath.5.gz
+│       │   │   └── man8
+│       │   │       ├── accessdb.8.gz
+│       │   │       ├── catman.8.gz
+│       │   │       └── mandb.8.gz
+│       │   ├── pl
+│       │   │   ├── man1
+│       │   │   │   ├── apropos.1.gz
+│       │   │   │   ├── lexgrog.1.gz
+│       │   │   │   ├── man.1.gz
+│       │   │   │   ├── manconv.1.gz
+│       │   │   │   ├── manpath.1.gz
+│       │   │   │   ├── whatis.1.gz
+│       │   │   │   └── zsoelim.1.gz
+│       │   │   ├── man5
+│       │   │   │   └── manpath.5.gz
+│       │   │   └── man8
+│       │   │       ├── accessdb.8.gz
+│       │   │       ├── catman.8.gz
+│       │   │       └── mandb.8.gz
+│       │   ├── ru
+│       │   │   ├── man1
+│       │   │   │   ├── apropos.1.gz
+│       │   │   │   ├── lexgrog.1.gz
+│       │   │   │   ├── man.1.gz
+│       │   │   │   ├── manconv.1.gz
+│       │   │   │   ├── manpath.1.gz
+│       │   │   │   ├── whatis.1.gz
+│       │   │   │   └── zsoelim.1.gz
+│       │   │   ├── man5
+│       │   │   │   └── manpath.5.gz
+│       │   │   └── man8
+│       │   │       ├── accessdb.8.gz
+│       │   │       ├── catman.8.gz
+│       │   │       └── mandb.8.gz
+│       │   └── zh_CN
+│       │       ├── man1
+│       │       │   ├── apropos.1.gz
+│       │       │   ├── lexgrog.1.gz
+│       │       │   ├── man.1.gz
+│       │       │   ├── manconv.1.gz
+│       │       │   ├── manpath.1.gz
+│       │       │   ├── whatis.1.gz
+│       │       │   └── zsoelim.1.gz
+│       │       ├── man5
+│       │       │   └── manpath.5.gz
+│       │       └── man8
+│       │           ├── accessdb.8.gz
+│       │           ├── catman.8.gz
+│       │           └── mandb.8.gz
+│       └── man-db
+│           └── chconfig
+└── var
+    ├── cache
+    │   └── man
+    └── lib
+        └── man-db
+
+71 directories, 166 files
+</code></pre><p>在執行安裝的時候，「man-db」這個資料夾的檔案，就會放置對應到「/」底下。</p>
+<h3 id="control">解開control檔案</h3>
+<p>執行</p>
+<pre><code>$ dpkg -e man-db_2.6.7.1-1ubuntu1_amd64.deb
+</code></pre><p>會產生一個資料夾「DEBIAN」。</p>
+<pre><code>ls -1
+</code></pre><p>顯示</p>
+<pre><code>DEBIAN
+man-db
+man-db_2.6.7.1-1ubuntu1_amd64.deb
+</code></pre><p>用「tree」觀看「DEBIAN」目錄結構</p>
+<pre><code>$ tree DEBIAN
+</code></pre><p>顯示</p>
+<pre><code>DEBIAN
+├── conffiles
+├── config
+├── control
+├── md5sums
+├── postinst
+├── postrm
+├── preinst
+├── prerm
+├── templates
+└── triggers
+
+0 directories, 10 files
+</code></pre><p>也可以將「DEBIAN」這個資料夾，解開到某個資料夾底下</p>
+<p>執行</p>
+<pre><code>$ dpkg -e man-db_2.6.7.1-1ubuntu1_amd64.deb man-db/DEBIAN
+</code></pre><p>執行</p>
+<pre><code>$ tree man-db/DEBIAN
+</code></pre><p>顯示</p>
+<pre><code>man-db/DEBIAN
+├── conffiles
+├── config
+├── control
+├── md5sums
+├── postinst
+├── postrm
+├── preinst
+├── prerm
+├── templates
+└── triggers
+
+0 directories, 10 files
+</code></pre><p>這時候，你就可以執行下面的指令，製作一個新的「deb擋」了，請參考「<a href="how-to-build-package.html">這篇</a>」</p>
+<pre><code>$ dpkg -b man-db
+</code></pre><p>會顯示</p>
+<pre><code>dpkg-deb: warning: &#39;man-db/DEBIAN/control&#39; contains user-defined field &#39;Original-Maintainer&#39;
+dpkg-deb: warning: ignoring 1 warning about the control file(s)
+
+dpkg-deb: building package `man-db&#39; in `man-db.deb&#39;.
+</code></pre><p>表示產生一個新的檔，叫做「man-db.deb」。</p>
+<p>執行</p>
+<pre><code>$ ls -1
+</code></pre><p>會顯示</p>
+<pre><code>DEBIAN
+man-db
+man-db_2.6.7.1-1ubuntu1_amd64.deb
+man-db.deb
+</code></pre><h3 id="-ar-">利用 ar 解開</h3>
+<p>新產生一個資料夾叫「raw」</p>
+<pre><code>$ mkdir raw
+</code></pre><p>切換到「raw」這個資料夾</p>
+<pre><code>$ cd raw
+</code></pre><p>複製剛剛下載下來的「man-db_2.6.7.1-1ubuntu1_amd64.deb」</p>
+<pre><code>$ cp ../man-db_2.6.7.1-1ubuntu1_amd64.deb ./
+</code></pre><p>觀看目前有哪些檔</p>
+<pre><code>$ ls -1
+</code></pre><p>顯示</p>
+<pre><code>man-db_2.6.7.1-1ubuntu1_amd64.deb
+</code></pre><p>利用「ar」解開「man-db_2.6.7.1-1ubuntu1_amd64.deb」</p>
+<pre><code>$ ar xv man-db_2.6.7.1-1ubuntu1_amd64.deb
+</code></pre><p>會顯示下面的訊息</p>
+<pre><code>x - debian-binary
+x - control.tar.gz
+x - data.tar.xz
+</code></pre><p>觀看目前有哪些檔</p>
+<pre><code>$ ls -1
+</code></pre><p>會顯示</p>
+<pre><code>control.tar.gz
+data.tar.xz
+debian-binary
+man-db_2.6.7.1-1ubuntu1_amd64.deb
+</code></pre><p>觀看「debian-binary」</p>
+<pre><code>$ cat debian-binary
+</code></pre><p>會顯示</p>
+<pre><code>2.0
+</code></pre><p>產生一個資料夾叫「DEBIAN」</p>
+<pre><code>$ mkdir DEBIAN
+</code></pre><p>解開「control.tar.gz」到「DEBIAN」這個資料夾</p>
+<pre><code>$ tar xf control.tar.gz -C DEBIAN
+</code></pre><p>用「tree」觀看「DEBIAN」目錄結構</p>
+<pre><code>$ tree DEBIAN
+</code></pre><p>會顯示</p>
+<pre><code>DEBIAN
+├── conffiles
+├── config
+├── control
+├── md5sums
+├── postinst
+├── postrm
+├── preinst
+├── prerm
+├── templates
+└── triggers
+
+0 directories, 10 files
+</code></pre><p>跟剛剛用「dpkg -e」解開的結果是一樣的。</p>
+<p>產生一個資料夾，叫「man-db」</p>
+<pre><code>$ mkdir man-db
+</code></pre><p>解開「data.tar.xz」到「man-db」這個資料夾</p>
+<pre><code>$ tar xf data.tar.xz -C man-db
+</code></pre><p>用「tree」觀看「man-db」目錄結構</p>
+<pre><code>$ tree man-db
+</code></pre><pre><code>man-db
+├── etc
+│   ├── cron.daily
+│   │   └── man-db
+│   ├── cron.weekly
+│   │   └── man-db
+│   └── manpath.config
+├── usr
+│   ├── bin
+│   │   ├── apropos -&gt; whatis
+│   │   ├── catman
+│   │   ├── lexgrog
+│   │   ├── man
+│   │   ├── mandb
+│   │   ├── manpath
+│   │   ├── whatis
+│   │   └── zsoelim
+│   ├── lib
+│   │   └── man-db
+│   │       ├── globbing
+│   │       ├── libman-2.6.7.1.so
+│   │       ├── libmandb-2.6.7.1.so
+│   │       ├── libmandb.so -&gt; libmandb-2.6.7.1.so
+│   │       ├── libman.so -&gt; libman-2.6.7.1.so
+│   │       ├── man -&gt; ../../bin/man
+│   │       ├── manconv
+│   │       └── mandb -&gt; ../../bin/mandb
+│   ├── sbin
+│   │   └── accessdb
+│   └── share
+│       ├── bug
+│       │   └── man-db
+│       │       └── presubj
+│       ├── doc
+│       │   └── man-db
+│       │       ├── ChangeLog-2013.gz
+│       │       ├── changelog.Debian.gz
+│       │       ├── copyright
+│       │       ├── examples
+│       │       │   ├── manpage.example
+│       │       │   ├── manpage.example.mdoc
+│       │       │   ├── manpage.example.pod
+│       │       │   ├── manpage.example.sgml.gz
+│       │       │   └── manpath.config.gz
+│       │       ├── FAQ
+│       │       ├── man-db-manual.ps.gz
+│       │       ├── man-db-manual.txt.gz
+│       │       ├── NEWS.gz
+│       │       ├── README.gz
+│       │       ├── THANKS
+│       │       └── TODO
+│       ├── doc-base
+│       │   └── man-db
+│       ├── lintian
+│       │   └── overrides
+│       │       └── man-db
+│       ├── man
+│       │   ├── da
+│       │   │   ├── man1
+│       │   │   │   ├── apropos.1.gz
+│       │   │   │   ├── lexgrog.1.gz
+│       │   │   │   ├── man.1.gz
+│       │   │   │   ├── manconv.1.gz
+│       │   │   │   ├── manpath.1.gz
+│       │   │   │   ├── whatis.1.gz
+│       │   │   │   └── zsoelim.1.gz
+│       │   │   ├── man5
+│       │   │   │   └── manpath.5.gz
+│       │   │   └── man8
+│       │   │       ├── accessdb.8.gz
+│       │   │       ├── catman.8.gz
+│       │   │       └── mandb.8.gz
+│       │   ├── de
+│       │   │   ├── man1
+│       │   │   │   ├── apropos.1.gz
+│       │   │   │   ├── lexgrog.1.gz
+│       │   │   │   ├── man.1.gz
+│       │   │   │   ├── manconv.1.gz
+│       │   │   │   ├── manpath.1.gz
+│       │   │   │   ├── whatis.1.gz
+│       │   │   │   └── zsoelim.1.gz
+│       │   │   ├── man5
+│       │   │   │   └── manpath.5.gz
+│       │   │   └── man8
+│       │   │       ├── accessdb.8.gz
+│       │   │       ├── catman.8.gz
+│       │   │       └── mandb.8.gz
+│       │   ├── es
+│       │   │   ├── man1
+│       │   │   │   ├── apropos.1.gz
+│       │   │   │   ├── man.1.gz
+│       │   │   │   ├── manpath.1.gz
+│       │   │   │   ├── whatis.1.gz
+│       │   │   │   └── zsoelim.1.gz
+│       │   │   ├── man5
+│       │   │   │   └── manpath.5.gz
+│       │   │   └── man8
+│       │   │       ├── catman.8.gz
+│       │   │       └── mandb.8.gz
+│       │   ├── fr
+│       │   │   ├── man1
+│       │   │   │   ├── apropos.1.gz
+│       │   │   │   ├── lexgrog.1.gz
+│       │   │   │   ├── man.1.gz
+│       │   │   │   ├── manconv.1.gz
+│       │   │   │   ├── manpath.1.gz
+│       │   │   │   ├── whatis.1.gz
+│       │   │   │   └── zsoelim.1.gz
+│       │   │   ├── man5
+│       │   │   │   └── manpath.5.gz
+│       │   │   └── man8
+│       │   │       ├── accessdb.8.gz
+│       │   │       ├── catman.8.gz
+│       │   │       └── mandb.8.gz
+│       │   ├── id
+│       │   │   ├── man1
+│       │   │   │   ├── apropos.1.gz
+│       │   │   │   ├── lexgrog.1.gz
+│       │   │   │   ├── man.1.gz
+│       │   │   │   ├── manconv.1.gz
+│       │   │   │   ├── manpath.1.gz
+│       │   │   │   ├── whatis.1.gz
+│       │   │   │   └── zsoelim.1.gz
+│       │   │   ├── man5
+│       │   │   │   └── manpath.5.gz
+│       │   │   └── man8
+│       │   │       ├── accessdb.8.gz
+│       │   │       ├── catman.8.gz
+│       │   │       └── mandb.8.gz
+│       │   ├── it
+│       │   │   ├── man1
+│       │   │   │   ├── apropos.1.gz
+│       │   │   │   ├── man.1.gz
+│       │   │   │   ├── manpath.1.gz
+│       │   │   │   ├── whatis.1.gz
+│       │   │   │   └── zsoelim.1.gz
+│       │   │   ├── man5
+│       │   │   │   └── manpath.5.gz
+│       │   │   └── man8
+│       │   │       ├── accessdb.8.gz
+│       │   │       ├── catman.8.gz
+│       │   │       └── mandb.8.gz
+│       │   ├── ja
+│       │   │   ├── man1
+│       │   │   │   ├── apropos.1.gz
+│       │   │   │   ├── lexgrog.1.gz
+│       │   │   │   ├── man.1.gz
+│       │   │   │   ├── manconv.1.gz
+│       │   │   │   ├── manpath.1.gz
+│       │   │   │   ├── whatis.1.gz
+│       │   │   │   └── zsoelim.1.gz
+│       │   │   ├── man5
+│       │   │   │   └── manpath.5.gz
+│       │   │   └── man8
+│       │   │       ├── accessdb.8.gz
+│       │   │       ├── catman.8.gz
+│       │   │       └── mandb.8.gz
+│       │   ├── man1
+│       │   │   ├── apropos.1.gz
+│       │   │   ├── lexgrog.1.gz
+│       │   │   ├── man.1.gz
+│       │   │   ├── manconv.1.gz
+│       │   │   ├── manpath.1.gz
+│       │   │   ├── whatis.1.gz
+│       │   │   └── zsoelim.1.gz
+│       │   ├── man5
+│       │   │   └── manpath.5.gz
+│       │   ├── man8
+│       │   │   ├── accessdb.8.gz
+│       │   │   ├── catman.8.gz
+│       │   │   └── mandb.8.gz
+│       │   ├── nl
+│       │   │   ├── man1
+│       │   │   │   ├── apropos.1.gz
+│       │   │   │   ├── lexgrog.1.gz
+│       │   │   │   ├── man.1.gz
+│       │   │   │   ├── manconv.1.gz
+│       │   │   │   ├── manpath.1.gz
+│       │   │   │   ├── whatis.1.gz
+│       │   │   │   └── zsoelim.1.gz
+│       │   │   ├── man5
+│       │   │   │   └── manpath.5.gz
+│       │   │   └── man8
+│       │   │       ├── accessdb.8.gz
+│       │   │       ├── catman.8.gz
+│       │   │       └── mandb.8.gz
+│       │   ├── pl
+│       │   │   ├── man1
+│       │   │   │   ├── apropos.1.gz
+│       │   │   │   ├── lexgrog.1.gz
+│       │   │   │   ├── man.1.gz
+│       │   │   │   ├── manconv.1.gz
+│       │   │   │   ├── manpath.1.gz
+│       │   │   │   ├── whatis.1.gz
+│       │   │   │   └── zsoelim.1.gz
+│       │   │   ├── man5
+│       │   │   │   └── manpath.5.gz
+│       │   │   └── man8
+│       │   │       ├── accessdb.8.gz
+│       │   │       ├── catman.8.gz
+│       │   │       └── mandb.8.gz
+│       │   ├── ru
+│       │   │   ├── man1
+│       │   │   │   ├── apropos.1.gz
+│       │   │   │   ├── lexgrog.1.gz
+│       │   │   │   ├── man.1.gz
+│       │   │   │   ├── manconv.1.gz
+│       │   │   │   ├── manpath.1.gz
+│       │   │   │   ├── whatis.1.gz
+│       │   │   │   └── zsoelim.1.gz
+│       │   │   ├── man5
+│       │   │   │   └── manpath.5.gz
+│       │   │   └── man8
+│       │   │       ├── accessdb.8.gz
+│       │   │       ├── catman.8.gz
+│       │   │       └── mandb.8.gz
+│       │   └── zh_CN
+│       │       ├── man1
+│       │       │   ├── apropos.1.gz
+│       │       │   ├── lexgrog.1.gz
+│       │       │   ├── man.1.gz
+│       │       │   ├── manconv.1.gz
+│       │       │   ├── manpath.1.gz
+│       │       │   ├── whatis.1.gz
+│       │       │   └── zsoelim.1.gz
+│       │       ├── man5
+│       │       │   └── manpath.5.gz
+│       │       └── man8
+│       │           ├── accessdb.8.gz
+│       │           ├── catman.8.gz
+│       │           └── mandb.8.gz
+│       └── man-db
+│           └── chconfig
+└── var
+    ├── cache
+    │   └── man
+    └── lib
+        └── man-db
+
+71 directories, 166 files
+</code></pre><p>跟剛剛用「dpkg -x」解開的結果是一樣的是一樣的</p>
+<h2 id="debian">關於「DEBIAN」這裡面的檔案</h2>
+<p>用「tree」觀看「DEBIAN」目錄結構</p>
+<pre><code>$ tree DEBIAN
+</code></pre><p>顯示</p>
+<pre><code>DEBIAN
+├── conffiles
+├── config
+├── control
+├── md5sums
+├── postinst
+├── postrm
+├── preinst
+├── prerm
+├── templates
+└── triggers
+
+0 directories, 10 files
+</code></pre><p>這裡面的檔案，在執行安裝流程的時候，會解開到「/var/lib/dpkg/info/」這個資料夾。</p>
+<p>可以執行下面的指令來對照</p>
+<pre><code>$ tree /var/lib/dpkg/info/ -P &#39;man-db*&#39;
+</code></pre><p>就可以看到對應的檔案</p>
+<pre><code>/var/lib/dpkg/info/
+├── man-db.conffiles
+├── man-db.config
+├── man-db.list
+├── man-db.md5sums
+├── man-db.postinst
+├── man-db.postrm
+├── man-db.preinst
+├── man-db.prerm
+├── man-db.templates
+└── man-db.triggers
+
+0 directories, 10 files
+</code></pre><p>或是執行</p>
+<pre><code>$ ls /var/lib/dpkg/info/man-db* -1
+</code></pre><p>顯示</p>
+<pre><code>/var/lib/dpkg/info/man-db.conffiles
+/var/lib/dpkg/info/man-db.config
+/var/lib/dpkg/info/man-db.list
+/var/lib/dpkg/info/man-db.md5sums
+/var/lib/dpkg/info/man-db.postinst
+/var/lib/dpkg/info/man-db.postrm
+/var/lib/dpkg/info/man-db.preinst
+/var/lib/dpkg/info/man-db.prerm
+/var/lib/dpkg/info/man-db.templates
+/var/lib/dpkg/info/man-db.triggers
+</code></pre><p>可以對照一下，「DEBIAN/postinst」和「/var/lib/dpkg/info/man-db.postinst」，這兩個檔案是否一樣</p>
+<p>執行</p>
+<pre><code>$ md5sum DEBIAN/postinst
+</code></pre><p>顯示</p>
+<pre><code>c330e26ed02c6b09d2ce99e849ca8daf  DEBIAN/postinst
+</code></pre><p>執行</p>
+<pre><code>$ md5sum /var/lib/dpkg/info/man-db.postinst
+</code></pre><p>顯示</p>
+<pre><code>c330e26ed02c6b09d2ce99e849ca8daf  /var/lib/dpkg/info/man-db.postinst
+</code></pre>
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../content/package/how-to-build-package.html" class="navigation navigation-prev " aria-label="Previous page: 如何製作「deb檔(Debian Package)」"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../content/font/index.html" class="navigation navigation-next " aria-label="Next page: 一些字型設定相關的技巧"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":"night","family":"sans","size":1},"ga":{"token":"UA-55644249-1","configuration":"auto"}};
+    gitbook.start(config);
+});
+</script>
+
+        <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-55644249-1', 'auto');ga('send', 'pageview');</script>
+    </body>
+    
+</html>
