@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>如何查詢某個套件相依哪些套件 | Ubuntu Basic Skill</title>
+        <title>dpkg --configure 的使用 | Ubuntu Basic Skill</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
-    <link rel="next" href="../../content/package/how-to-find-out-package-reverse-dependency.html" />
+    <link rel="next" href="../../content/package/dpkg-deb-build.html" />
     
     
-    <link rel="prev" href="../../content/package/how-to-find-out-package-changelog.html" />
+    <link rel="prev" href="../../content/package/dpkg-unpack.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="2.15" data-basepath="../.." data-revision="1431620518519">
+    <div class="book" data-level="2.6" data-basepath="../.." data-revision="1431620518519">
     
 
 <div class="book-summary">
@@ -201,7 +201,7 @@
         </li>
     
         
-        <li class="chapter " data-level="2.6" data-path="content/package/dpkg-configure.html">
+        <li class="chapter active" data-level="2.6" data-path="content/package/dpkg-configure.html">
             
                 
                     <a href="../../content/package/dpkg-configure.html">
@@ -345,7 +345,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="2.15" data-path="content/package/how-to-find-out-package-dependency.html">
+        <li class="chapter " data-level="2.15" data-path="content/package/how-to-find-out-package-dependency.html">
             
                 
                     <a href="../../content/package/how-to-find-out-package-dependency.html">
@@ -852,48 +852,33 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_36">
+                    <section class="normal" id="section-gitbook_24">
                     
-                        <h1 id="">如何查詢某個套件相依哪些套件</h1>
+                        <h1 id="dpkg---configure-">dpkg --configure 的使用</h1>
 <h2 id="">測試環境</h2>
 <p>以下測試是在「Xubuntu 14.04 64位元」。</p>
-<h2 id="">前提</h2>
-<p>以下以「<a href="http://packages.ubuntu.com/trusty/build-essential" target="_blank">build-essential</a>」為範例。</p>
-<h2 id="">方式一</h2>
-<pre><code class="lang-sh">$ apt-cache show build-essential | grep ^Depends
-</code></pre>
-<p>就會看到</p>
-<pre><code>Depends: libc6-dev | libc-dev, gcc (&gt;= 4:4.4.3), g++ (&gt;= 4:4.4.3), make, dpkg-dev (&gt;= 1.13.5)
-</code></pre><h2 id="">方式二</h2>
-<pre><code class="lang-sh">$ lynx http://packages.ubuntu.com/trusty/build-essential
-</code></pre>
-<p>在頁面「Other Packages Related to build-essential」哪裡有列表紀錄。</p>
-<h2 id="">方式三</h2>
-<pre><code class="lang-sh">$ apt-cache depends build-essential
-</code></pre>
-<h2 id="">方式四</h2>
-<pre><code class="lang-sh">$ apt-cache showpkg build-essential
-</code></pre>
-<p>找到「Dependencies:」那，就可以看到。</p>
-<h2 id="">方法五</h2>
-<p>下載「<a href="http://packages.ubuntu.com/trusty/build-essential" target="_blank">Binary Package</a>」，並且解開。</p>
-<pre><code class="lang-sh"><span class="hljs-built_in">cd</span> ~/Downloads
-mkdir build-essential/download -p
-<span class="hljs-built_in">cd</span> build-essential/download
-apt-get download build-essential
-dpkg <span class="hljs-operator">-e</span> build-essential_11.<span class="hljs-number">6</span>ubuntu6_amd64.deb
-cat DEBIAN/control| grep ^Depends
-</code></pre>
-<p>就會看到</p>
-<pre><code>Depends: libc6-dev | libc-dev, gcc (&gt;= 4:4.4.3), g++ (&gt;= 4:4.4.3), make, dpkg-dev (&gt;= 1.13.5)
-</code></pre><p>這個方法，基本上跟「方法一」是一樣的。在「方法二」也可以看到類似的列表。</p>
-<h2 id="">參考</h2>
-<ul>
-<li>man <a href="http://manpages.ubuntu.com/manpages/utopic/en/man8/apt-cache.8.html" target="_blank">apt-cache</a></li>
-<li><a href="http://www.ubuntu-tw.org/modules/newbb/viewtopic.php?post_id=331336#forumpost331336" target="_blank">回覆: no-ip 自動轉址安裝及設定方法(正確的方式嗎?)</a></li>
-<li><a href="/blog/read/linux/ubuntu/package/apt-get/">apt-get的使用</a></li>
-</ul>
+<h2 id="">使用範例</h2>
+<p>「dpkg --configure」的使用範例，請參考『<a href="about-unpack-and-configure-package.html">關於「dpkg --unpack」和「dpkg --configure」</a>』這篇。</p>
+<h2 id="">手冊說明</h2>
+<p>$ man <a href="http://manpages.ubuntu.com/manpages/trusty/man1/dpkg.1.html" target="_blank">dpkg</a></p>
+<p>可以看到一段說明</p>
+<pre><code>ACTIONS
 
+  ...略...
+
+       --configure package...|-a|--pending
+              Configure a package which has been unpacked but not yet configured.  If -a or --pending is given instead of package, all
+              unpacked but unconfigured packages are configured.
+
+              To reconfigure a package which has already been configured, try the dpkg-reconfigure(8) command instead.
+
+              Configuring consists of the following steps:
+
+              1. Unpack the conffiles, and at the same time back up the old conffiles, so that they can be restored if something  goes
+              wrong.
+
+              2. Run postinst script, if provided by the package.
+</code></pre>
                     
                     </section>
                 
@@ -903,10 +888,10 @@ cat DEBIAN/control| grep ^Depends
         </div>
 
         
-        <a href="../../content/package/how-to-find-out-package-changelog.html" class="navigation navigation-prev " aria-label="Previous page: 如何查詢某個套件的「changelog」"><i class="fa fa-angle-left"></i></a>
+        <a href="../../content/package/dpkg-unpack.html" class="navigation navigation-prev " aria-label="Previous page: dpkg --unpack 的使用"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../content/package/how-to-find-out-package-reverse-dependency.html" class="navigation navigation-next " aria-label="Next page: 如何查詢某個套件被哪些套件相依"><i class="fa fa-angle-right"></i></a>
+        <a href="../../content/package/dpkg-deb-build.html" class="navigation navigation-next " aria-label="Next page: dpkg -b 的使用"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
