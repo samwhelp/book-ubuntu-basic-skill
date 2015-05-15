@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>apt-get 的使用 | Ubuntu Basic Skill</title>
+        <title>dpkg -r 的使用 | Ubuntu Basic Skill</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
-    <link rel="next" href="../../content/package/apt-get-install.html" />
+    <link rel="next" href="../../content/package/dpkg-deb-build.html" />
     
     
-    <link rel="prev" href="../../content/package/index.html" />
+    <link rel="prev" href="../../content/package/dpkg-configure.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="2.1" data-basepath="../.." data-revision="1431691550443">
+    <div class="book" data-level="2.8" data-basepath="../.." data-revision="1431691550443">
     
 
 <div class="book-summary">
@@ -121,7 +121,7 @@
                 
     
         
-        <li class="chapter active" data-level="2.1" data-path="content/package/apt-get.html">
+        <li class="chapter " data-level="2.1" data-path="content/package/apt-get.html">
             
                 
                     <a href="../../content/package/apt-get.html">
@@ -233,7 +233,7 @@
         </li>
     
         
-        <li class="chapter " data-level="2.8" data-path="content/package/dpkg-remove.html">
+        <li class="chapter active" data-level="2.8" data-path="content/package/dpkg-remove.html">
             
                 
                     <a href="../../content/package/dpkg-remove.html">
@@ -900,44 +900,40 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_23">
+                    <section class="normal" id="section-gitbook_29">
                     
-                        <h1 id="apt-get-">apt-get 的使用</h1>
+                        <h1 id="dpkg---remove-">dpkg --remove 的使用</h1>
 <h2 id="">測試環境</h2>
 <p>以下測試是在「Xubuntu 14.04 64位元」。</p>
-<h2 id="">前提</h2>
-<p>以下以「vim」為範例。</p>
-<h2 id="install">install</h2>
-<p>安裝「Vim」這個「Package(套件)」。</p>
-<pre><code class="lang-sh">$ <span class="hljs-built_in">sudo</span> apt-get install vim
-</code></pre>
-<p>有時候直接下載「Deb檔」，然後使用「sudo dpkg -i」的方式來安裝，
-會發生有些相依性的套件沒有安裝，這時候只要執行下面的指令，
-就會把缺少的相依套件，安裝上去了。</p>
-<pre><code class="lang-sh">$ <span class="hljs-built_in">sudo</span> apt-get install <span class="hljs-operator">-f</span>
-</code></pre>
-<h2 id="download">download</h2>
-<p>下載「Vim」這個「Binary Package」。也就是下載「Deb檔」，不安裝。</p>
-<pre><code class="lang-sh">$ apt-get download vim
-</code></pre>
-<p>解開「Deb檔」</p>
-<pre><code class="lang-sh">$ dpkg -x vim_2%<span class="hljs-number">3</span>a7.<span class="hljs-number">4.052</span>-<span class="hljs-number">1</span>ubuntu3_amd64.deb vim
-$ tree vim
-</code></pre>
-<pre><code class="lang-sh">$ dpkg <span class="hljs-operator">-e</span> vim_2%<span class="hljs-number">3</span>a7.<span class="hljs-number">4.052</span>-<span class="hljs-number">1</span>ubuntu3_amd64.deb
-$ cat DEBIAN/control
-</code></pre>
-<pre><code class="lang-sh">$ ar xf vim_2%<span class="hljs-number">3</span>a7.<span class="hljs-number">4.052</span>-<span class="hljs-number">1</span>ubuntu3_amd64.deb
-$ vim control.tar.gz
-</code></pre>
-<h2 id="source">source</h2>
-<p>下載「Vim」這個「Source Package」。</p>
-<pre><code class="lang-sh">$ apt-get <span class="hljs-built_in">source</span> vim
-</code></pre>
-<p>觀看「control」檔</p>
-<pre><code class="lang-sh">$ cat vim-<span class="hljs-number">7.4</span>.<span class="hljs-number">052</span>/debian/control
-</code></pre>
+<h2 id="">使用範例</h2>
+<p>「dpkg --remove」的使用範例，請參考「<a href="how-to-remove-package.html">如何移除套件</a>」這篇。</p>
+<h2 id="">手冊說明</h2>
+<p>$ man <a href="http://manpages.ubuntu.com/manpages/trusty/man1/dpkg.1.html" target="_blank">dpkg</a></p>
+<p>可以看到一段說明</p>
+<pre><code>ACTIONS
 
+  ...略...
+
+       -r, --remove, -P, --purge package...|-a|--pending
+              Remove an installed package. -r or --remove remove everything except conffiles. This may avoid having to reconfigure the
+              package if it is reinstalled later. (Conffiles are configuration files that are listed in the  DEBIAN/conffiles  control
+              file).  -P  or  --purge  removes everything, including conffiles. If -a or --pending is given instead of a package name,
+              then all packages unpacked, but marked to be removed or purged in file  /var/lib/dpkg/status,  are  removed  or  purged,
+              respectively.  Note:  some  configuration files might be unknown to dpkg because they are created and handled separately
+              through the configuration scripts. In that case, dpkg won&#39;t remove them by  itself,  but  the  package&#39;s  postrm  script
+              (which is called by dpkg), has to take care of their removal during purge. Of course, this only applies to files in sys‐
+              tem directories, not configuration files written to individual users&#39; home directories.
+
+              Removing of a package consists of the following steps:
+
+              1. Run prerm script
+
+              2. Remove the installed files
+
+              3. Run postrm script
+
+  ...略...
+</code></pre>
                     
                     </section>
                 
@@ -947,10 +943,10 @@ $ vim control.tar.gz
         </div>
 
         
-        <a href="../../content/package/index.html" class="navigation navigation-prev " aria-label="Previous page: 一些套件相關的技巧"><i class="fa fa-angle-left"></i></a>
+        <a href="../../content/package/dpkg-configure.html" class="navigation navigation-prev " aria-label="Previous page: dpkg --configure 的使用"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../content/package/apt-get-install.html" class="navigation navigation-next " aria-label="Next page: apt-get install 的使用"><i class="fa fa-angle-right"></i></a>
+        <a href="../../content/package/dpkg-deb-build.html" class="navigation navigation-next " aria-label="Next page: dpkg -b 的使用"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

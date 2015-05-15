@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>apt-get 的使用 | Ubuntu Basic Skill</title>
+        <title>如何移除套件 | Ubuntu Basic Skill</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
-    <link rel="next" href="../../content/package/apt-get-install.html" />
+    <link rel="next" href="../../content/package/how-to-download-package.html" />
     
     
-    <link rel="prev" href="../../content/package/index.html" />
+    <link rel="prev" href="../../content/package/how-to-find-out-package-reverse-dependency.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="2.1" data-basepath="../.." data-revision="1431691550443">
+    <div class="book" data-level="2.19" data-basepath="../.." data-revision="1431691550443">
     
 
 <div class="book-summary">
@@ -121,7 +121,7 @@
                 
     
         
-        <li class="chapter active" data-level="2.1" data-path="content/package/apt-get.html">
+        <li class="chapter " data-level="2.1" data-path="content/package/apt-get.html">
             
                 
                     <a href="../../content/package/apt-get.html">
@@ -409,7 +409,7 @@
         </li>
     
         
-        <li class="chapter " data-level="2.19" data-path="content/package/how-to-remove-package.html">
+        <li class="chapter active" data-level="2.19" data-path="content/package/how-to-remove-package.html">
             
                 
                     <a href="../../content/package/how-to-remove-package.html">
@@ -900,43 +900,344 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_23">
+                    <section class="normal" id="section-gitbook_42">
                     
-                        <h1 id="apt-get-">apt-get 的使用</h1>
-<h2 id="">測試環境</h2>
-<p>以下測試是在「Xubuntu 14.04 64位元」。</p>
+                        <h1 id="">如何安裝套件</h1>
 <h2 id="">前提</h2>
-<p>以下以「vim」為範例。</p>
-<h2 id="install">install</h2>
-<p>安裝「Vim」這個「Package(套件)」。</p>
-<pre><code class="lang-sh">$ <span class="hljs-built_in">sudo</span> apt-get install vim
+<p>以移除「<a href="http://packages.ubuntu.com/trusty/hello" target="_blank">hello</a>」這個套件為例。</p>
+<h2 id="">安裝範例套件</h2>
+<p>安裝「<a href="http://packages.ubuntu.com/trusty/hello" target="_blank">hello</a>」這個套件</p>
+<pre><code>$ sudo apt-get install hello
+</code></pre><p>顯示</p>
+<pre><code>Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following NEW packages will be installed:
+  hello
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+Need to get 0 B/28.1 kB of archives.
+After this operation, 111 kB of additional disk space will be used.
+Selecting previously unselected package hello.
+(Reading database ... 947421 files and directories currently installed.)
+Preparing to unpack .../archives/hello_2.8-4_amd64.deb ...
+Unpacking hello (2.8-4) ...
+Processing triggers for install-info (5.2.0.dfsg.1-2) ...
+Processing triggers for man-db (2.6.7.1-1ubuntu1) ...
+Setting up hello (2.8-4) ...
+</code></pre><p>就會安裝「<a href="http://packages.ubuntu.com/trusty/hello" target="_blank">hello</a>」這個套件了。</p>
+<p>查看一些相關的訊息，驗證一下，是否安裝。</p>
+<p>執行</p>
+<pre><code class="lang-sh">$ dpkg <span class="hljs-operator">-l</span> hello
 </code></pre>
-<p>有時候直接下載「Deb檔」，然後使用「sudo dpkg -i」的方式來安裝，
-會發生有些相依性的套件沒有安裝，這時候只要執行下面的指令，
-就會把缺少的相依套件，安裝上去了。</p>
-<pre><code class="lang-sh">$ <span class="hljs-built_in">sudo</span> apt-get install <span class="hljs-operator">-f</span>
+<p>顯示</p>
+<pre><code>Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name                         Version             Architecture        Description
++++-============================-===================-===================-==============================================================
+ii  hello                        2.8-4               amd64               The classic greeting, and a good example
+</code></pre><p>觀看「<a href="http://packages.ubuntu.com/trusty/hello" target="_blank">hello</a>」這個套件，安裝了那些檔案到系統。</p>
+<pre><code class="lang-sh">$ dpkg -L hello
 </code></pre>
-<h2 id="download">download</h2>
-<p>下載「Vim」這個「Binary Package」。也就是下載「Deb檔」，不安裝。</p>
-<pre><code class="lang-sh">$ apt-get download vim
+<p>顯示</p>
+<pre><code>/.
+/usr
+/usr/bin
+/usr/bin/hello
+/usr/share
+/usr/share/info
+/usr/share/info/hello.info.gz
+/usr/share/doc
+/usr/share/doc/hello
+/usr/share/doc/hello/NEWS
+/usr/share/doc/hello/copyright
+/usr/share/doc/hello/changelog.Debian.gz
+/usr/share/man
+/usr/share/man/man1
+/usr/share/man/man1/hello.1.gz
+</code></pre><p>觀看「<a href="http://packages.ubuntu.com/trusty/hello" target="_blank">hello</a>」這個套件，有那些「Control File」和「Maintainer Script」。</p>
+<pre><code class="lang-sh">$ ls /var/lib/dpkg/info/hello* -<span class="hljs-number">1</span>
 </code></pre>
-<p>解開「Deb檔」</p>
-<pre><code class="lang-sh">$ dpkg -x vim_2%<span class="hljs-number">3</span>a7.<span class="hljs-number">4.052</span>-<span class="hljs-number">1</span>ubuntu3_amd64.deb vim
-$ tree vim
+<p>顯示</p>
+<pre><code>/var/lib/dpkg/info/hello.list
+/var/lib/dpkg/info/hello.md5sums
+</code></pre><p>執行</p>
+<pre><code class="lang-sh">$ ls /var/cache/apt/archives/hello*
 </code></pre>
-<pre><code class="lang-sh">$ dpkg <span class="hljs-operator">-e</span> vim_2%<span class="hljs-number">3</span>a7.<span class="hljs-number">4.052</span>-<span class="hljs-number">1</span>ubuntu3_amd64.deb
-$ cat DEBIAN/control
+<p>顯示</p>
+<pre><code>/var/cache/apt/archives/hello_2.8-4_amd64.deb
+</code></pre><p>執行</p>
+<pre><code>$ dpkg -s hello
+</code></pre><p>顯示</p>
+<pre><code>Package: hello
+Status: install ok installed
+Priority: optional
+Section: devel
+Installed-Size: 108
+Maintainer: Ubuntu Developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt;
+Architecture: amd64
+Version: 2.8-4
+Depends: libc6 (&gt;= 2.14), dpkg (&gt;= 1.15.4) | install-info
+Description: The classic greeting, and a good example
+ The GNU hello program produces a familiar, friendly greeting.  It
+ allows non-programmers to use a classic computer science tool which
+ would otherwise be unavailable to them.
+ .
+ Seriously, though: this is an example of how to do a Debian package.
+ It is the Debian version of the GNU Project&#39;s `hello world&#39; program
+ (which is itself an example for the GNU Project).
+Original-Maintainer: Santiago Vila &lt;sanvila@debian.org&gt;
+Homepage: http://www.gnu.org/software/hello/
+</code></pre><p>觀看「/var/lib/dpkg/status」</p>
+<pre><code>$ grep &#39;Package: hello&#39; /var/lib/dpkg/status -A 18
+</code></pre><p>顯示</p>
+<pre><code>Package: hello
+Status: install ok installed
+Priority: optional
+Section: devel
+Installed-Size: 108
+Maintainer: Ubuntu Developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt;
+Architecture: amd64
+Version: 2.8-4
+Depends: libc6 (&gt;= 2.14), dpkg (&gt;= 1.15.4) | install-info
+Description: The classic greeting, and a good example
+ The GNU hello program produces a familiar, friendly greeting.  It
+ allows non-programmers to use a classic computer science tool which
+ would otherwise be unavailable to them.
+ .
+ Seriously, though: this is an example of how to do a Debian package.
+ It is the Debian version of the GNU Project&#39;s `hello world&#39; program
+ (which is itself an example for the GNU Project).
+Original-Maintainer: Santiago Vila &lt;sanvila@debian.org&gt;
+Homepage: http://www.gnu.org/software/hello/
+</code></pre><p>觀看「/var/lib/dpkg/available」</p>
+<pre><code>$ grep &#39;Package: hello&#39; /var/lib/dpkg/available -A 18
+</code></pre><p>顯示</p>
+<pre><code>Package: hello
+Priority: optional
+Section: devel
+Installed-Size: 108
+Maintainer: Ubuntu Developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt;
+Architecture: amd64
+Version: 2.8-4
+Depends: libc6 (&gt;= 2.14), dpkg (&gt;= 1.15.4) | install-info
+Size: 28148
+Description: The classic greeting, and a good example
+ The GNU hello program produces a familiar, friendly greeting.  It
+ allows non-programmers to use a classic computer science tool which
+ would otherwise be unavailable to them.
+ .
+ Seriously, though: this is an example of how to do a Debian package.
+ It is the Debian version of the GNU Project&#39;s `hello world&#39; program
+ (which is itself an example for the GNU Project).
+Original-Maintainer: Santiago Vila &lt;sanvila@debian.org&gt;
+Homepage: http://www.gnu.org/software/hello/
+</code></pre><h2 id="dpkg-">dpkg 移除</h2>
+<p>執行</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">sudo</span> dpkg -r hello
 </code></pre>
-<pre><code class="lang-sh">$ ar xf vim_2%<span class="hljs-number">3</span>a7.<span class="hljs-number">4.052</span>-<span class="hljs-number">1</span>ubuntu3_amd64.deb
-$ vim control.tar.gz
+<p>或是</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">sudo</span> dpkg --remove hello
 </code></pre>
-<h2 id="source">source</h2>
-<p>下載「Vim」這個「Source Package」。</p>
-<pre><code class="lang-sh">$ apt-get <span class="hljs-built_in">source</span> vim
+<p>來移除「<a href="http://packages.ubuntu.com/trusty/hello" target="_blank">hello</a>」這個套件</p>
+<p>會顯示</p>
+<pre><code>(Reading database ... 947427 files and directories currently installed.)
+Removing hello (2.8-4) ...
+Processing triggers for man-db (2.6.7.1-1ubuntu1) ...
+Processing triggers for install-info (5.2.0.dfsg.1-2) ...
+</code></pre><p>就會把「<a href="http://packages.ubuntu.com/trusty/hello" target="_blank">hello</a>」這個套件移除了。</p>
+<p>另外有一種「dpkg -P」或「dpkg --purge」的移除方式，另外一篇來討論。</p>
+<p>查看一些相關的訊息，驗證一下，是否移除。</p>
+<p>執行</p>
+<pre><code class="lang-sh">$ dpkg <span class="hljs-operator">-l</span> hello
 </code></pre>
-<p>觀看「control」檔</p>
-<pre><code class="lang-sh">$ cat vim-<span class="hljs-number">7.4</span>.<span class="hljs-number">052</span>/debian/control
+<p>顯示</p>
+<pre><code>dpkg-query: no packages found matching hello
+</code></pre><p>觀看「<a href="http://packages.ubuntu.com/trusty/hello" target="_blank">hello</a>」這個套件，安裝了那些檔案到系統，是否還存在。</p>
+<pre><code class="lang-sh">$ dpkg -L hello
 </code></pre>
+<p>顯示</p>
+<pre><code>dpkg-query: package &#39;hello&#39; is not installed
+Use dpkg --info (= dpkg-deb --info) to examine archive files,
+and dpkg --contents (= dpkg-deb --contents) to list their contents
+</code></pre><p>觀看「<a href="http://packages.ubuntu.com/trusty/hello" target="_blank">hello</a>」這個套件，那些「Control File」和「Maintainer Script」，是否還存在。</p>
+<pre><code class="lang-sh">$ ls /var/lib/dpkg/info/hello* -<span class="hljs-number">1</span>
+</code></pre>
+<p>顯示</p>
+<pre><code>ls: cannot access /var/lib/dpkg/info/hello*: No such file or directory
+</code></pre><p>執行</p>
+<pre><code class="lang-sh">$ ls /var/cache/apt/archives/hello*
+</code></pre>
+<p>顯示</p>
+<pre><code>/var/cache/apt/archives/hello_2.8-4_amd64.deb
+</code></pre><p>執行</p>
+<pre><code>$ dpkg -s hello
+</code></pre><p>顯示</p>
+<pre><code>dpkg-query: package &#39;hello&#39; is not installed and no information is available
+Use dpkg --info (= dpkg-deb --info) to examine archive files,
+and dpkg --contents (= dpkg-deb --contents) to list their contents.
+</code></pre><p>觀看「/var/lib/dpkg/status」</p>
+<pre><code>$ grep &#39;Package: hello&#39; /var/lib/dpkg/status -A 18
+</code></pre><p>沒有顯示訊息。</p>
+<p>觀看「/var/lib/dpkg/available」</p>
+<pre><code>$ grep &#39;Package: hello&#39; /var/lib/dpkg/available -A 18
+</code></pre><p>顯示</p>
+<pre><code>Package: hello
+Priority: optional
+Section: devel
+Installed-Size: 108
+Maintainer: Ubuntu Developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt;
+Architecture: amd64
+Version: 2.8-4
+Depends: libc6 (&gt;= 2.14), dpkg (&gt;= 1.15.4) | install-info
+Size: 28148
+Description: The classic greeting, and a good example
+ The GNU hello program produces a familiar, friendly greeting.  It
+ allows non-programmers to use a classic computer science tool which
+ would otherwise be unavailable to them.
+ .
+ Seriously, though: this is an example of how to do a Debian package.
+ It is the Debian version of the GNU Project&#39;s `hello world&#39; program
+ (which is itself an example for the GNU Project).
+Original-Maintainer: Santiago Vila &lt;sanvila@debian.org&gt;
+Homepage: http://www.gnu.org/software/hello/
+</code></pre><h2 id="apt-get-">apt-get 移除</h2>
+<p>執行</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">sudo</span> apt-get remove hello
+</code></pre>
+<p>顯示</p>
+<pre><code>Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following packages will be REMOVED:
+  hello
+0 upgraded, 0 newly installed, 1 to remove and 0 not upgraded.
+After this operation, 111 kB disk space will be freed.
+Do you want to continue? [Y/n]
+</code></pre><p>按下「Enter」</p>
+<p>顯示</p>
+<pre><code>(Reading database ... 947427 files and directories currently installed.)
+Removing hello (2.8-4) ...
+Processing triggers for man-db (2.6.7.1-1ubuntu1) ...
+Processing triggers for install-info (5.2.0.dfsg.1-2) ...
+</code></pre><h2 id="aptitude-">aptitude 移除</h2>
+<p>執行</p>
+<pre><code>$ sudo aptitude remove hello
+</code></pre><p>顯示</p>
+<pre><code>The following packages will be REMOVED:
+  hello
+0 packages upgraded, 0 newly installed, 1 to remove and 0 not upgraded.
+Need to get 0 B of archives. After unpacking 111 kB will be freed.
+(Reading database ... 947386 files and directories currently installed.)
+Removing hello (2.8-4) ...
+Processing triggers for man-db (2.6.7.1-1ubuntu1) ...
+Processing triggers for install-info (5.2.0.dfsg.1-2) ...
+</code></pre><h2 id="select-">select 移除</h2>
+<p>產生要移除的套件列表檔案「list.txt」</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">echo</span> <span class="hljs-string">'hello deinstall'</span> &gt; list.txt
+</code></pre>
+<p>確認觀看「list.txt」內容</p>
+<pre><code class="lang-sh">$ cat list.txt
+</code></pre>
+<p>顯示</p>
+<pre><code>hello deinstall
+</code></pre><p>設定要刪除</p>
+<pre><code>$ sudo dpkg --set-selections &lt; list.txt
+</code></pre><p>執行</p>
+<pre><code class="lang-sh">$ dpkg --get-selections | grep hello
+</code></pre>
+<p>顯示</p>
+<pre><code>hello                                           deinstall
+</code></pre><p>執行</p>
+<pre><code class="lang-sh">$ dpkg <span class="hljs-operator">-l</span> hello
+</code></pre>
+<p>顯示</p>
+<pre><code>Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name                         Version             Architecture        Description
++++-============================-===================-===================-==============================================================
+ri  hello                        2.8-4               amd64               The classic greeting, and a good example
+</code></pre><p>執行</p>
+<pre><code class="lang-sh">$ dpkg <span class="hljs-operator">-s</span> hello
+</code></pre>
+<p>顯示</p>
+<pre><code>Package: hello
+Status: deinstall ok installed
+Priority: optional
+Section: devel
+Installed-Size: 108
+Maintainer: Ubuntu Developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt;
+Architecture: amd64
+Version: 2.8-4
+Depends: libc6 (&gt;= 2.14), dpkg (&gt;= 1.15.4) | install-info
+Description: The classic greeting, and a good example
+ The GNU hello program produces a familiar, friendly greeting.  It
+ allows non-programmers to use a classic computer science tool which
+ would otherwise be unavailable to them.
+ .
+ Seriously, though: this is an example of how to do a Debian package.
+ It is the Debian version of the GNU Project&#39;s `hello world&#39; program
+ (which is itself an example for the GNU Project).
+Original-Maintainer: Santiago Vila &lt;sanvila@debian.org&gt;
+Homepage: http://www.gnu.org/software/hello/
+</code></pre><p>觀看「/var/lib/dpkg/status」</p>
+<pre><code>$ grep &#39;Package: hello&#39; /var/lib/dpkg/status -A 18
+</code></pre><p>顯示</p>
+<pre><code>Package: hello
+Status: deinstall ok installed
+Priority: optional
+Section: devel
+Installed-Size: 108
+Maintainer: Ubuntu Developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt;
+Architecture: amd64
+Version: 2.8-4
+Depends: libc6 (&gt;= 2.14), dpkg (&gt;= 1.15.4) | install-info
+Description: The classic greeting, and a good example
+ The GNU hello program produces a familiar, friendly greeting.  It
+ allows non-programmers to use a classic computer science tool which
+ would otherwise be unavailable to them.
+ .
+ Seriously, though: this is an example of how to do a Debian package.
+ It is the Debian version of the GNU Project&#39;s `hello world&#39; program
+ (which is itself an example for the GNU Project).
+Original-Maintainer: Santiago Vila &lt;sanvila@debian.org&gt;
+Homepage: http://www.gnu.org/software/hello/
+</code></pre><p>注意「Status」那一行</p>
+<pre><code>Status: deinstall ok installed
+</code></pre><p>這時候只要執行</p>
+<pre><code>$ sudo dpkg -r -a
+</code></pre><p>或是</p>
+<pre><code>$ sudo dpkg --remove --pending
+</code></pre><p>顯示</p>
+<pre><code>(Reading database ... 947386 files and directories currently installed.)
+Removing hello (2.8-4) ...
+Processing triggers for man-db (2.6.7.1-1ubuntu1) ...
+Processing triggers for install-info (5.2.0.dfsg.1-2) ...
+</code></pre><p>就會把「<a href="http://packages.ubuntu.com/trusty/hello" target="_blank">hello</a>」這個套件移除了。</p>
+<p>或是當你執行完「set-selections」。</p>
+<p>執行下面的指令</p>
+<pre><code>$ sudo apt-get dselect-upgrade
+</code></pre><p>就會出現下面的訊息</p>
+<pre><code>Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following packages will be REMOVED:
+  hello
+0 upgraded, 0 newly installed, 1 to remove and 0 not upgraded.
+After this operation, 111 kB disk space will be freed.
+Do you want to continue? [Y/n]
+</code></pre><p>按下「Enter」</p>
+<p>就會顯示</p>
+<pre><code>(Reading database ... 947386 files and directories currently installed.)
+Removing hello (2.8-4) ...
+Processing triggers for man-db (2.6.7.1-1ubuntu1) ...
+Processing triggers for install-info (5.2.0.dfsg.1-2) ...
+</code></pre><p>一樣會把「<a href="http://packages.ubuntu.com/trusty/hello" target="_blank">hello</a>」這個套件移除。</p>
+<p>或是當你執行完「set-selections」。</p>
+<p>執行下面的指令</p>
+<pre><code>$ sudo aptitude install
+</code></pre><p>一樣會把「<a href="http://packages.ubuntu.com/trusty/hello" target="_blank">hello</a>」這個套件移除。</p>
 
                     
                     </section>
@@ -947,10 +1248,10 @@ $ vim control.tar.gz
         </div>
 
         
-        <a href="../../content/package/index.html" class="navigation navigation-prev " aria-label="Previous page: 一些套件相關的技巧"><i class="fa fa-angle-left"></i></a>
+        <a href="../../content/package/how-to-find-out-package-reverse-dependency.html" class="navigation navigation-prev " aria-label="Previous page: 如何查詢某個套件被哪些套件相依"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../content/package/apt-get-install.html" class="navigation navigation-next " aria-label="Next page: apt-get install 的使用"><i class="fa fa-angle-right"></i></a>
+        <a href="../../content/package/how-to-download-package.html" class="navigation navigation-next " aria-label="Next page: 如何下載「Package」"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
