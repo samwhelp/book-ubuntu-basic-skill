@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="2.19" data-basepath="../.." data-revision="1431691550443">
+    <div class="book" data-level="2.19" data-basepath="../.." data-revision="1431693225428">
     
 
 <div class="book-summary">
@@ -1238,7 +1238,74 @@ Processing triggers for install-info (5.2.0.dfsg.1-2) ...
 <p>執行下面的指令</p>
 <pre><code>$ sudo aptitude install
 </code></pre><p>一樣會把「<a href="http://packages.ubuntu.com/trusty/hello" target="_blank">hello</a>」這個套件移除。</p>
+<h2 id="">強制移除</h2>
+<p>從「<a href="http://www.ubuntu-tw.org/modules/newbb/viewtopic.php?post_id=339622#forumpost339622" target="_blank">這篇</a>」討論中和參考「<a href="https://www.peterdavehello.org/2013/12/debian-ubuntu-linuxmint-deepin-dpkg%E5%BF%BD%E7%95%A5%E7%9B%B8%E4%BE%9D%E6%80%A7%E5%BC%B7%E5%88%B6%E7%A7%BB%E9%99%A4/" target="_blank">這篇</a>」，學到。</p>
+<p>當有卡住的情況時，可以執行下面的指令來強制移除</p>
+<pre><code>$ sudo dpkg -r --force-depends hello
+</code></pre><p>相關文件說明</p>
+<p>$ man <a href="http://manpages.ubuntu.com/manpages/trusty/man1/dpkg.1.html" target="_blank">dpkg</a></p>
+<p>可以看到一段</p>
+<pre><code>       -?, --help
+              Display a brief help message.
 
+       --force-help
+              Give help about the --force-thing options.
+</code></pre><p>然後查詢「forece-thing」，就可以看到</p>
+<pre><code>       --force-things, --no-force-things, --refuse-things
+
+...略...
+
+              depends: Turn all dependency problems into warnings.
+
+...略...
+</code></pre><p>執行</p>
+<pre><code>$ dpkg --help
+</code></pre><p>可以看到</p>
+<pre><code>Options:
+
+...略...
+
+  --force-...                Override problems (see --force-help).
+
+...略...
+</code></pre><p>執行</p>
+<pre><code>$ dpkg --force-help
+</code></pre><p>則是可以看到</p>
+<pre><code>dpkg forcing options - control behaviour when problems found:
+  warn but continue:  --force-&lt;thing&gt;,&lt;thing&gt;,...
+  stop with error:    --refuse-&lt;thing&gt;,&lt;thing&gt;,... | --no-force-&lt;thing&gt;,...
+ Forcing things:
+  [!] all                Set all force options
+  [*] downgrade          Replace a package with a lower version
+      configure-any      Configure any package which may help this one
+      hold               Process incidental packages even when on hold
+      not-root           Try to (de)install things even when not root
+      bad-path           PATH is missing important programs, problems likely
+      bad-verify         Install a package even if it fails authenticity check
+      bad-version        Process even packages with wrong versions
+      overwrite          Overwrite a file from one package with another
+      overwrite-diverted Overwrite a diverted file with an undiverted version
+  [!] overwrite-dir      Overwrite one package&#39;s directory with another&#39;s file
+  [!] unsafe-io          Do not perform safe I/O operations when unpacking
+  [!] confnew            Always use the new config files, don&#39;t prompt
+  [!] confold            Always use the old config files, don&#39;t prompt
+  [!] confdef            Use the default option for new config files if one
+                         is available, don&#39;t prompt. If no default can be found,
+                         you will be prompted unless one of the confold or
+                         confnew options is also given
+  [!] confmiss           Always install missing config files
+  [!] confask            Offer to replace config files with no new versions
+  [!] architecture       Process even packages with wrong or no architecture
+  [!] breaks             Install even if it would break another package
+  [!] conflicts          Allow installation of conflicting packages
+  [!] depends            Turn all dependency problems into warnings
+  [!] depends-version    Turn dependency version problems into warnings
+  [!] remove-reinstreq   Remove packages which require installation
+  [!] remove-essential   Remove an essential package
+
+WARNING - use of options marked [!] can seriously damage your installation.
+Forcing options marked [*] are enabled by default.
+</code></pre>
                     
                     </section>
                 
