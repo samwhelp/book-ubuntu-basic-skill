@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>dpkg --configure 的使用 | Ubuntu Basic Skill</title>
+        <title>製作「deb檔」- 範例「aobook」 | Ubuntu Basic Skill</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
-    <link rel="next" href="../../content/package/dpkg-remove.html" />
+    <link rel="next" href="../../content/package/how-to-extract-package.html" />
     
     
-    <link rel="prev" href="../../content/package/dpkg-unpack.html" />
+    <link rel="prev" href="../../content/package/how-to-build-package.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="2.7" data-basepath="../.." data-revision="1431782902764">
+    <div class="book" data-level="2.23.1" data-basepath="../.." data-revision="1431782902764">
     
 
 <div class="book-summary">
@@ -217,7 +217,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="2.7" data-path="content/package/dpkg-configure.html">
+        <li class="chapter " data-level="2.7" data-path="content/package/dpkg-configure.html">
             
                 
                     <a href="../../content/package/dpkg-configure.html">
@@ -490,7 +490,7 @@
                 
     
         
-        <li class="chapter " data-level="2.23.1" data-path="content/package/ex-build-package-aobook.html">
+        <li class="chapter active" data-level="2.23.1" data-path="content/package/ex-build-package-aobook.html">
             
                 
                     <a href="../../content/package/ex-build-package-aobook.html">
@@ -922,33 +922,196 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_24">
+                    <section class="normal" id="section-gitbook_18">
                     
-                        <h1 id="dpkg---configure-">dpkg --configure 的使用</h1>
-<h2 id="">測試環境</h2>
-<p>以下測試是在「Xubuntu 14.04 64位元」。</p>
-<h2 id="">使用範例</h2>
-<p>「dpkg --configure」的使用範例，請參考『<a href="about-unpack-and-configure-package.html">關於「dpkg --unpack」和「dpkg --configure」</a>』這篇。</p>
-<h2 id="">手冊說明</h2>
-<p>$ man <a href="http://manpages.ubuntu.com/manpages/trusty/man1/dpkg.1.html" target="_blank">dpkg</a></p>
-<p>可以看到一段說明</p>
-<pre><code>ACTIONS
-
-  ...略...
-
-       --configure package...|-a|--pending
-              Configure a package which has been unpacked but not yet configured.  If -a or --pending is given instead of package, all
-              unpacked but unconfigured packages are configured.
-
-              To reconfigure a package which has already been configured, try the dpkg-reconfigure(8) command instead.
-
-              Configuring consists of the following steps:
-
-              1. Unpack the conffiles, and at the same time back up the old conffiles, so that they can be restored if something  goes
-              wrong.
-
-              2. Run postinst script, if provided by the package.
+                        <h1 id="deb--aobook">製作「deb檔」- 範例「aobook」</h1>
+<h2 id="">前言</h2>
+<p>從這個「<a href="http://www.ubuntu-tw.org/modules/newbb/viewtopic.php?post_id=340344#forumpost340344" target="_blank">討論</a>」看到的範例，剛好用來做練習。
+因為還不會製作「Source Package」，所以沒有使用「Source Package」來製作「Binary Packge」。先用目前「<a href="how-to-build-package.html">會的方式</a>」來製作。</p>
+<h2 id="">準備工作環境</h2>
+<pre><code>$ mkdir ~/Downloads/aobook/src -p
+</code></pre><h2 id="">下載原始檔</h2>
+<p>到「<a href="http://osdn.jp/projects/aobook/releases" target="_blank">這一頁</a>」下載原始檔。</p>
+<pre><code class="lang-sh"><span class="hljs-built_in">cd</span> ~/Downloads/aobook/src
+wget -c http://iij.dl.sourceforge.jp/aobook/<span class="hljs-number">62557</span>/aobook-<span class="hljs-number">1.0</span>.<span class="hljs-number">1</span>.tar.bz2
 </code></pre>
+<p>解開</p>
+<pre><code class="lang-sh">$ tar xf aobook-<span class="hljs-number">1.0</span>.<span class="hljs-number">1</span>.tar.bz2
+</code></pre>
+<h2 id="">安裝編譯需要的套件</h2>
+<p>安裝編譯的套件</p>
+<pre><code>$ sudo apt-get install build-essential
+</code></pre><p>參考「<a href="http://azsky2.html.xdomain.jp/linux/aobook/install.html" target="_blank">這篇</a>」，安裝編譯「aobook-1.0.1」相依的套件</p>
+<pre><code>$ sudo apt-get install gcc make libX11-dev libXext-dev libfreetype6-dev libfontconfig1-dev zlib1g-dev libpng12-dev libjpeg-dev
+</code></pre><h2 id="">編譯</h2>
+<p>切換到「aobook-1.0.1」</p>
+<pre><code>$ cd aobook-1.0.1
+</code></pre><p>configure</p>
+<pre><code>$ ./configure --prefix=/tmp/aobook/root/usr
+</code></pre><p>因為等會要製作「deb檔」，所以我把「prefix」設定到「/tmp/aobook/root/usr」。(configure的prefix不能用相對路徑)</p>
+<p>執行編譯</p>
+<pre><code>$ make
+</code></pre><p>安裝到「/tmp/aobook/root/usr」</p>
+<pre><code>$ sudo make install
+</code></pre><p>觀看目錄結構</p>
+<pre><code>$ tree /tmp/aobook/root/usr
+</code></pre><p>顯示</p>
+<pre><code>/tmp/aobook/root/usr
+├── bin
+│   └── aobook
+└── share
+    ├── applications
+    │   └── aobook.desktop
+    └── icons
+        └── hicolor
+            ├── 48x48
+            │   └── apps
+            │       └── aobook.png
+            ├── icon-theme.cache
+            └── scalable
+                └── apps
+                    └── aobook.svg
+
+9 directories, 5 files
+</code></pre><h2 id="deb">製作「deb檔」</h2>
+<p>切換到「/tmp/aobook」</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">cd</span> /tmp/aobook
+</code></pre>
+<p>產生「root/DEBIAN」資料夾</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">sudo</span> mkdir root/DEBIAN -p
+</code></pre>
+<p>產生「control」檔</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">sudo</span> touch root/DEBIAN/control
+</code></pre>
+<p>編寫「control」內容</p>
+<pre><code>sudo sh -c &quot;echo &#39;Package: aobook&#39; &gt; root/DEBIAN/control&quot;
+sudo sh -c &quot;echo &#39;Version: 1.0.1-1demo&#39; &gt;&gt; root/DEBIAN/control&quot;
+sudo sh -c &quot;echo &#39;Architecture: amd64&#39; &gt;&gt; root/DEBIAN/control&quot;
+sudo sh -c &quot;echo &#39;Priority: optional&#39; &gt;&gt; root/DEBIAN/control&quot;
+sudo sh -c &quot;echo &#39;Section: text&#39; &gt;&gt; root/DEBIAN/control&quot;
+sudo sh -c &quot;echo &#39;Maintainer: demo &lt;developer@hell.heaven&gt;&#39; &gt;&gt; root/DEBIAN/control&quot;
+sudo sh -c &quot;echo &#39;Depends: libx11-6, libxext6, libfreetype6, libfontconfig1, zlib1g, libpng12-0, libjpeg8&#39; &gt;&gt; root/DEBIAN/control&quot;
+sudo sh -c &quot;echo &#39;Homepage: http://azsky2.html.xdomain.jp/linux/aobook/&#39; &gt;&gt; root/DEBIAN/control&quot;
+sudo sh -c &quot;echo &#39;Description: 青空文庫テキストビューアです。&#39; &gt;&gt; root/DEBIAN/control&quot;
+sudo sh -c &quot;echo &#39; * freetype による縦書き表示＆アンチエイリアスで綺麗に表示できます。 (フォントの描画品質は freetype に依存します) &#39; &gt;&gt; root/DEBIAN/control&quot;
+sudo sh -c &quot;echo &#39; * 一般的な青空文庫の注記に対応しています。(あまり使わないと思われるものには対応していません) &#39; &gt;&gt; root/DEBIAN/control&quot;
+sudo sh -c &quot;echo &#39; * UTF-8/Shift-JIS/EUC-JP/UTF16-LE/UTF16-BE に対応しています。&#39; &gt;&gt; root/DEBIAN/control&quot;
+sudo sh -c &quot;echo &#39; * 挿絵を表示することもできます。&#39; &gt;&gt; root/DEBIAN/control&quot;
+sudo sh -c &quot;echo &#39; * ZIP で圧縮されたテキストファイルも読み込めます。(先頭に格納されているファイルのみ) &#39; &gt;&gt; root/DEBIAN/control&quot;
+sudo sh -c &quot;echo &#39; * しおりを付けることができます。&#39; &gt;&gt; root/DEBIAN/control&quot;
+sudo sh -c &quot;echo &#39; * ツール実行機能や、テキスト行番号で指定してページが表示できるなど、テキスト編集時の確認用としても使えます。&#39; &gt;&gt; root/DEBIAN/control&quot;
+</code></pre><p>觀看「root/DEBIAN/control」內容</p>
+<pre><code>$ cat root/DEBIAN/control
+</code></pre><p>顯示</p>
+<pre><code>Package: aobook
+Version: 1.0.1-1demo
+Architecture: amd64
+Priority: optional
+Section: text
+Maintainer: demo &lt;developer@hell.heaven&gt;
+Depends: libx11-6, libxext6, libfreetype6, libfontconfig1, zlib1g, libpng12-0, libjpeg8
+Homepage: http://azsky2.html.xdomain.jp/linux/aobook/
+Description: 青空文庫テキストビューアです。
+ * freetype による縦書き表示＆アンチエイリアスで綺麗に表示できます。 (フォントの描画品質は freetype に依存します)
+ * 一般的な青空文庫の注記に対応しています。(あまり使わないと思われるものには対応していません)
+ * UTF-8/Shift-JIS/EUC-JP/UTF16-LE/UTF16-BE に対応しています。
+ * 挿絵を表示することもできます。
+ * ZIP で圧縮されたテキストファイルも読み込めます。(先頭に格納されているファイルのみ)
+ * しおりを付けることができます。
+ * ツール実行機能や、テキスト行番号で指定してページが表示できるなど、テキスト編集時の確認用としても使えます。
+</code></pre><p>產生「build」資料夾</p>
+<pre><code>$ sudo mkdir build
+</code></pre><p>製作「deb檔」</p>
+<pre><code>$ sudo dpkg -b root build
+</code></pre><p>會顯示</p>
+<pre><code>dpkg-deb: building package `aobook&#39; in `build/aobook_1.0.1-1demo_amd64.deb&#39;.
+</code></pre><h2 id="deb">觀看製作完成的deb檔</h2>
+<p>執行</p>
+<pre><code>$ dpkg -I build/aobook_1.0.1-1demo_amd64.deb
+</code></pre><p>顯示</p>
+<pre><code> new debian package, version 2.0.
+ size 132398 bytes: control archive=862 bytes.
+    1088 bytes,    16 lines      control
+ Package: aobook
+ Version: 1.0.1-1demo
+ Architecture: amd64
+ Priority: optional
+ Section: text
+ Maintainer: demo &lt;developer@hell.heaven&gt;
+ Depends: libx11-6, libxext6, libfreetype6, libfontconfig1, zlib1g, libpng12-0, libjpeg8
+ Homepage: http://azsky2.html.xdomain.jp/linux/aobook/
+ Description: 青空文庫テキストビューアです。
+  * freetype による縦書き表示＆アンチエイリアスで綺麗に表示できます。 (フォントの描画品質は freetype に依存します)
+  * 一般的な青空文庫の注記に対応しています。(あまり使わないと思われるものには対応していません)
+  * UTF-8/Shift-JIS/EUC-JP/UTF16-LE/UTF16-BE に対応しています。
+  * 挿絵を表示することもできます。
+  * ZIP で圧縮されたテキストファイルも読み込めます。(先頭に格納されているファイルのみ)
+  * しおりを付けることができます。
+  * ツール実行機能や、テキスト行番号で指定してページが表示できるなど、テキスト編集時の確認用としても使えます。
+</code></pre><p>執行</p>
+<pre><code>$ dpkg -c build/aobook_1.0.1-1demo_amd64.deb
+</code></pre><p>顯示</p>
+<pre><code>drwxr-xr-x root/root         0 2015-05-16 20:43 ./
+drwxr-xr-x root/root         0 2015-05-16 20:42 ./usr/
+drwxr-xr-x root/root         0 2015-05-16 20:42 ./usr/share/
+drwxr-xr-x root/root         0 2015-05-16 20:42 ./usr/share/applications/
+-rw-r--r-- root/root       116 2015-05-16 20:42 ./usr/share/applications/aobook.desktop
+drwxr-xr-x root/root         0 2015-05-16 20:42 ./usr/share/icons/
+drwxr-xr-x root/root         0 2015-05-16 20:42 ./usr/share/icons/hicolor/
+-rw-r--r-- root/root      9396 2015-05-16 20:42 ./usr/share/icons/hicolor/icon-theme.cache
+drwxr-xr-x root/root         0 2015-05-16 20:42 ./usr/share/icons/hicolor/48x48/
+drwxr-xr-x root/root         0 2015-05-16 20:42 ./usr/share/icons/hicolor/48x48/apps/
+-rw-r--r-- root/root      2294 2015-05-16 20:42 ./usr/share/icons/hicolor/48x48/apps/aobook.png
+drwxr-xr-x root/root         0 2015-05-16 20:42 ./usr/share/icons/hicolor/scalable/
+drwxr-xr-x root/root         0 2015-05-16 20:42 ./usr/share/icons/hicolor/scalable/apps/
+-rw-r--r-- root/root      9135 2015-05-16 20:42 ./usr/share/icons/hicolor/scalable/apps/aobook.svg
+drwxr-xr-x root/root         0 2015-05-16 20:42 ./usr/bin/
+-rwxr-xr-x root/root    307040 2015-05-16 20:42 ./usr/bin/aobook
+</code></pre><h2 id="">測試安裝</h2>
+<pre><code>$ sudo dpkg -i build/aobook_1.0.1-1demo_amd64.deb
+</code></pre><p>會顯示</p>
+<pre><code>Selecting previously unselected package aobook.
+(Reading database ... 947430 files and directories currently installed.)
+Preparing to unpack .../aobook_1.0.1-1demo_amd64.deb ...
+Unpacking aobook (1.0.1-1demo) ...
+Setting up aobook (1.0.1-1demo) ...
+Processing triggers for mime-support (3.54ubuntu1.1) ...
+Processing triggers for gnome-menus (3.10.1-0ubuntu2) ...
+Processing triggers for desktop-file-utils (0.22-1ubuntu1) ...
+Processing triggers for hicolor-icon-theme (0.13-1) ...
+</code></pre><p>執行</p>
+<pre><code>$ dpkg -l aobook
+</code></pre><p>顯示</p>
+<pre><code>Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name                         Version             Architecture        Description
++++-============================-===================-===================-==============================================================
+ii  aobook                       1.0.1-1demo         amd64               青空文庫テキストビューアです。
+</code></pre><p>執行</p>
+<pre><code class="lang-sh">$ dpkg -L aobook
+</code></pre>
+<p>顯示</p>
+<pre><code>/.
+/usr
+/usr/share
+/usr/share/applications
+/usr/share/applications/aobook.desktop
+/usr/share/icons
+/usr/share/icons/hicolor
+/usr/share/icons/hicolor/icon-theme.cache
+/usr/share/icons/hicolor/48x48
+/usr/share/icons/hicolor/48x48/apps
+/usr/share/icons/hicolor/48x48/apps/aobook.png
+/usr/share/icons/hicolor/scalable
+/usr/share/icons/hicolor/scalable/apps
+/usr/share/icons/hicolor/scalable/apps/aobook.svg
+/usr/bin
+/usr/bin/aobook
+</code></pre><p>執行「aobook」</p>
+<pre><code>$ aobook
+</code></pre><p>應該會正常啟動程式。</p>
+
                     
                     </section>
                 
@@ -958,10 +1121,10 @@
         </div>
 
         
-        <a href="../../content/package/dpkg-unpack.html" class="navigation navigation-prev " aria-label="Previous page: dpkg --unpack 的使用"><i class="fa fa-angle-left"></i></a>
+        <a href="../../content/package/how-to-build-package.html" class="navigation navigation-prev " aria-label="Previous page: 如何製作「deb檔(Debian Package)」"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../content/package/dpkg-remove.html" class="navigation navigation-next " aria-label="Next page: dpkg -r 的使用"><i class="fa fa-angle-right"></i></a>
+        <a href="../../content/package/how-to-extract-package.html" class="navigation navigation-next " aria-label="Next page: 如何解開「deb檔(Debian Package)」"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
