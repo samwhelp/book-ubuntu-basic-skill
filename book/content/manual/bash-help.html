@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>apt-get install 的使用 | Ubuntu Basic Skill</title>
+        <title>bash help | Ubuntu Basic Skill</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.6">
@@ -39,10 +39,10 @@
         
     
     
-    <link rel="next" href="../../content/package/apt-get-download.html" />
+    <link rel="next" href="../../content/package/index.html" />
     
     
-    <link rel="prev" href="../../content/package/apt-get.html" />
+    <link rel="prev" href="../../content/manual/section.html" />
     
 
         
@@ -51,9 +51,9 @@
         
         
     <div class="book"
-        data-level="2.2"
-        data-chapter-title="apt-get install 的使用"
-        data-filepath="content/package/apt-get-install.md"
+        data-level="1.3"
+        data-chapter-title="bash help"
+        data-filepath="content/manual/bash-help.md"
         data-basepath="../.."
         data-revision="Fri Feb 12 2016 15:59:50 GMT+0800 (CST)"
         data-innerlanguage="">
@@ -130,7 +130,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3" data-path="content/manual/bash-help.html">
+        <li class="chapter active" data-level="1.3" data-path="content/manual/bash-help.html">
             
                 
                     <a href="../../content/manual/bash-help.html">
@@ -181,7 +181,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.2" data-path="content/package/apt-get-install.html">
+        <li class="chapter " data-level="2.2" data-path="content/package/apt-get-install.html">
             
                 
                     <a href="../../content/package/apt-get-install.html">
@@ -885,42 +885,266 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="aptget-install-&#x7684;&#x4F7F;&#x7528;">apt-get install &#x7684;&#x4F7F;&#x7528;</h1>
-<h2 id="&#x6E2C;&#x8A66;&#x74B0;&#x5883;">&#x6E2C;&#x8A66;&#x74B0;&#x5883;</h2>
-<p>&#x4EE5;&#x4E0B;&#x6E2C;&#x8A66;&#x662F;&#x5728;&#x300C;Xubuntu 14.04 64&#x4F4D;&#x5143;&#x300D;&#x3002;</p>
-<h2 id="&#x4F7F;&#x7528;&#x7BC4;&#x4F8B;">&#x4F7F;&#x7528;&#x7BC4;&#x4F8B;</h2>
-<p>&#x300C;apt-get install&#x300D;&#x7684;&#x4F7F;&#x7528;&#x7BC4;&#x4F8B;&#xFF0C;&#x8ACB;&#x53C3;&#x8003;&#x300C;<a href="how-to-install-package.html">&#x5982;&#x4F55;&#x5B89;&#x88DD;&#x5957;&#x4EF6;</a>&#x300D;&#x9019;&#x7BC7;&#x3002;</p>
-<h2 id="&#x624B;&#x518A;&#x8AAA;&#x660E;">&#x624B;&#x518A;&#x8AAA;&#x660E;</h2>
-<p>$ man <a href="http://manpages.ubuntu.com/manpages/trusty/man8/apt-get.8.html" target="_blank">apt-get</a></p>
-<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4E00;&#x6BB5;&#x8AAA;&#x660E;</p>
-<pre><code>       install
-           install is followed by one or more packages desired for installation or upgrading. Each package is a package name, not a
-           fully qualified filename (for instance, in a Debian system, apt-utils would be the argument provided, not
-           apt-utils_1.0.1ubuntu2_amd64.deb). All packages required by the package(s) specified for installation will also be
-           retrieved and installed. The /etc/apt/sources.list file is used to locate the desired packages. If a hyphen is appended to
-           the package name (with no intervening space), the identified package will be removed if it is installed. Similarly a plus
-           sign can be used to designate a package to install. These latter features may be used to override decisions made by
-           apt-get&apos;s conflict resolution system.
+                        <h1 id="bash-help">bash help</h1>
+<p>&#x57F7;&#x884C;</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">help</span>
+</code></pre>
+<p>&#x986F;&#x793A;</p>
+<pre><code>GNU bash, version 4.3.11(1)-release (x86_64-pc-linux-gnu)
+These shell commands are defined internally.  Type `help&apos; to see this list.
+Type `help name&apos; to find out more about the function `name&apos;.
+Use `info bash&apos; to find out more about the shell in general.
+Use `man -k&apos; or `info&apos; to find out more about commands not in this list.
 
-           A specific version of a package can be selected for installation by following the package name with an equals and the
-           version of the package to select. This will cause that version to be located and selected for install. Alternatively a
-           specific distribution can be selected by following the package name with a slash and the version of the distribution or the
-           Archive name (stable, testing, unstable).
+A star (*) next to a name means that the command is disabled.
 
-           Both of the version selection mechanisms can downgrade packages and must be used with care.
+ job_spec [&amp;]                                                 history [-c] [-d offset] [n] or history -anrw [filename] &gt;
+ (( expression ))                                             if COMMANDS; then COMMANDS; [ elif COMMANDS; then COMMAND&gt;
+ . filename [arguments]                                       jobs [-lnprs] [jobspec ...] or jobs -x command [args]
+ :                                                            kill [-s sigspec | -n signum | -sigspec] pid | jobspec ..&gt;
+ [ arg... ]                                                   let arg [arg ...]
+ [[ expression ]]                                             local [option] name[=value] ...
+ alias [-p] [name[=value] ... ]                               logout [n]
+ bg [job_spec ...]                                            mapfile [-n count] [-O origin] [-s count] [-t] [-u fd] [-&gt;
+ bind [-lpsvPSVX] [-m keymap] [-f filename] [-q name] [-u n&gt;  popd [-n] [+N | -N]
+ break [n]                                                    printf [-v var] format [arguments]
+ builtin [shell-builtin [arg ...]]                            pushd [-n] [+N | -N | dir]
+ caller [expr]                                                pwd [-LP]
+ case WORD in [PATTERN [| PATTERN]...) COMMANDS ;;]... esac&gt;   read [-ers] [-a array] [-d delim] [-i text] [-n nchars] [&gt;
+ cd [-L|[-P [-e]] [-@]] [dir]                                 readarray [-n count] [-O origin] [-s count] [-t] [-u fd] &gt;
+ command [-pVv] command [arg ...]                             readonly [-aAf] [name[=value] ...] or readonly -p
+ compgen [-abcdefgjksuv] [-o option]  [-A action] [-G globp&gt;  return [n]
+ complete [-abcdefgjksuv] [-pr] [-DE] [-o option] [-A actio&gt;  select NAME [in WORDS ... ;] do COMMANDS; done
+ compopt [-o|+o option] [-DE] [name ...]                      set [-abefhkmnptuvxBCHP] [-o option-name] [--] [arg ...]
+ continue [n]                                                 shift [n]
+ coproc [NAME] command [redirections]                         shopt [-pqsu] [-o] [optname ...]
+ declare [-aAfFgilnrtux] [-p] [name[=value] ...]              source filename [arguments]
+ dirs [-clpv] [+N] [-N]                                       suspend [-f]
+ disown [-h] [-ar] [jobspec ...]                              test [expr]
+ echo [-neE] [arg ...]                                        time [-p] pipeline
+ enable [-a] [-dnps] [-f filename] [name ...]                 times
+ eval [arg ...]                                               trap [-lp] [[arg] signal_spec ...]
+ exec [-cl] [-a name] [command [arguments ...]] [redirectio&gt;  true
+ exit [n]                                                     type [-afptP] name [name ...]
+ export [-fn] [name[=value] ...] or export -p                 typeset [-aAfFgilrtux] [-p] name[=value] ...
+ false                                                        ulimit [-SHabcdefilmnpqrstuvxT] [limit]
+ fc [-e ename] [-lnr] [first] [last] or fc -s [pat=rep] [co&gt;  umask [-p] [-S] [mode]
+ fg [job_spec]                                                unalias [-a] name [name ...]
+ for NAME [in WORDS ... ] ; do COMMANDS; done                 unset [-f] [-v] [-n] [name ...]
+ for (( exp1; exp2; exp3 )); do COMMANDS; done                until COMMANDS; do COMMANDS; done
+ function name { COMMANDS ; } or name () { COMMANDS ; }       variables - Names and meanings of some shell variables
+ getopts optstring name [arg]                                 wait [-n] [id ...]
+ hash [-lr] [-p pathname] [-dt] [name ...]                    while COMMANDS; do COMMANDS; done
+ help [-dms] [pattern ...]                                    { COMMANDS ; }
+</code></pre><h2 id="&#x67E5;&#x8A62;-help-&#x600E;&#x9EBC;&#x4F7F;&#x7528;">&#x67E5;&#x8A62; help &#x600E;&#x9EBC;&#x4F7F;&#x7528;</h2>
+<p>&#x57F7;&#x884C;</p>
+<pre><code class="lang-sh"> $ <span class="hljs-built_in">help</span> <span class="hljs-built_in">help</span>
+</code></pre>
+<p> &#x986F;&#x793A;</p>
+<pre><code> help: help [-dms] [pattern ...]
+    Display information about builtin commands.
 
-           This is also the target to use if you want to upgrade one or more already-installed packages without upgrading every
-           package you have on your system. Unlike the &quot;upgrade&quot; target, which installs the newest version of all currently installed
-           packages, &quot;install&quot; will install the newest version of only the package(s) specified. Simply provide the name of the
-           package(s) you wish to upgrade, and if a newer version is available, it (and its dependencies, as described above) will be
-           downloaded and installed.
+    Displays brief summaries of builtin commands.  If PATTERN is
+    specified, gives detailed help on all commands matching PATTERN,
+    otherwise the list of help topics is printed.
 
-           Finally, the apt_preferences(5) mechanism allows you to create an alternative installation policy for individual packages.
+    Options:
+      -d        output short description for each topic
+      -m        display usage in pseudo-manpage format
+      -s        output only a short usage synopsis for each topic matching
+        PATTERN
 
-           If no package matches the given expression and the expression contains one of &apos;.&apos;, &apos;?&apos; or &apos;*&apos; then it is assumed to be a
-           POSIX regular expression, and it is applied to all package names in the database. Any matches are then installed (or
-           removed). Note that matching is done by substring so &apos;lo.*&apos; matches &apos;how-lo&apos; and &apos;lowest&apos;. If this is undesired, anchor the
-           regular expression with a &apos;^&apos; or &apos;$&apos; character, or create a more specific regular expression.
+    Arguments:
+      PATTERN   Pattern specifiying a help topic
+
+    Exit Status:
+    Returns success unless PATTERN is not found or an invalid option is given.
+</code></pre><p>&#x57F7;&#x884C;</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">help</span> <span class="hljs-operator">-d</span> <span class="hljs-built_in">help</span>
+</code></pre>
+<p>&#x986F;&#x793A;</p>
+<pre><code>help - Display information about builtin commands.
+</code></pre><p>&#x57F7;&#x884C;</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">help</span> -m <span class="hljs-built_in">help</span>
+</code></pre>
+<p>&#x986F;&#x793A;</p>
+<pre><code>NAME
+    help - Display information about builtin commands.
+
+SYNOPSIS
+    help [-dms] [pattern ...]
+
+DESCRIPTION
+    Display information about builtin commands.
+
+    Displays brief summaries of builtin commands.  If PATTERN is
+    specified, gives detailed help on all commands matching PATTERN,
+    otherwise the list of help topics is printed.
+
+    Options:
+      -d        output short description for each topic
+      -m        display usage in pseudo-manpage format
+      -s        output only a short usage synopsis for each topic matching
+        PATTERN
+
+    Arguments:
+      PATTERN   Pattern specifiying a help topic
+
+    Exit Status:
+    Returns success unless PATTERN is not found or an invalid option is given.
+
+SEE ALSO
+    bash(1)
+
+IMPLEMENTATION
+    GNU bash, version 4.3.11(1)-release (x86_64-pc-linux-gnu)
+    Copyright (C) 2013 Free Software Foundation, Inc.
+    License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;
+</code></pre><p>&#x57F7;&#x884C;</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">help</span> <span class="hljs-operator">-s</span> <span class="hljs-built_in">help</span>
+</code></pre>
+<p>&#x986F;&#x793A;</p>
+<pre><code>help: help [-dms] [pattern ...]
+</code></pre><h2 id="&#x4EE5;&#x67E5;&#x8A62;&#x300C;if&#x300D;&#x600E;&#x9EBC;&#x4F7F;&#x7528;&#x70BA;&#x4F8B;">&#x4EE5;&#x67E5;&#x8A62;&#x300C;if&#x300D;&#x600E;&#x9EBC;&#x4F7F;&#x7528;&#x70BA;&#x4F8B;</h2>
+<p>&#x57F7;&#x884C;</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">help</span> <span class="hljs-keyword">if</span>
+</code></pre>
+<p>&#x986F;&#x793A;</p>
+<pre><code>if: if COMMANDS; then COMMANDS; [ elif COMMANDS; then COMMANDS; ]... [ else COMMANDS; ] fi
+    Execute commands based on conditional.
+
+    The `if COMMANDS&apos; list is executed.  If its exit status is zero, then the
+    `then COMMANDS&apos; list is executed.  Otherwise, each `elif COMMANDS&apos; list is
+    executed in turn, and if its exit status is zero, the corresponding
+    `then COMMANDS&apos; list is executed and the if command completes.  Otherwise,
+    the `else COMMANDS&apos; list is executed, if present.  The exit status of the
+    entire construct is the exit status of the last command executed, or zero
+    if no condition tested true.
+
+    Exit Status:
+    Returns the status of the last command executed.
+</code></pre><p>&#x57F7;&#x884C;</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">help</span> <span class="hljs-operator">-d</span> <span class="hljs-keyword">if</span>
+</code></pre>
+<p>&#x986F;&#x793A;</p>
+<pre><code>if - Execute commands based on conditional.
+</code></pre><p>&#x57F7;&#x884C;</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">help</span> -m <span class="hljs-keyword">if</span>
+</code></pre>
+<p>&#x986F;&#x793A;</p>
+<pre><code>NAME
+    if - Execute commands based on conditional.
+
+SYNOPSIS
+    if COMMANDS; then COMMANDS; [ elif COMMANDS; then COMMANDS; ]... [ else COMMANDS; ] fi
+
+DESCRIPTION
+    Execute commands based on conditional.
+
+    The `if COMMANDS&apos; list is executed.  If its exit status is zero, then the
+    `then COMMANDS&apos; list is executed.  Otherwise, each `elif COMMANDS&apos; list is
+    executed in turn, and if its exit status is zero, the corresponding
+    `then COMMANDS&apos; list is executed and the if command completes.  Otherwise,
+    the `else COMMANDS&apos; list is executed, if present.  The exit status of the
+    entire construct is the exit status of the last command executed, or zero
+    if no condition tested true.
+
+    Exit Status:
+    Returns the status of the last command executed.
+
+SEE ALSO
+    bash(1)
+
+IMPLEMENTATION
+    GNU bash, version 4.3.11(1)-release (x86_64-pc-linux-gnu)
+    Copyright (C) 2013 Free Software Foundation, Inc.
+    License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;
+</code></pre><p>&#x57F7;&#x884C;</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">help</span> <span class="hljs-operator">-s</span> <span class="hljs-keyword">if</span>
+</code></pre>
+<p>&#x986F;&#x793A;</p>
+<pre><code>if: if COMMANDS; then COMMANDS; [ elif COMMANDS; then COMMANDS; ]... [ else COMMANDS; ] fi
+</code></pre><h2 id="type-&#x4F7F;&#x7528;&#x7BC4;&#x4F8B;">type &#x4F7F;&#x7528;&#x7BC4;&#x4F8B;</h2>
+<p>&#x57F7;&#x884C;</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">help</span> <span class="hljs-built_in">type</span>
+</code></pre>
+<p>&#x986F;&#x793A;</p>
+<pre><code>type: type [-afptP] name [name ...]
+    Display information about command type.
+
+    For each NAME, indicate how it would be interpreted if used as a
+    command name.
+
+    Options:
+      -a        display all locations containing an executable named NAME;
+        includes aliases, builtins, and functions, if and only if
+        the `-p&apos; option is not also used
+      -f        suppress shell function lookup
+      -P        force a PATH search for each NAME, even if it is an alias,
+        builtin, or function, and returns the name of the disk file
+        that would be executed
+      -p        returns either the name of the disk file that would be executed,
+        or nothing if `type -t NAME&apos; would not return `file&apos;.
+      -t        output a single word which is one of `alias&apos;, `keyword&apos;,
+        `function&apos;, `builtin&apos;, `file&apos; or `&apos;, if NAME is an alias, shell
+        reserved word, shell function, shell builtin, disk file, or not
+        found, respectively
+
+    Arguments:
+      NAME      Command name to be interpreted.
+
+    Exit Status:
+    Returns success if all of the NAMEs are found; fails if any are not found.
+</code></pre><p>&#x57F7;&#x884C;</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">type</span> <span class="hljs-built_in">help</span>
+</code></pre>
+<p>&#x986F;&#x793A;</p>
+<pre><code>$ help is a shell builtin
+</code></pre><p>&#x57F7;&#x884C;</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">type</span> <span class="hljs-keyword">if</span>
+</code></pre>
+<p>&#x986F;&#x793A;</p>
+<pre><code>$ if is a shell keyword
+</code></pre><p>&#x57F7;&#x884C;</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">type</span> <span class="hljs-built_in">type</span>
+</code></pre>
+<p>&#x986F;&#x793A;</p>
+<pre><code>type is a shell builtin
+</code></pre><p>&#x57F7;&#x884C;</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">type</span> ls
+</code></pre>
+<p>&#x986F;&#x793A;</p>
+<pre><code>ls is aliased to `ls --color=auto&apos;
+</code></pre><p>&#x57F7;&#x884C;</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">type</span> <span class="hljs-operator">-a</span> ls
+</code></pre>
+<p>&#x986F;&#x793A;</p>
+<pre><code>ls is aliased to `ls --color=auto&apos;
+ls is /bin/ls
+</code></pre><h2 id="command-&#x7684;&#x4F7F;&#x7528;&#x7BC4;&#x4F8B;">command &#x7684;&#x4F7F;&#x7528;&#x7BC4;&#x4F8B;</h2>
+<p>&#x57F7;&#x884C;</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">help</span> <span class="hljs-built_in">command</span>
+</code></pre>
+<p>&#x986F;&#x793A;</p>
+<pre><code>command: command [-pVv] command [arg ...]
+    Execute a simple command or display information about commands.
+
+    Runs COMMAND with ARGS suppressing  shell function lookup, or display
+    information about the specified COMMANDs.  Can be used to invoke commands
+    on disk when a function with the same name exists.
+
+    Options:
+      -p        use a default value for PATH that is guaranteed to find all of
+        the standard utilities
+      -v        print a description of COMMAND similar to the `type&apos; builtin
+      -V        print a more verbose description of each COMMAND
+
+    Exit Status:
+    Returns exit status of COMMAND, or failure if COMMAND is not found.
+</code></pre><p>&#x6216;&#x662F;&#x67E5;&#x8A62; $ man <a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/command.1posix.html" target="_blank">command</a></p>
+<pre><code>$ command -v ls
+</code></pre><p>&#x986F;&#x793A;</p>
+<pre><code>alias ls=&apos;ls --color=auto&apos;
 </code></pre>
                     
                     </section>
@@ -931,10 +1155,10 @@
         </div>
 
         
-        <a href="../../content/package/apt-get.html" class="navigation navigation-prev " aria-label="Previous page: apt-get 的使用"><i class="fa fa-angle-left"></i></a>
+        <a href="../../content/manual/section.html" class="navigation navigation-prev " aria-label="Previous page: manpage section"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../content/package/apt-get-download.html" class="navigation navigation-next " aria-label="Next page: apt-get download 的使用"><i class="fa fa-angle-right"></i></a>
+        <a href="../../content/package/index.html" class="navigation navigation-next " aria-label="Next page: 一些套件相關的技巧"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
